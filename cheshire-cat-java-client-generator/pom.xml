@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>it.baccan</groupId>
+    <artifactId>cheshire-cat-java-client-generator</artifactId>
+    <version>0.0.1</version>
+    <packaging>pom</packaging>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>1.8</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>        
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.openapitools</groupId>
+                <artifactId>openapi-generator-maven-plugin</artifactId>
+                <!-- RELEASE_VERSION -->
+                <version>7.2.0</version>
+                <!-- /RELEASE_VERSION -->
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+
+                        <configuration>          
+                            <inputSpec>${project.basedir}/src/main/resources/openapi.yaml</inputSpec>                 
+                            <generatorName>java</generatorName>
+                            <configOptions>
+                                <sourceFolder>src/main/java</sourceFolder>
+                            </configOptions>
+                            <generateSupportingFiles>true</generateSupportingFiles>
+                            <gitHost>github.com</gitHost>
+                            <gitRepoId>api-client-java</gitRepoId>
+                            <gitUserId>matteobaccan</gitUserId>
+                            <packageName>CheshireCatJavaApi</packageName>
+                            <apiPackage>it.baccan.cheshirecat.service</apiPackage>
+                            <modelPackage>it.baccan.cheshirecat.model</modelPackage>                            
+                            <groupId>it.baccan</groupId>
+                            <artifactId>cheshire-cat-java-client</artifactId>
+                            <output>${project.basedir}/../cheshire-cat-java-client</output>
+                        </configuration>
+
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

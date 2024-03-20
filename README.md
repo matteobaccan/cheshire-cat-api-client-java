@@ -1,2 +1,3 @@
 # api-client-java
- Cheshire Cat AI - Java client
+
+Cheshire Cat AI - Java client

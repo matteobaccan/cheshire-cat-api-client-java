@@ -1,0 +1,1627 @@
+openapi: 3.0.2
+info:
+  description: Customizable AI architecture
+  title: 😸 Cheshire-Cat API
+  version: 0.0.5
+  x-logo:
+    url: https://github.com/cheshire-cat-ai/core/blob/main/cheshire-cat.jpeg?raw=true
+servers:
+- url: /
+paths:
+  /:
+    get:
+      description: Server status
+      operationId: home
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: Successful Response
+      security: []
+      summary: Home
+      tags:
+      - Status
+      x-accepts: application/json
+  /settings:
+    get:
+      description: Get the entire list of settings available in the database
+      operationId: get_settings
+      parameters:
+      - description: The setting to search
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          default: ""
+          title: Search
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SettingsResponse'
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security: []
+      summary: Get Settings
+      tags:
+      - Settings
+      x-accepts: application/json
+    post:
+      description: Create a new setting in the database
+      operationId: create_setting
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SettingBody'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Setting'
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security: []
+      summary: Create Setting
+      tags:
+      - Settings
+      x-content-type: application/json
+      x-accepts: application/json
+  /settings/{settingId}:
+    delete:
+      description: Delete a specific setting in the database
+      operationId: delete_setting
+      parameters:
+      - explode: false
+        in: path
+        name: settingId
+        required: true
+        schema:
+          title: Settingid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security: []
+      summary: Delete Setting
+      tags:
+      - Settings
+      x-accepts: application/json
+    get:
+      description: Get the a specific setting from the database
+      operationId: get_setting
+      parameters:
+      - explode: false
+        in: path
+        name: settingId
+        required: true
+        schema:
+          title: Settingid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Setting'
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security: []
+      summary: Get Setting
+      tags:
+      - Settings
+      x-accepts: application/json
+    put:
+      description: Update a specific setting in the database if it exists
+      operationId: update_setting
+      parameters:
+      - explode: false
+        in: path
+        name: settingId
+        required: true
+        schema:
+          title: Settingid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SettingBody'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Setting'
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security: []
+      summary: Update Setting
+      tags:
+      - Settings
+      x-content-type: application/json
+      x-accepts: application/json
+  /llm/settings:
+    get:
+      description: Get the list of the Large Language Models
+      operationId: get_llms_settings
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SettingsResponse'
+          description: Successful Response
+      security: []
+      summary: Get LLMs Settings
+      tags:
+      - Large Language Model
+      x-accepts: application/json
+  /llm/settings/{languageModelName}:
+    get:
+      description: Get settings and schema of the specified Large Language Model
+      operationId: get_llm_settings
+      parameters:
+      - explode: false
+        in: path
+        name: languageModelName
+        required: true
+        schema:
+          title: languageModelName
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Setting'
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security: []
+      summary: Get Llm Settings
+      tags:
+      - Large Language Model
+      x-accepts: application/json
+    put:
+      description: Upsert the Large Language Model setting
+      operationId: upsert_llm_setting
+      parameters:
+      - explode: false
+        in: path
+        name: languageModelName
+        required: true
+        schema:
+          title: languageModelName
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              openai_api_key: your-key-here
+            schema:
+              title: Payload
+              type: object
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Setting'
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security: []
+      summary: Upsert LLM Setting
+      tags:
+      - Large Language Model
+      x-content-type: application/json
+      x-accepts: application/json
+  /embedder/settings:
+    get:
+      description: Get the list of the Embedders
+      operationId: get_embedders_settings
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SettingsResponse'
+          description: Successful Response
+      security: []
+      summary: Get Embedders Settings
+      tags:
+      - Embedder
+      x-accepts: application/json
+  /embedder/settings/{languageEmbedderName}:
+    get:
+      description: Get settings and schema of the specified Embedder
+      operationId: get_embedder_settings
+      parameters:
+      - explode: false
+        in: path
+        name: languageEmbedderName
+        required: true
+        schema:
+          title: languageEmbedderName
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Setting'
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security: []
+      summary: Get Embedder Settings
+      tags:
+      - Embedder
+      x-accepts: application/json
+    put:
+      description: Upsert the Embedder setting
+      operationId: upsert_embedder_setting
+      parameters:
+      - explode: false
+        in: path
+        name: languageEmbedderName
+        required: true
+        schema:
+          title: languageEmbedderName
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              openai_api_key: your-key-here
+            schema:
+              title: Payload
+              type: object
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Setting'
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security: []
+      summary: Upsert Embedder Setting
+      tags:
+      - Embedder
+      x-content-type: application/json
+      x-accepts: application/json
+  /plugins:
+    get:
+      description: List both installed and registry plugins
+      operationId: list_available_plugins
+      parameters:
+      - explode: true
+        in: query
+        name: query
+        required: false
+        schema:
+          title: Query
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PluginsList'
+          description: Successful Response
+      security: []
+      summary: List Available Plugins
+      tags:
+      - Plugins
+      x-accepts: application/json
+  /plugins/upload:
+    post:
+      description: Install a new plugin from a zip file
+      operationId: install_plugin
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/BodyInstallPlugin'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileResponse'
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security: []
+      summary: Install Plugin
+      tags:
+      - Plugins
+      x-content-type: multipart/form-data
+      x-accepts: application/json
+  /plugins/upload/registry:
+    post:
+      description: Install a new plugin from external repository
+      operationId: install_plugin_from_registry
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BodyUploadUrl'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileResponse'
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security: []
+      summary: Install Plugin From Registry
+      tags:
+      - Plugins
+      x-content-type: application/json
+      x-accepts: application/json
+  /plugins/toggle/{plugin_id}:
+    put:
+      description: Enable or disable a single plugin
+      operationId: toggle_plugin
+      parameters:
+      - explode: false
+        in: path
+        name: plugin_id
+        required: true
+        schema:
+          title: Plugin ID
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ToggleResponse'
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security: []
+      summary: Toggle Plugin
+      tags:
+      - Plugins
+      x-accepts: application/json
+  /plugins/{plugin_id}:
+    delete:
+      description: Physically remove a plugin
+      operationId: delete_plugin
+      parameters:
+      - explode: false
+        in: path
+        name: plugin_id
+        required: true
+        schema:
+          title: Plugin ID
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security: []
+      summary: Delete Plugin
+      tags:
+      - Plugins
+      x-accepts: application/json
+    get:
+      description: Returns information on a single plugin
+      operationId: get_plugin_details
+      parameters:
+      - explode: false
+        in: path
+        name: plugin_id
+        required: true
+        schema:
+          title: Plugin ID
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plugin'
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security: []
+      summary: Get Plugin Details
+      tags:
+      - Plugins
+      x-accepts: application/json
+  /plugins/settings:
+    get:
+      description: Returns the settings of all the plugins
+      operationId: get_plugins_settings
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SettingsResponse'
+          description: Successful Response
+      security: []
+      summary: Get Plugins Settings
+      tags:
+      - Plugins
+      x-accepts: application/json
+  /plugins/settings/{plugin_id}:
+    get:
+      description: Returns the settings of a specific plugin
+      operationId: get_plugin_settings
+      parameters:
+      - explode: false
+        in: path
+        name: plugin_id
+        required: true
+        schema:
+          title: Plugin ID
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/get_plugin_settings_200_response'
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security: []
+      summary: Get Plugin Settings
+      tags:
+      - Plugins
+      x-accepts: application/json
+    put:
+      description: Updates the settings of a specific plugin
+      operationId: upsert_plugin_settings
+      parameters:
+      - explode: false
+        in: path
+        name: plugin_id
+        required: true
+        schema:
+          title: Plugin ID
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              setting_a: some value
+              setting_b: another value
+            schema:
+              title: Payload
+              type: object
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Setting'
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security: []
+      summary: Upsert Plugin Settings
+      tags:
+      - Plugins
+      x-content-type: application/json
+      x-accepts: application/json
+  /memory/recall:
+    get:
+      description: Search k memories similar to given text.
+      operationId: recall_memories_from_text
+      parameters:
+      - description: Find memories similar to this text.
+        explode: true
+        in: query
+        name: text
+        required: true
+        schema:
+          description: Find memories similar to this text.
+          title: Text
+          type: string
+        style: form
+      - description: How many memories to return.
+        explode: true
+        in: query
+        name: k
+        required: false
+        schema:
+          default: 100
+          description: How many memories to return.
+          title: K
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MemoryRecall'
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security: []
+      summary: Recall Memories From Text
+      tags:
+      - Memory
+      x-accepts: application/json
+  /memory/collections:
+    delete:
+      description: Delete and create all collections
+      operationId: wipe_collections
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
+          description: Successful Response
+      security: []
+      summary: Wipe Collections
+      tags:
+      - Memory
+      x-accepts: application/json
+    get:
+      description: Get list of available collections
+      operationId: get_collections
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CollectionsList'
+          description: Successful Response
+      security: []
+      summary: Get Collections
+      tags:
+      - Memory
+      x-accepts: application/json
+  /memory/collections/{collection_id}:
+    delete:
+      description: Delete and recreate a collection
+      operationId: wipe_single_collection
+      parameters:
+      - explode: false
+        in: path
+        name: collection_id
+        required: true
+        schema:
+          title: Collection ID
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security: []
+      summary: Wipe Single Collection
+      tags:
+      - Memory
+      x-accepts: application/json
+  /memory/collections/{collection_id}/points/{memory_id}:
+    delete:
+      description: Delete specific point in memory
+      operationId: delete_point_in_memory
+      parameters:
+      - explode: false
+        in: path
+        name: collection_id
+        required: true
+        schema:
+          title: Collection ID
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: memory_id
+        required: true
+        schema:
+          title: Memory ID
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security: []
+      summary: Delete Point In Memory
+      tags:
+      - Memory
+      x-accepts: application/json
+  /memory/collections/{collection_id}/points:
+    delete:
+      description: Delete points in memory by filter
+      operationId: wipe_memory_points
+      parameters:
+      - explode: false
+        in: path
+        name: collection_id
+        required: true
+        schema:
+          title: Collection Id
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              default: {}
+              title: Metadata
+              type: object
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security: []
+      summary: Wipe Memory Points By Metadata
+      tags:
+      - Memory
+      x-content-type: application/json
+      x-accepts: application/json
+  /memory/conversation_history:
+    delete:
+      description: Delete the specified user's conversation history from working memory
+      operationId: wipe_conversation_history
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
+          description: Successful Response
+      security: []
+      summary: Wipe Conversation History
+      tags:
+      - Memory
+      x-accepts: application/json
+    get:
+      description: Get the specified user's conversation history from working memory
+      operationId: get_conversation_history
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConversationHistory'
+          description: Successful Response
+      security: []
+      summary: Get Conversation History
+      tags:
+      - Memory
+      x-accepts: application/json
+  /rabbithole:
+    post:
+      description: |-
+        Upload a file containing text (.txt, .md, .pdf, etc.). File content will be extracted and segmented into chunks.
+        Chunks will be then vectorized and stored into documents memory.
+      operationId: upload_file
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/BodyUploadFile'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileResponse'
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security: []
+      summary: Upload File
+      tags:
+      - Rabbit Hole
+      x-content-type: multipart/form-data
+      x-accepts: application/json
+  /rabbithole/web:
+    post:
+      description: |-
+        Upload a URL. Website content will be extracted and segmented into chunks.
+        Chunks will be then vectorized and stored into documents memory.
+      operationId: upload_url
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BodyUploadUrl'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebResponse'
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security: []
+      summary: Upload URL
+      tags:
+      - Rabbit Hole
+      x-content-type: application/json
+      x-accepts: application/json
+  /rabbithole/memory:
+    post:
+      description: Upload a memory json file to the cat memory
+      operationId: upload_memory
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/BodyUploadMemory'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                title: Response Upload Memory
+                type: object
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security: []
+      summary: Upload Memory
+      tags:
+      - Rabbit Hole
+      x-content-type: multipart/form-data
+      x-accepts: application/json
+  /rabbithole/allowed-mimetypes:
+    get:
+      description: Retrieve the allowed mimetypes that can be ingested by the Rabbit
+        Hole
+      operationId: get_allowed_mimetypes
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response_Get_Allowed_Mimetypes'
+          description: Successful Response
+      security: []
+      summary: Get Allowed Mimetypes
+      tags:
+      - Rabbit Hole
+      x-accepts: application/json
+components:
+  schemas:
+    BodyInstallPlugin:
+      properties:
+        file:
+          format: binary
+          title: File
+          type: string
+      required:
+      - file
+      title: BodyInstallPlugin
+      type: object
+    BodyUploadFile:
+      properties:
+        file:
+          format: binary
+          title: File
+          type: string
+      required:
+      - file
+      title: BodyUploadFile
+      type: object
+    BodyUploadMemory:
+      properties:
+        file:
+          format: binary
+          title: File
+          type: string
+      required:
+      - file
+      title: BodyUploadMemory
+      type: object
+    BodyUploadUrl:
+      example:
+        url: url
+      properties:
+        url:
+          description: URL of the website to which you want to save the content
+          title: URL
+          type: string
+      required:
+      - url
+      title: BodyUploadUrl
+      type: object
+    Collection:
+      example:
+        vectors_count: 0
+        name: name
+      properties:
+        name:
+          title: Name
+          type: string
+        vectors_count:
+          title: Vectors Count
+          type: integer
+      required:
+      - name
+      - vectors_count
+      title: Collection
+      type: object
+    CollectionData:
+      example:
+        score: 1
+        metadata:
+          docstring: docstring
+          name: name
+          source: source
+          when: 6
+        page_content: page_content
+        vector:
+        - 5
+        - 5
+        id: id
+      properties:
+        page_content:
+          title: Page Content
+          type: string
+        metadata:
+          $ref: '#/components/schemas/MetaData'
+        id:
+          title: ID
+          type: string
+        score:
+          title: Score
+          type: integer
+        vector:
+          items:
+            type: integer
+          title: Vector
+          type: array
+      required:
+      - id
+      - metadata
+      - page_content
+      - score
+      - vector
+      title: CollectionData
+      type: object
+    CollectionsList:
+      example:
+        collections:
+        - vectors_count: 0
+          name: name
+        - vectors_count: 0
+          name: name
+      properties:
+        collections:
+          items:
+            $ref: '#/components/schemas/Collection'
+          title: Collections
+          type: array
+      required:
+      - collections
+      title: CollectionsList
+      type: object
+    FileResponse:
+      example:
+        filename: filename
+        content_type: content_type
+        info: info
+      properties:
+        filename:
+          title: File Name
+          type: string
+        content_type:
+          title: Content Type
+          type: string
+        info:
+          title: Info
+          type: string
+      required:
+      - content_type
+      - filename
+      - info
+      title: FileResponse
+      type: object
+    ConversationMessage:
+      example:
+        why: "{}"
+        message: message
+        who: who
+      properties:
+        who:
+          title: Who
+          type: string
+        message:
+          title: Message
+          type: string
+        why:
+          title: Why
+          type: object
+      required:
+      - message
+      - who
+      title: ConversationMessage
+      type: object
+    HTTPValidationError:
+      example:
+        detail:
+          error: error
+      properties:
+        detail:
+          $ref: '#/components/schemas/Detail'
+      title: HTTPValidationError
+      type: object
+    MemoryRecall:
+      example:
+        vectors:
+          collections:
+            key:
+            - score: 1
+              metadata:
+                docstring: docstring
+                name: name
+                source: source
+                when: 6
+              page_content: page_content
+              vector:
+              - 5
+              - 5
+              id: id
+            - score: 1
+              metadata:
+                docstring: docstring
+                name: name
+                source: source
+                when: 6
+              page_content: page_content
+              vector:
+              - 5
+              - 5
+              id: id
+          embedder: embedder
+        query:
+          vector:
+          - 0
+          - 0
+          text: text
+      properties:
+        query:
+          $ref: '#/components/schemas/QueryData'
+        vectors:
+          $ref: '#/components/schemas/VectorsData'
+      required:
+      - query
+      - vectors
+      title: MemoryRecall
+      type: object
+    MetaData:
+      example:
+        docstring: docstring
+        name: name
+        source: source
+        when: 6
+      properties:
+        source:
+          title: Source
+          type: string
+        when:
+          title: When
+          type: integer
+        docstring:
+          title: DocString
+          type: string
+        name:
+          title: Name
+          type: string
+      required:
+      - source
+      - when
+      title: MetaData
+      type: object
+    Plugin:
+      example:
+        author_name: author_name
+        upgrade: upgrade
+        thumb: thumb
+        description: description
+        active: true
+        version: version
+        tools:
+        - name: name
+        - name: name
+        url: url
+        tags: tags
+        plugin_url: plugin_url
+        author_url: author_url
+        name: name
+        id: id
+        hooks:
+        - name: name
+          priority: 0
+        - name: name
+          priority: 0
+      properties:
+        id:
+          title: ID
+          type: string
+        name:
+          title: Name
+          type: string
+        description:
+          title: Description
+          type: string
+        author_name:
+          title: Author Name
+          type: string
+        author_url:
+          title: Author URL
+          type: string
+        plugin_url:
+          title: Plugin URL
+          type: string
+        tags:
+          title: Tags
+          type: string
+        thumb:
+          title: Thumb
+          type: string
+        version:
+          title: Version
+          type: string
+        active:
+          title: Active
+          type: boolean
+        url:
+          title: Install URL
+          type: string
+        upgrade:
+          title: Upgrade
+          type: string
+        hooks:
+          items:
+            $ref: '#/components/schemas/Hooks_inner'
+          title: Hooks
+          type: array
+        tools:
+          items:
+            $ref: '#/components/schemas/Tools_inner'
+          title: Tools
+          type: array
+      required:
+      - author_name
+      - author_url
+      - description
+      - id
+      - name
+      - plugin_url
+      - tags
+      - thumb
+      - version
+      title: Plugin
+      type: object
+    PluginsList:
+      example:
+        installed:
+        - author_name: author_name
+          upgrade: upgrade
+          thumb: thumb
+          description: description
+          active: true
+          version: version
+          tools:
+          - name: name
+          - name: name
+          url: url
+          tags: tags
+          plugin_url: plugin_url
+          author_url: author_url
+          name: name
+          id: id
+          hooks:
+          - name: name
+            priority: 0
+          - name: name
+            priority: 0
+        - author_name: author_name
+          upgrade: upgrade
+          thumb: thumb
+          description: description
+          active: true
+          version: version
+          tools:
+          - name: name
+          - name: name
+          url: url
+          tags: tags
+          plugin_url: plugin_url
+          author_url: author_url
+          name: name
+          id: id
+          hooks:
+          - name: name
+            priority: 0
+          - name: name
+            priority: 0
+        registry:
+        - author_name: author_name
+          upgrade: upgrade
+          thumb: thumb
+          description: description
+          active: true
+          version: version
+          tools:
+          - name: name
+          - name: name
+          url: url
+          tags: tags
+          plugin_url: plugin_url
+          author_url: author_url
+          name: name
+          id: id
+          hooks:
+          - name: name
+            priority: 0
+          - name: name
+            priority: 0
+        - author_name: author_name
+          upgrade: upgrade
+          thumb: thumb
+          description: description
+          active: true
+          version: version
+          tools:
+          - name: name
+          - name: name
+          url: url
+          tags: tags
+          plugin_url: plugin_url
+          author_url: author_url
+          name: name
+          id: id
+          hooks:
+          - name: name
+            priority: 0
+          - name: name
+            priority: 0
+        filters:
+          query: query
+      properties:
+        filters:
+          $ref: '#/components/schemas/Filters'
+        installed:
+          items:
+            $ref: '#/components/schemas/Plugin'
+          title: Installed
+          type: array
+        registry:
+          items:
+            $ref: '#/components/schemas/Plugin'
+          title: Registry
+          type: array
+      required:
+      - filters
+      - installed
+      - registry
+      title: PluginsList
+      type: object
+    QueryData:
+      example:
+        vector:
+        - 0
+        - 0
+        text: text
+      properties:
+        text:
+          title: Text
+          type: string
+        vector:
+          items:
+            type: integer
+          title: Vector
+          type: array
+      required:
+      - text
+      - vector
+      title: QueryData
+      type: object
+    SettingBody:
+      example:
+        name: name
+        category: category
+        value: "{}"
+      properties:
+        name:
+          title: Name
+          type: string
+        value:
+          title: Value
+          type: object
+        category:
+          title: Category
+          type: string
+      required:
+      - name
+      - value
+      title: SettingBody
+      type: object
+    Setting:
+      example:
+        schema: "{}"
+        name: name
+        value: "{}"
+      properties:
+        name:
+          type: string
+        value:
+          type: object
+        schema:
+          type: object
+      required:
+      - name
+      - value
+      title: Setting
+      type: object
+    SettingsResponse:
+      example:
+        settings:
+        - schema: "{}"
+          name: name
+          value: "{}"
+        - schema: "{}"
+          name: name
+          value: "{}"
+        selected_configuration: selected_configuration
+      properties:
+        settings:
+          items:
+            $ref: '#/components/schemas/Setting'
+          title: Settings
+          type: array
+        selected_configuration:
+          title: SelectedConfiguration
+          type: string
+      required:
+      - settings
+      title: SettingsResponse
+      type: object
+    VectorsData:
+      example:
+        collections:
+          key:
+          - score: 1
+            metadata:
+              docstring: docstring
+              name: name
+              source: source
+              when: 6
+            page_content: page_content
+            vector:
+            - 5
+            - 5
+            id: id
+          - score: 1
+            metadata:
+              docstring: docstring
+              name: name
+              source: source
+              when: 6
+            page_content: page_content
+            vector:
+            - 5
+            - 5
+            id: id
+        embedder: embedder
+      properties:
+        embedder:
+          title: Embedder
+          type: string
+        collections:
+          additionalProperties:
+            items:
+              $ref: '#/components/schemas/CollectionData'
+            type: array
+          title: Collections
+          type: object
+      required:
+      - collections
+      - embedder
+      title: VectorsData
+      type: object
+    WebResponse:
+      example:
+        url: url
+        info: info
+      properties:
+        url:
+          title: URL
+          type: string
+        info:
+          title: Info
+          type: string
+      required:
+      - info
+      - url
+      title: WebResponse
+      type: object
+    DeleteResponse:
+      items:
+        type: string
+      title: DeleteResponse
+      type: array
+    Status:
+      example:
+        version: version
+        status: status
+      properties:
+        status:
+          title: Status
+          type: string
+        version:
+          title: Version
+          type: string
+      required:
+      - status
+      - version
+      title: Status
+      type: object
+    ToggleResponse:
+      example:
+        info: info
+      properties:
+        info:
+          title: Info
+          type: string
+      required:
+      - info
+      title: ToggleResponse
+      type: object
+    get_plugin_settings_200_response:
+      allOf:
+      - $ref: '#/components/schemas/Setting'
+      - properties:
+          schema:
+            type: object
+        required:
+        - schema
+        type: object
+      example:
+        schema: "{}"
+        name: name
+        value: "{}"
+    ConversationHistory:
+      example:
+        history:
+        - why: "{}"
+          message: message
+          who: who
+        - why: "{}"
+          message: message
+          who: who
+      properties:
+        history:
+          items:
+            $ref: '#/components/schemas/ConversationMessage'
+          title: History
+          type: array
+      required:
+      - history
+      title: ConversationHistory
+      type: object
+    Response_Get_Allowed_Mimetypes:
+      example:
+        allowed:
+        - allowed
+        - allowed
+      properties:
+        allowed:
+          items:
+            type: string
+          title: Allowed
+          type: array
+      title: Response Get Allowed Mimetypes
+      type: object
+    Detail:
+      example:
+        error: error
+      properties:
+        error:
+          title: Message
+          type: string
+      required:
+      - error
+      title: Detail
+      type: object
+    Hooks_inner:
+      example:
+        name: name
+        priority: 0
+      properties:
+        name:
+          title: Name
+          type: string
+        priority:
+          title: Priority
+          type: integer
+      required:
+      - name
+      - priority
+      type: object
+    Tools_inner:
+      example:
+        name: name
+      properties:
+        name:
+          title: Name
+          type: string
+      required:
+      - name
+      type: object
+    Filters:
+      example:
+        query: query
+      properties:
+        query:
+          nullable: true
+          title: Query
+          type: string
+      title: Filters
+      type: object
+  securitySchemes: {}
+
