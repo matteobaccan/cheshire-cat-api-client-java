@@ -37,7 +37,6 @@
                             <gitHost>github.com</gitHost>
                             <gitRepoId>api-client-java</gitRepoId>
                             <gitUserId>matteobaccan</gitUserId>
-                            <packageName>CheshireCatJavaApi</packageName>
                             <apiPackage>it.baccan.cheshirecat.service</apiPackage>
                             <modelPackage>it.baccan.cheshirecat.model</modelPackage>                            
                             <groupId>it.baccan</groupId>
