@@ -31,6 +31,7 @@
                             <generatorName>java</generatorName>
                             <configOptions>
                                 <sourceFolder>src/main/java</sourceFolder>
+                                <hideGenerationTimestamp>true</hideGenerationTimestamp>
                             </configOptions>
                             <generateSupportingFiles>true</generateSupportingFiles>
                             <gitHost>github.com</gitHost>

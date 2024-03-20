@@ -2,7 +2,6 @@
 
 😸 Cheshire-Cat API
 - API version: 0.0.5
-  - Build date: 2024-03-20T01:30:20.533391300+01:00[Europe/Berlin]
 
 Customizable AI architecture
 
