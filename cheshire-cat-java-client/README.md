@@ -2,6 +2,7 @@
 
 😸 Cheshire-Cat API
 - API version: 0.0.5
+  - Generator version: 7.4.0
 
 Customizable AI architecture
 
