@@ -32,6 +32,7 @@
     <modules>
         <module>cheshire-cat-java-client-generator</module>
         <module>cheshire-cat-java-client</module>
+        <module>cheshire-cat-java-client-test</module>
     </modules>
 
 </project>
