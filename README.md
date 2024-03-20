@@ -9,3 +9,7 @@ This project consists of 3 modules:
 - [cheshire-cat-java-client](cheshire-cat-java-client): The Java client produced by the generation process.
 
 - [cheshire-cat-java-client-test](cheshire-cat-java-client-test): An API testing environment.
+
+## CheshireCat
+
+For more informations about the Cat, you can go here [https://github.com/cheshire-cat-ai](https://github.com/cheshire-cat-ai)
