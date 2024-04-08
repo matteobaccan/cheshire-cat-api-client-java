@@ -1,10 +1,10 @@
-openapi: 3.0.2
+openapi: 3.1.0
 info:
-  description: Customizable AI architecture
-  title: 😸 Cheshire-Cat API
-  version: 0.0.5
+  description: Production ready AI assistant framework
+  title: �Y~� Cheshire-Cat API
+  version: 1.5.1
   x-logo:
-    url: https://github.com/cheshire-cat-ai/core/blob/main/cheshire-cat.jpeg?raw=true
+    url: https://cheshirecat.ai/wp-content/uploads/2023/10/Logo-Cheshire-Cat.svg
 servers:
 - url: /
 paths:
@@ -17,20 +17,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Status'
+                title: Response Home
+                type: object
           description: Successful Response
-      security: []
       summary: Home
       tags:
       - Status
       x-accepts: application/json
-  /settings:
+  /settings/:
     get:
       description: Get the entire list of settings available in the database
       operationId: get_settings
       parameters:
-      - description: The setting to search
-        explode: true
+      - explode: true
         in: query
         name: search
         required: false
@@ -43,8 +42,7 @@ paths:
         "200":
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/SettingsResponse'
+              schema: {}
           description: Successful Response
         "422":
           content:
@@ -52,7 +50,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-      security: []
       summary: Get Settings
       tags:
       - Settings
@@ -70,8 +67,7 @@ paths:
         "200":
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/Setting'
+              schema: {}
           description: Successful Response
         "422":
           content:
@@ -79,7 +75,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-      security: []
       summary: Create Setting
       tags:
       - Settings
@@ -110,7 +105,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-      security: []
       summary: Delete Setting
       tags:
       - Settings
@@ -131,8 +125,7 @@ paths:
         "200":
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/Setting'
+              schema: {}
           description: Successful Response
         "422":
           content:
@@ -140,7 +133,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-      security: []
       summary: Get Setting
       tags:
       - Settings
@@ -167,8 +159,7 @@ paths:
         "200":
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/Setting'
+              schema: {}
           description: Successful Response
         "422":
           content:
@@ -176,7 +167,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-      security: []
       summary: Update Setting
       tags:
       - Settings
@@ -191,10 +181,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SettingsResponse'
+                title: Response Get Llms Settings
+                type: object
           description: Successful Response
-      security: []
-      summary: Get LLMs Settings
+      summary: Get Llms Settings
       tags:
       - Large Language Model
       x-accepts: application/json
@@ -208,7 +198,7 @@ paths:
         name: languageModelName
         required: true
         schema:
-          title: languageModelName
+          title: Languagemodelname
           type: string
         style: simple
       responses:
@@ -216,7 +206,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Setting'
+                title: Response Get Llm Settings
+                type: object
           description: Successful Response
         "422":
           content:
@@ -224,7 +215,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-      security: []
       summary: Get Llm Settings
       tags:
       - Large Language Model
@@ -238,14 +228,12 @@ paths:
         name: languageModelName
         required: true
         schema:
-          title: languageModelName
+          title: Languagemodelname
           type: string
         style: simple
       requestBody:
         content:
           application/json:
-            example:
-              openai_api_key: your-key-here
             schema:
               title: Payload
               type: object
@@ -255,7 +243,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Setting'
+                title: Response Upsert Llm Setting
+                type: object
           description: Successful Response
         "422":
           content:
@@ -263,8 +252,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-      security: []
-      summary: Upsert LLM Setting
+      summary: Upsert Llm Setting
       tags:
       - Large Language Model
       x-content-type: application/json
@@ -278,9 +266,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SettingsResponse'
+                title: Response Get Embedders Settings
+                type: object
           description: Successful Response
-      security: []
       summary: Get Embedders Settings
       tags:
       - Embedder
@@ -295,7 +283,7 @@ paths:
         name: languageEmbedderName
         required: true
         schema:
-          title: languageEmbedderName
+          title: Languageembeddername
           type: string
         style: simple
       responses:
@@ -303,7 +291,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Setting'
+                title: Response Get Embedder Settings
+                type: object
           description: Successful Response
         "422":
           content:
@@ -311,7 +300,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-      security: []
       summary: Get Embedder Settings
       tags:
       - Embedder
@@ -325,14 +313,12 @@ paths:
         name: languageEmbedderName
         required: true
         schema:
-          title: languageEmbedderName
+          title: Languageembeddername
           type: string
         style: simple
       requestBody:
         content:
           application/json:
-            example:
-              openai_api_key: your-key-here
             schema:
               title: Payload
               type: object
@@ -342,7 +328,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Setting'
+                title: Response Upsert Embedder Setting
+                type: object
           description: Successful Response
         "422":
           content:
@@ -350,16 +337,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-      security: []
       summary: Upsert Embedder Setting
       tags:
       - Embedder
       x-content-type: application/json
       x-accepts: application/json
-  /plugins:
+  /plugins/:
     get:
-      description: List both installed and registry plugins
-      operationId: list_available_plugins
+      description: List available plugins
+      operationId: get_available_plugins
       parameters:
       - explode: true
         in: query
@@ -374,10 +360,16 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PluginsList'
+                title: Response Get Available Plugins
+                type: object
           description: Successful Response
-      security: []
-      summary: List Available Plugins
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Get Available Plugins
       tags:
       - Plugins
       x-accepts: application/json
@@ -389,14 +381,15 @@ paths:
         content:
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/BodyInstallPlugin'
+              $ref: '#/components/schemas/Body_install_plugin'
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/FileResponse'
+                title: Response Install Plugin
+                type: object
           description: Successful Response
         "422":
           content:
@@ -404,7 +397,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-      security: []
       summary: Install Plugin
       tags:
       - Plugins
@@ -412,20 +404,22 @@ paths:
       x-accepts: application/json
   /plugins/upload/registry:
     post:
-      description: Install a new plugin from external repository
+      description: Install a new plugin from registry
       operationId: install_plugin_from_registry
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/BodyUploadUrl'
+              title: Payload
+              type: object
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/FileResponse'
+                title: Response Install Plugin From Registry
+                type: object
           description: Successful Response
         "422":
           content:
@@ -433,7 +427,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-      security: []
       summary: Install Plugin From Registry
       tags:
       - Plugins
@@ -449,7 +442,7 @@ paths:
         name: plugin_id
         required: true
         schema:
-          title: Plugin ID
+          title: Plugin Id
           type: string
         style: simple
       responses:
@@ -457,7 +450,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ToggleResponse'
+                title: Response Toggle Plugin
+                type: object
           description: Successful Response
         "422":
           content:
@@ -465,69 +459,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-      security: []
       summary: Toggle Plugin
-      tags:
-      - Plugins
-      x-accepts: application/json
-  /plugins/{plugin_id}:
-    delete:
-      description: Physically remove a plugin
-      operationId: delete_plugin
-      parameters:
-      - explode: false
-        in: path
-        name: plugin_id
-        required: true
-        schema:
-          title: Plugin ID
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DeleteResponse'
-          description: Successful Response
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      security: []
-      summary: Delete Plugin
-      tags:
-      - Plugins
-      x-accepts: application/json
-    get:
-      description: Returns information on a single plugin
-      operationId: get_plugin_details
-      parameters:
-      - explode: false
-        in: path
-        name: plugin_id
-        required: true
-        schema:
-          title: Plugin ID
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Plugin'
-          description: Successful Response
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      security: []
-      summary: Get Plugin Details
       tags:
       - Plugins
       x-accepts: application/json
@@ -540,9 +472,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SettingsResponse'
+                title: Response Get Plugins Settings
+                type: object
           description: Successful Response
-      security: []
       summary: Get Plugins Settings
       tags:
       - Plugins
@@ -557,7 +489,7 @@ paths:
         name: plugin_id
         required: true
         schema:
-          title: Plugin ID
+          title: Plugin Id
           type: string
         style: simple
       responses:
@@ -565,7 +497,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/get_plugin_settings_200_response'
+                title: Response Get Plugin Settings
+                type: object
           description: Successful Response
         "422":
           content:
@@ -573,7 +506,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-      security: []
       summary: Get Plugin Settings
       tags:
       - Plugins
@@ -587,15 +519,12 @@ paths:
         name: plugin_id
         required: true
         schema:
-          title: Plugin ID
+          title: Plugin Id
           type: string
         style: simple
       requestBody:
         content:
           application/json:
-            example:
-              setting_a: some value
-              setting_b: another value
             schema:
               title: Payload
               type: object
@@ -605,7 +534,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Setting'
+                title: Response Upsert Plugin Settings
+                type: object
           description: Successful Response
         "422":
           content:
@@ -613,11 +543,71 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-      security: []
       summary: Upsert Plugin Settings
       tags:
       - Plugins
       x-content-type: application/json
+      x-accepts: application/json
+  /plugins/{plugin_id}:
+    delete:
+      description: Physically remove plugin.
+      operationId: delete_plugin
+      parameters:
+      - explode: false
+        in: path
+        name: plugin_id
+        required: true
+        schema:
+          title: Plugin Id
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                title: Response Delete Plugin
+                type: object
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Delete Plugin
+      tags:
+      - Plugins
+      x-accepts: application/json
+    get:
+      description: Returns information on a single plugin
+      operationId: get_plugin_details
+      parameters:
+      - explode: false
+        in: path
+        name: plugin_id
+        required: true
+        schema:
+          title: Plugin Id
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                title: Response Get Plugin Details
+                type: object
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Get Plugin Details
+      tags:
+      - Plugins
       x-accepts: application/json
   /memory/recall:
     get:
@@ -650,7 +640,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MemoryRecall'
+                title: Response Recall Memories From Text
+                type: object
           description: Successful Response
         "422":
           content:
@@ -658,7 +649,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-      security: []
       summary: Recall Memories From Text
       tags:
       - Memory
@@ -672,9 +662,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DeleteResponse'
+                title: Response Wipe Collections
+                type: object
           description: Successful Response
-      security: []
       summary: Wipe Collections
       tags:
       - Memory
@@ -687,9 +677,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CollectionsList'
+                title: Response Get Collections
+                type: object
           description: Successful Response
-      security: []
       summary: Get Collections
       tags:
       - Memory
@@ -704,7 +694,7 @@ paths:
         name: collection_id
         required: true
         schema:
-          title: Collection ID
+          title: Collection Id
           type: string
         style: simple
       responses:
@@ -712,7 +702,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DeleteResponse'
+                title: Response Wipe Single Collection
+                type: object
           description: Successful Response
         "422":
           content:
@@ -720,22 +711,21 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-      security: []
       summary: Wipe Single Collection
       tags:
       - Memory
       x-accepts: application/json
   /memory/collections/{collection_id}/points/{memory_id}:
     delete:
-      description: Delete specific point in memory
-      operationId: delete_point_in_memory
+      description: Delete a specific point in memory
+      operationId: wipe_memory_point
       parameters:
       - explode: false
         in: path
         name: collection_id
         required: true
         schema:
-          title: Collection ID
+          title: Collection Id
           type: string
         style: simple
       - explode: false
@@ -743,7 +733,7 @@ paths:
         name: memory_id
         required: true
         schema:
-          title: Memory ID
+          title: Memory Id
           type: string
         style: simple
       responses:
@@ -751,7 +741,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DeleteResponse'
+                title: Response Wipe Memory Point
+                type: object
           description: Successful Response
         "422":
           content:
@@ -759,15 +750,14 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-      security: []
-      summary: Delete Point In Memory
+      summary: Wipe Memory Point
       tags:
       - Memory
       x-accepts: application/json
   /memory/collections/{collection_id}/points:
     delete:
       description: Delete points in memory by filter
-      operationId: wipe_memory_points
+      operationId: wipe_memory_points_by_metadata
       parameters:
       - explode: false
         in: path
@@ -789,7 +779,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DeleteResponse'
+                title: Response Wipe Memory Points By Metadata
+                type: object
           description: Successful Response
         "422":
           content:
@@ -797,7 +788,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-      security: []
       summary: Wipe Memory Points By Metadata
       tags:
       - Memory
@@ -812,9 +802,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DeleteResponse'
+                title: Response Wipe Conversation History
+                type: object
           description: Successful Response
-      security: []
       summary: Wipe Conversation History
       tags:
       - Memory
@@ -827,14 +817,14 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ConversationHistory'
+                title: Response Get Conversation History
+                type: object
           description: Successful Response
-      security: []
       summary: Get Conversation History
       tags:
       - Memory
       x-accepts: application/json
-  /rabbithole:
+  /rabbithole/:
     post:
       description: |-
         Upload a file containing text (.txt, .md, .pdf, etc.). File content will be extracted and segmented into chunks.
@@ -844,14 +834,15 @@ paths:
         content:
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/BodyUploadFile'
+              $ref: '#/components/schemas/Body_upload_file'
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/FileResponse'
+                title: Response Upload File
+                type: object
           description: Successful Response
         "422":
           content:
@@ -859,7 +850,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-      security: []
       summary: Upload File
       tags:
       - Rabbit Hole
@@ -868,21 +858,20 @@ paths:
   /rabbithole/web:
     post:
       description: |-
-        Upload a URL. Website content will be extracted and segmented into chunks.
+        Upload a url. Website content will be extracted and segmented into chunks.
         Chunks will be then vectorized and stored into documents memory.
       operationId: upload_url
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/BodyUploadUrl'
+              $ref: '#/components/schemas/Body_upload_url'
         required: true
       responses:
         "200":
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/WebResponse'
+              schema: {}
           description: Successful Response
         "422":
           content:
@@ -890,8 +879,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-      security: []
-      summary: Upload URL
+      summary: Upload Url
       tags:
       - Rabbit Hole
       x-content-type: application/json
@@ -904,7 +892,7 @@ paths:
         content:
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/BodyUploadMemory'
+              $ref: '#/components/schemas/Body_upload_memory'
         required: true
       responses:
         "200":
@@ -920,7 +908,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-      security: []
       summary: Upload Memory
       tags:
       - Rabbit Hole
@@ -936,16 +923,49 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Response_Get_Allowed_Mimetypes'
+                title: Response Get Allowed Mimetypes
+                type: object
           description: Successful Response
-      security: []
       summary: Get Allowed Mimetypes
       tags:
       - Rabbit Hole
       x-accepts: application/json
+  /admin/{page}/:
+    get:
+      operationId: get_injected_admin
+      responses:
+        "200":
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+      summary: Get Injected Admin
+      x-accepts: application/json
+  /admin/{page}:
+    get:
+      operationId: get_injected_admin
+      responses:
+        "200":
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+      summary: Get Injected Admin
+      x-accepts: application/json
+  /admin/:
+    get:
+      operationId: get_injected_admin
+      responses:
+        "200":
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+      summary: Get Injected Admin
+      x-accepts: application/json
 components:
   schemas:
-    BodyInstallPlugin:
+    Body_install_plugin:
       properties:
         file:
           format: binary
@@ -953,9 +973,28 @@ components:
           type: string
       required:
       - file
-      title: BodyInstallPlugin
-      type: object
-    BodyUploadFile:
+      title: Body_install_plugin
+    Body_upload_file:
+      properties:
+        file:
+          format: binary
+          title: File
+          type: string
+        chunk_size:
+          default: 512
+          description: Maximum length of each chunk after the document is split (in
+            characters)
+          title: Chunk Size
+          type: integer
+        chunk_overlap:
+          default: 128
+          description: Chunk overlap (in characters)
+          title: Chunk Overlap
+          type: integer
+      required:
+      - file
+      title: Body_upload_file
+    Body_upload_memory:
       properties:
         file:
           format: binary
@@ -963,665 +1002,98 @@ components:
           type: string
       required:
       - file
-      title: BodyUploadFile
-      type: object
-    BodyUploadMemory:
-      properties:
-        file:
-          format: binary
-          title: File
-          type: string
-      required:
-      - file
-      title: BodyUploadMemory
-      type: object
-    BodyUploadUrl:
-      example:
-        url: url
+      title: Body_upload_memory
+    Body_upload_url:
       properties:
         url:
           description: URL of the website to which you want to save the content
-          title: URL
+          title: Url
           type: string
+        chunk_size:
+          default: 512
+          description: Maximum length of each chunk after the document is split (in
+            characters)
+          title: Chunk Size
+          type: integer
+        chunk_overlap:
+          default: 128
+          description: Chunk overlap (in characters)
+          title: Chunk Overlap
+          type: integer
       required:
       - url
-      title: BodyUploadUrl
-      type: object
-    Collection:
-      example:
-        vectors_count: 0
-        name: name
-      properties:
-        name:
-          title: Name
-          type: string
-        vectors_count:
-          title: Vectors Count
-          type: integer
-      required:
-      - name
-      - vectors_count
-      title: Collection
-      type: object
-    CollectionData:
-      example:
-        score: 1
-        metadata:
-          docstring: docstring
-          name: name
-          source: source
-          when: 6
-        page_content: page_content
-        vector:
-        - 5
-        - 5
-        id: id
-      properties:
-        page_content:
-          title: Page Content
-          type: string
-        metadata:
-          $ref: '#/components/schemas/MetaData'
-        id:
-          title: ID
-          type: string
-        score:
-          title: Score
-          type: integer
-        vector:
-          items:
-            type: integer
-          title: Vector
-          type: array
-      required:
-      - id
-      - metadata
-      - page_content
-      - score
-      - vector
-      title: CollectionData
-      type: object
-    CollectionsList:
-      example:
-        collections:
-        - vectors_count: 0
-          name: name
-        - vectors_count: 0
-          name: name
-      properties:
-        collections:
-          items:
-            $ref: '#/components/schemas/Collection'
-          title: Collections
-          type: array
-      required:
-      - collections
-      title: CollectionsList
-      type: object
-    FileResponse:
-      example:
-        filename: filename
-        content_type: content_type
-        info: info
-      properties:
-        filename:
-          title: File Name
-          type: string
-        content_type:
-          title: Content Type
-          type: string
-        info:
-          title: Info
-          type: string
-      required:
-      - content_type
-      - filename
-      - info
-      title: FileResponse
-      type: object
-    ConversationMessage:
-      example:
-        why: "{}"
-        message: message
-        who: who
-      properties:
-        who:
-          title: Who
-          type: string
-        message:
-          title: Message
-          type: string
-        why:
-          title: Why
-          type: object
-      required:
-      - message
-      - who
-      title: ConversationMessage
-      type: object
+      title: Body_upload_url
     HTTPValidationError:
       example:
         detail:
-          error: error
+        - msg: msg
+          loc:
+          - ValidationError_loc_inner
+          - ValidationError_loc_inner
+          type: type
+        - msg: msg
+          loc:
+          - ValidationError_loc_inner
+          - ValidationError_loc_inner
+          type: type
       properties:
         detail:
-          $ref: '#/components/schemas/Detail'
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
       title: HTTPValidationError
-      type: object
-    MemoryRecall:
-      example:
-        vectors:
-          collections:
-            key:
-            - score: 1
-              metadata:
-                docstring: docstring
-                name: name
-                source: source
-                when: 6
-              page_content: page_content
-              vector:
-              - 5
-              - 5
-              id: id
-            - score: 1
-              metadata:
-                docstring: docstring
-                name: name
-                source: source
-                when: 6
-              page_content: page_content
-              vector:
-              - 5
-              - 5
-              id: id
-          embedder: embedder
-        query:
-          vector:
-          - 0
-          - 0
-          text: text
-      properties:
-        query:
-          $ref: '#/components/schemas/QueryData'
-        vectors:
-          $ref: '#/components/schemas/VectorsData'
-      required:
-      - query
-      - vectors
-      title: MemoryRecall
-      type: object
-    MetaData:
-      example:
-        docstring: docstring
-        name: name
-        source: source
-        when: 6
-      properties:
-        source:
-          title: Source
-          type: string
-        when:
-          title: When
-          type: integer
-        docstring:
-          title: DocString
-          type: string
-        name:
-          title: Name
-          type: string
-      required:
-      - source
-      - when
-      title: MetaData
-      type: object
-    Plugin:
-      example:
-        author_name: author_name
-        upgrade: upgrade
-        thumb: thumb
-        description: description
-        active: true
-        version: version
-        tools:
-        - name: name
-        - name: name
-        url: url
-        tags: tags
-        plugin_url: plugin_url
-        author_url: author_url
-        name: name
-        id: id
-        hooks:
-        - name: name
-          priority: 0
-        - name: name
-          priority: 0
-      properties:
-        id:
-          title: ID
-          type: string
-        name:
-          title: Name
-          type: string
-        description:
-          title: Description
-          type: string
-        author_name:
-          title: Author Name
-          type: string
-        author_url:
-          title: Author URL
-          type: string
-        plugin_url:
-          title: Plugin URL
-          type: string
-        tags:
-          title: Tags
-          type: string
-        thumb:
-          title: Thumb
-          type: string
-        version:
-          title: Version
-          type: string
-        active:
-          title: Active
-          type: boolean
-        url:
-          title: Install URL
-          type: string
-        upgrade:
-          title: Upgrade
-          type: string
-        hooks:
-          items:
-            $ref: '#/components/schemas/Hooks_inner'
-          title: Hooks
-          type: array
-        tools:
-          items:
-            $ref: '#/components/schemas/Tools_inner'
-          title: Tools
-          type: array
-      required:
-      - author_name
-      - author_url
-      - description
-      - id
-      - name
-      - plugin_url
-      - tags
-      - thumb
-      - version
-      title: Plugin
-      type: object
-    PluginsList:
-      example:
-        installed:
-        - author_name: author_name
-          upgrade: upgrade
-          thumb: thumb
-          description: description
-          active: true
-          version: version
-          tools:
-          - name: name
-          - name: name
-          url: url
-          tags: tags
-          plugin_url: plugin_url
-          author_url: author_url
-          name: name
-          id: id
-          hooks:
-          - name: name
-            priority: 0
-          - name: name
-            priority: 0
-        - author_name: author_name
-          upgrade: upgrade
-          thumb: thumb
-          description: description
-          active: true
-          version: version
-          tools:
-          - name: name
-          - name: name
-          url: url
-          tags: tags
-          plugin_url: plugin_url
-          author_url: author_url
-          name: name
-          id: id
-          hooks:
-          - name: name
-            priority: 0
-          - name: name
-            priority: 0
-        registry:
-        - author_name: author_name
-          upgrade: upgrade
-          thumb: thumb
-          description: description
-          active: true
-          version: version
-          tools:
-          - name: name
-          - name: name
-          url: url
-          tags: tags
-          plugin_url: plugin_url
-          author_url: author_url
-          name: name
-          id: id
-          hooks:
-          - name: name
-            priority: 0
-          - name: name
-            priority: 0
-        - author_name: author_name
-          upgrade: upgrade
-          thumb: thumb
-          description: description
-          active: true
-          version: version
-          tools:
-          - name: name
-          - name: name
-          url: url
-          tags: tags
-          plugin_url: plugin_url
-          author_url: author_url
-          name: name
-          id: id
-          hooks:
-          - name: name
-            priority: 0
-          - name: name
-            priority: 0
-        filters:
-          query: query
-      properties:
-        filters:
-          $ref: '#/components/schemas/Filters'
-        installed:
-          items:
-            $ref: '#/components/schemas/Plugin'
-          title: Installed
-          type: array
-        registry:
-          items:
-            $ref: '#/components/schemas/Plugin'
-          title: Registry
-          type: array
-      required:
-      - filters
-      - installed
-      - registry
-      title: PluginsList
-      type: object
-    QueryData:
-      example:
-        vector:
-        - 0
-        - 0
-        text: text
-      properties:
-        text:
-          title: Text
-          type: string
-        vector:
-          items:
-            type: integer
-          title: Vector
-          type: array
-      required:
-      - text
-      - vector
-      title: QueryData
-      type: object
     SettingBody:
       example:
         name: name
-        category: category
+        category: Category
         value: "{}"
       properties:
         name:
           title: Name
           type: string
         value:
-          title: Value
-          type: object
+          $ref: '#/components/schemas/Value'
         category:
-          title: Category
-          type: string
+          $ref: '#/components/schemas/Category'
       required:
       - name
       - value
       title: SettingBody
-      type: object
-    Setting:
+    ValidationError:
       example:
-        schema: "{}"
-        name: name
-        value: "{}"
+        msg: msg
+        loc:
+        - ValidationError_loc_inner
+        - ValidationError_loc_inner
+        type: type
       properties:
-        name:
-          type: string
-        value:
-          type: object
-        schema:
-          type: object
-      required:
-      - name
-      - value
-      title: Setting
-      type: object
-    SettingsResponse:
-      example:
-        settings:
-        - schema: "{}"
-          name: name
-          value: "{}"
-        - schema: "{}"
-          name: name
-          value: "{}"
-        selected_configuration: selected_configuration
-      properties:
-        settings:
+        loc:
           items:
-            $ref: '#/components/schemas/Setting'
-          title: Settings
+            $ref: '#/components/schemas/ValidationError_loc_inner'
           type: array
-        selected_configuration:
-          title: SelectedConfiguration
-          type: string
-      required:
-      - settings
-      title: SettingsResponse
-      type: object
-    VectorsData:
-      example:
-        collections:
-          key:
-          - score: 1
-            metadata:
-              docstring: docstring
-              name: name
-              source: source
-              when: 6
-            page_content: page_content
-            vector:
-            - 5
-            - 5
-            id: id
-          - score: 1
-            metadata:
-              docstring: docstring
-              name: name
-              source: source
-              when: 6
-            page_content: page_content
-            vector:
-            - 5
-            - 5
-            id: id
-        embedder: embedder
-      properties:
-        embedder:
-          title: Embedder
-          type: string
-        collections:
-          additionalProperties:
-            items:
-              $ref: '#/components/schemas/CollectionData'
-            type: array
-          title: Collections
-          type: object
-      required:
-      - collections
-      - embedder
-      title: VectorsData
-      type: object
-    WebResponse:
-      example:
-        url: url
-        info: info
-      properties:
-        url:
-          title: URL
-          type: string
-        info:
-          title: Info
-          type: string
-      required:
-      - info
-      - url
-      title: WebResponse
-      type: object
-    DeleteResponse:
-      items:
-        type: string
-      title: DeleteResponse
-      type: array
-    Status:
-      example:
-        version: version
-        status: status
-      properties:
-        status:
-          title: Status
-          type: string
-        version:
-          title: Version
-          type: string
-      required:
-      - status
-      - version
-      title: Status
-      type: object
-    ToggleResponse:
-      example:
-        info: info
-      properties:
-        info:
-          title: Info
-          type: string
-      required:
-      - info
-      title: ToggleResponse
-      type: object
-    get_plugin_settings_200_response:
-      allOf:
-      - $ref: '#/components/schemas/Setting'
-      - properties:
-          schema:
-            type: object
-        required:
-        - schema
-        type: object
-      example:
-        schema: "{}"
-        name: name
-        value: "{}"
-    ConversationHistory:
-      example:
-        history:
-        - why: "{}"
-          message: message
-          who: who
-        - why: "{}"
-          message: message
-          who: who
-      properties:
-        history:
-          items:
-            $ref: '#/components/schemas/ConversationMessage'
-          title: History
-          type: array
-      required:
-      - history
-      title: ConversationHistory
-      type: object
-    Response_Get_Allowed_Mimetypes:
-      example:
-        allowed:
-        - allowed
-        - allowed
-      properties:
-        allowed:
-          items:
-            type: string
-          title: Allowed
-          type: array
-      title: Response Get Allowed Mimetypes
-      type: object
-    Detail:
-      example:
-        error: error
-      properties:
-        error:
+        msg:
           title: Message
           type: string
-      required:
-      - error
-      title: Detail
-      type: object
-    Hooks_inner:
-      example:
-        name: name
-        priority: 0
-      properties:
-        name:
-          title: Name
-          type: string
-        priority:
-          title: Priority
-          type: integer
-      required:
-      - name
-      - priority
-      type: object
-    Tools_inner:
-      example:
-        name: name
-      properties:
-        name:
-          title: Name
+        type:
+          title: Error Type
           type: string
       required:
-      - name
-      type: object
-    Filters:
-      example:
-        query: query
-      properties:
-        query:
-          nullable: true
-          title: Query
-          type: string
-      title: Filters
-      type: object
-  securitySchemes: {}
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    Value:
+      anyOf:
+      - type: object
+      - items: {}
+      title: Value
+    Category:
+      anyOf:
+      - type: string
+      - nullable: true
+      title: Category
+    ValidationError_loc_inner:
+      anyOf:
+      - type: string
+      - type: integer
 

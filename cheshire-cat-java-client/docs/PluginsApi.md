@@ -5,23 +5,23 @@ All URIs are relative to *http://localhost*
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**deletePlugin**](PluginsApi.md#deletePlugin) | **DELETE** /plugins/{plugin_id} | Delete Plugin |
+| [**getAvailablePlugins**](PluginsApi.md#getAvailablePlugins) | **GET** /plugins/ | Get Available Plugins |
 | [**getPluginDetails**](PluginsApi.md#getPluginDetails) | **GET** /plugins/{plugin_id} | Get Plugin Details |
 | [**getPluginSettings**](PluginsApi.md#getPluginSettings) | **GET** /plugins/settings/{plugin_id} | Get Plugin Settings |
 | [**getPluginsSettings**](PluginsApi.md#getPluginsSettings) | **GET** /plugins/settings | Get Plugins Settings |
 | [**installPlugin**](PluginsApi.md#installPlugin) | **POST** /plugins/upload | Install Plugin |
 | [**installPluginFromRegistry**](PluginsApi.md#installPluginFromRegistry) | **POST** /plugins/upload/registry | Install Plugin From Registry |
-| [**listAvailablePlugins**](PluginsApi.md#listAvailablePlugins) | **GET** /plugins | List Available Plugins |
 | [**togglePlugin**](PluginsApi.md#togglePlugin) | **PUT** /plugins/toggle/{plugin_id} | Toggle Plugin |
 | [**upsertPluginSettings**](PluginsApi.md#upsertPluginSettings) | **PUT** /plugins/settings/{plugin_id} | Upsert Plugin Settings |
 
 
 <a id="deletePlugin"></a>
 # **deletePlugin**
-> List&lt;String&gt; deletePlugin(pluginId)
+> Object deletePlugin(pluginId)
 
 Delete Plugin
 
-Physically remove a plugin
+Physically remove plugin.
 
 ### Example
 ```java
@@ -40,7 +40,7 @@ public class Example {
     PluginsApi apiInstance = new PluginsApi(defaultClient);
     String pluginId = "pluginId_example"; // String | 
     try {
-      List<String> result = apiInstance.deletePlugin(pluginId);
+      Object result = apiInstance.deletePlugin(pluginId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling PluginsApi#deletePlugin");
@@ -61,7 +61,70 @@ public class Example {
 
 ### Return type
 
-**List&lt;String&gt;**
+**Object**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successful Response |  -  |
+| **422** | Validation Error |  -  |
+
+<a id="getAvailablePlugins"></a>
+# **getAvailablePlugins**
+> Object getAvailablePlugins(query)
+
+Get Available Plugins
+
+List available plugins
+
+### Example
+```java
+// Import classes:
+import it.baccan.cheshirecat.ApiClient;
+import it.baccan.cheshirecat.ApiException;
+import it.baccan.cheshirecat.Configuration;
+import it.baccan.cheshirecat.models.*;
+import it.baccan.cheshirecat.service.PluginsApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    PluginsApi apiInstance = new PluginsApi(defaultClient);
+    String query = "query_example"; // String | 
+    try {
+      Object result = apiInstance.getAvailablePlugins(query);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling PluginsApi#getAvailablePlugins");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **query** | **String**|  | [optional] |
+
+### Return type
+
+**Object**
 
 ### Authorization
 
@@ -80,7 +143,7 @@ No authorization required
 
 <a id="getPluginDetails"></a>
 # **getPluginDetails**
-> Plugin getPluginDetails(pluginId)
+> Object getPluginDetails(pluginId)
 
 Get Plugin Details
 
@@ -103,7 +166,7 @@ public class Example {
     PluginsApi apiInstance = new PluginsApi(defaultClient);
     String pluginId = "pluginId_example"; // String | 
     try {
-      Plugin result = apiInstance.getPluginDetails(pluginId);
+      Object result = apiInstance.getPluginDetails(pluginId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling PluginsApi#getPluginDetails");
@@ -124,7 +187,7 @@ public class Example {
 
 ### Return type
 
-[**Plugin**](Plugin.md)
+**Object**
 
 ### Authorization
 
@@ -143,7 +206,7 @@ No authorization required
 
 <a id="getPluginSettings"></a>
 # **getPluginSettings**
-> GetPluginSettings200Response getPluginSettings(pluginId)
+> Object getPluginSettings(pluginId)
 
 Get Plugin Settings
 
@@ -166,7 +229,7 @@ public class Example {
     PluginsApi apiInstance = new PluginsApi(defaultClient);
     String pluginId = "pluginId_example"; // String | 
     try {
-      GetPluginSettings200Response result = apiInstance.getPluginSettings(pluginId);
+      Object result = apiInstance.getPluginSettings(pluginId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling PluginsApi#getPluginSettings");
@@ -187,7 +250,7 @@ public class Example {
 
 ### Return type
 
-[**GetPluginSettings200Response**](GetPluginSettings200Response.md)
+**Object**
 
 ### Authorization
 
@@ -206,7 +269,7 @@ No authorization required
 
 <a id="getPluginsSettings"></a>
 # **getPluginsSettings**
-> SettingsResponse getPluginsSettings()
+> Object getPluginsSettings()
 
 Get Plugins Settings
 
@@ -228,7 +291,7 @@ public class Example {
 
     PluginsApi apiInstance = new PluginsApi(defaultClient);
     try {
-      SettingsResponse result = apiInstance.getPluginsSettings();
+      Object result = apiInstance.getPluginsSettings();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling PluginsApi#getPluginsSettings");
@@ -246,7 +309,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**SettingsResponse**](SettingsResponse.md)
+**Object**
 
 ### Authorization
 
@@ -264,7 +327,7 @@ No authorization required
 
 <a id="installPlugin"></a>
 # **installPlugin**
-> FileResponse installPlugin(_file)
+> Object installPlugin(_file)
 
 Install Plugin
 
@@ -287,7 +350,7 @@ public class Example {
     PluginsApi apiInstance = new PluginsApi(defaultClient);
     File _file = new File("/path/to/file"); // File | 
     try {
-      FileResponse result = apiInstance.installPlugin(_file);
+      Object result = apiInstance.installPlugin(_file);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling PluginsApi#installPlugin");
@@ -308,7 +371,7 @@ public class Example {
 
 ### Return type
 
-[**FileResponse**](FileResponse.md)
+**Object**
 
 ### Authorization
 
@@ -327,11 +390,11 @@ No authorization required
 
 <a id="installPluginFromRegistry"></a>
 # **installPluginFromRegistry**
-> FileResponse installPluginFromRegistry(bodyUploadUrl)
+> Object installPluginFromRegistry(body)
 
 Install Plugin From Registry
 
-Install a new plugin from external repository
+Install a new plugin from registry
 
 ### Example
 ```java
@@ -348,9 +411,9 @@ public class Example {
     defaultClient.setBasePath("http://localhost");
 
     PluginsApi apiInstance = new PluginsApi(defaultClient);
-    BodyUploadUrl bodyUploadUrl = new BodyUploadUrl(); // BodyUploadUrl | 
+    Object body = null; // Object | 
     try {
-      FileResponse result = apiInstance.installPluginFromRegistry(bodyUploadUrl);
+      Object result = apiInstance.installPluginFromRegistry(body);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling PluginsApi#installPluginFromRegistry");
@@ -367,11 +430,11 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **bodyUploadUrl** | [**BodyUploadUrl**](BodyUploadUrl.md)|  | |
+| **body** | **Object**|  | |
 
 ### Return type
 
-[**FileResponse**](FileResponse.md)
+**Object**
 
 ### Authorization
 
@@ -388,71 +451,9 @@ No authorization required
 | **200** | Successful Response |  -  |
 | **422** | Validation Error |  -  |
 
-<a id="listAvailablePlugins"></a>
-# **listAvailablePlugins**
-> PluginsList listAvailablePlugins(query)
-
-List Available Plugins
-
-List both installed and registry plugins
-
-### Example
-```java
-// Import classes:
-import it.baccan.cheshirecat.ApiClient;
-import it.baccan.cheshirecat.ApiException;
-import it.baccan.cheshirecat.Configuration;
-import it.baccan.cheshirecat.models.*;
-import it.baccan.cheshirecat.service.PluginsApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost");
-
-    PluginsApi apiInstance = new PluginsApi(defaultClient);
-    String query = "query_example"; // String | 
-    try {
-      PluginsList result = apiInstance.listAvailablePlugins(query);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling PluginsApi#listAvailablePlugins");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **query** | **String**|  | [optional] |
-
-### Return type
-
-[**PluginsList**](PluginsList.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Successful Response |  -  |
-
 <a id="togglePlugin"></a>
 # **togglePlugin**
-> ToggleResponse togglePlugin(pluginId)
+> Object togglePlugin(pluginId)
 
 Toggle Plugin
 
@@ -475,7 +476,7 @@ public class Example {
     PluginsApi apiInstance = new PluginsApi(defaultClient);
     String pluginId = "pluginId_example"; // String | 
     try {
-      ToggleResponse result = apiInstance.togglePlugin(pluginId);
+      Object result = apiInstance.togglePlugin(pluginId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling PluginsApi#togglePlugin");
@@ -496,7 +497,7 @@ public class Example {
 
 ### Return type
 
-[**ToggleResponse**](ToggleResponse.md)
+**Object**
 
 ### Authorization
 
@@ -515,7 +516,7 @@ No authorization required
 
 <a id="upsertPluginSettings"></a>
 # **upsertPluginSettings**
-> Setting upsertPluginSettings(pluginId, body)
+> Object upsertPluginSettings(pluginId, body)
 
 Upsert Plugin Settings
 
@@ -537,9 +538,9 @@ public class Example {
 
     PluginsApi apiInstance = new PluginsApi(defaultClient);
     String pluginId = "pluginId_example"; // String | 
-    Object body = {"setting_a":"some value","setting_b":"another value"}; // Object | 
+    Object body = null; // Object | 
     try {
-      Setting result = apiInstance.upsertPluginSettings(pluginId, body);
+      Object result = apiInstance.upsertPluginSettings(pluginId, body);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling PluginsApi#upsertPluginSettings");
@@ -561,7 +562,7 @@ public class Example {
 
 ### Return type
 
-[**Setting**](Setting.md)
+**Object**
 
 ### Authorization
 

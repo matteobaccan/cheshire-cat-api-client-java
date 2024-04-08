@@ -5,7 +5,7 @@
     <artifactId>cheshire-cat-java-client</artifactId>
     <packaging>jar</packaging>
     <name>cheshire-cat-java-client</name>
-    <version>0.0.5</version>
+    <version>1.5.1</version>
     <url>https://github.com/openapitools/openapi-generator</url>
     <description>OpenAPI Java</description>
     <scm>
@@ -178,7 +178,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>3.3.1</version>
+                <version>3.2.1</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>

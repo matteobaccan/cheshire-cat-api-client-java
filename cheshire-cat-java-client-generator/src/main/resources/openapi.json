@@ -1,0 +1,1600 @@
+{
+  "openapi":"3.1.0",
+  "info":{
+    "title":"ðY~¸ Cheshire-Cat API",
+    "description":"Production ready AI assistant framework",
+    "version":"1.5.1",
+    "x-logo":{
+      "url":"https://cheshirecat.ai/wp-content/uploads/2023/10/Logo-Cheshire-Cat.svg"
+    }
+  },
+  "paths":{
+    "/":{
+      "get":{
+        "tags":[
+          "Status"
+        ],
+        "summary":"Home",
+        "description":"Server status",
+        "operationId":"home",
+        "responses":{
+          "200":{
+            "description":"Successful Response",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "title":"Response Home"
+                }
+              }
+            }
+          }
+        },
+        "security":null
+      }
+    },
+    "/settings/":{
+      "get":{
+        "tags":[
+          "Settings"
+        ],
+        "summary":"Get Settings",
+        "description":"Get the entire list of settings available in the database",
+        "operationId":"get_settings",
+        "security":null,
+        "parameters":[
+          {
+            "name":"search",
+            "in":"query",
+            "required":false,
+            "schema":{
+              "type":"string",
+              "default":"",
+              "title":"Search"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "description":"Successful Response",
+            "content":{
+              "application/json":{
+                "schema":{
+                  
+                }
+              }
+            }
+          },
+          "422":{
+            "description":"Validation Error",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post":{
+        "tags":[
+          "Settings"
+        ],
+        "summary":"Create Setting",
+        "description":"Create a new setting in the database",
+        "operationId":"create_setting",
+        "security":null,
+        "requestBody":{
+          "required":true,
+          "content":{
+            "application/json":{
+              "schema":{
+                "$ref":"#/components/schemas/SettingBody"
+              }
+            }
+          }
+        },
+        "responses":{
+          "200":{
+            "description":"Successful Response",
+            "content":{
+              "application/json":{
+                "schema":{
+                  
+                }
+              }
+            }
+          },
+          "422":{
+            "description":"Validation Error",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/settings/{settingId}":{
+      "get":{
+        "tags":[
+          "Settings"
+        ],
+        "summary":"Get Setting",
+        "description":"Get the a specific setting from the database",
+        "operationId":"get_setting",
+        "security":null,
+        "parameters":[
+          {
+            "name":"settingId",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"string",
+              "title":"Settingid"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "description":"Successful Response",
+            "content":{
+              "application/json":{
+                "schema":{
+                  
+                }
+              }
+            }
+          },
+          "422":{
+            "description":"Validation Error",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put":{
+        "tags":[
+          "Settings"
+        ],
+        "summary":"Update Setting",
+        "description":"Update a specific setting in the database if it exists",
+        "operationId":"update_setting",
+        "security":null,
+        "parameters":[
+          {
+            "name":"settingId",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"string",
+              "title":"Settingid"
+            }
+          }
+        ],
+        "requestBody":{
+          "required":true,
+          "content":{
+            "application/json":{
+              "schema":{
+                "$ref":"#/components/schemas/SettingBody"
+              }
+            }
+          }
+        },
+        "responses":{
+          "200":{
+            "description":"Successful Response",
+            "content":{
+              "application/json":{
+                "schema":{
+                  
+                }
+              }
+            }
+          },
+          "422":{
+            "description":"Validation Error",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete":{
+        "tags":[
+          "Settings"
+        ],
+        "summary":"Delete Setting",
+        "description":"Delete a specific setting in the database",
+        "operationId":"delete_setting",
+        "security":null,
+        "parameters":[
+          {
+            "name":"settingId",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"string",
+              "title":"Settingid"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "description":"Successful Response",
+            "content":{
+              "application/json":{
+                "schema":{
+                  
+                }
+              }
+            }
+          },
+          "422":{
+            "description":"Validation Error",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/llm/settings":{
+      "get":{
+        "tags":[
+          "Large Language Model"
+        ],
+        "summary":"Get Llms Settings",
+        "description":"Get the list of the Large Language Models",
+        "operationId":"get_llms_settings",
+        "responses":{
+          "200":{
+            "description":"Successful Response",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "title":"Response Get Llms Settings"
+                }
+              }
+            }
+          }
+        },
+        "security":null
+      }
+    },
+    "/llm/settings/{languageModelName}":{
+      "get":{
+        "tags":[
+          "Large Language Model"
+        ],
+        "summary":"Get Llm Settings",
+        "description":"Get settings and schema of the specified Large Language Model",
+        "operationId":"get_llm_settings",
+        "security":null,
+        "parameters":[
+          {
+            "name":"languageModelName",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"string",
+              "title":"Languagemodelname"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "description":"Successful Response",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "title":"Response Get Llm Settings"
+                }
+              }
+            }
+          },
+          "422":{
+            "description":"Validation Error",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put":{
+        "tags":[
+          "Large Language Model"
+        ],
+        "summary":"Upsert Llm Setting",
+        "description":"Upsert the Large Language Model setting",
+        "operationId":"upsert_llm_setting",
+        "security":null,
+        "parameters":[
+          {
+            "name":"languageModelName",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"string",
+              "title":"Languagemodelname"
+            }
+          }
+        ],
+        "requestBody":{
+          "required":true,
+          "content":{
+            "application/json":{
+              "schema":{
+                "type":"object",
+                "examples":{
+                  "openai_api_key":"your-key-here"
+                },
+                "title":"Payload"
+              }
+            }
+          }
+        },
+        "responses":{
+          "200":{
+            "description":"Successful Response",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "title":"Response Upsert Llm Setting"
+                }
+              }
+            }
+          },
+          "422":{
+            "description":"Validation Error",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/embedder/settings":{
+      "get":{
+        "tags":[
+          "Embedder"
+        ],
+        "summary":"Get Embedders Settings",
+        "description":"Get the list of the Embedders",
+        "operationId":"get_embedders_settings",
+        "responses":{
+          "200":{
+            "description":"Successful Response",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "title":"Response Get Embedders Settings"
+                }
+              }
+            }
+          }
+        },
+        "security":null
+      }
+    },
+    "/embedder/settings/{languageEmbedderName}":{
+      "get":{
+        "tags":[
+          "Embedder"
+        ],
+        "summary":"Get Embedder Settings",
+        "description":"Get settings and schema of the specified Embedder",
+        "operationId":"get_embedder_settings",
+        "security":null,
+        "parameters":[
+          {
+            "name":"languageEmbedderName",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"string",
+              "title":"Languageembeddername"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "description":"Successful Response",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "title":"Response Get Embedder Settings"
+                }
+              }
+            }
+          },
+          "422":{
+            "description":"Validation Error",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put":{
+        "tags":[
+          "Embedder"
+        ],
+        "summary":"Upsert Embedder Setting",
+        "description":"Upsert the Embedder setting",
+        "operationId":"upsert_embedder_setting",
+        "security":null,
+        "parameters":[
+          {
+            "name":"languageEmbedderName",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"string",
+              "title":"Languageembeddername"
+            }
+          }
+        ],
+        "requestBody":{
+          "required":true,
+          "content":{
+            "application/json":{
+              "schema":{
+                "type":"object",
+                "examples":{
+                  "openai_api_key":"your-key-here"
+                },
+                "title":"Payload"
+              }
+            }
+          }
+        },
+        "responses":{
+          "200":{
+            "description":"Successful Response",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "title":"Response Upsert Embedder Setting"
+                }
+              }
+            }
+          },
+          "422":{
+            "description":"Validation Error",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/plugins/":{
+      "get":{
+        "tags":[
+          "Plugins"
+        ],
+        "summary":"Get Available Plugins",
+        "description":"List available plugins",
+        "operationId":"get_available_plugins",
+        "security":null,
+        "parameters":[
+          {
+            "name":"query",
+            "in":"query",
+            "required":false,
+            "schema":{
+              "type":"string",
+              "title":"Query"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "description":"Successful Response",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "title":"Response Get Available Plugins"
+                }
+              }
+            }
+          },
+          "422":{
+            "description":"Validation Error",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/plugins/upload":{
+      "post":{
+        "tags":[
+          "Plugins"
+        ],
+        "summary":"Install Plugin",
+        "description":"Install a new plugin from a zip file",
+        "operationId":"install_plugin",
+        "requestBody":{
+          "content":{
+            "multipart/form-data":{
+              "schema":{
+                "$ref":"#/components/schemas/Body_install_plugin"
+              }
+            }
+          },
+          "required":true
+        },
+        "responses":{
+          "200":{
+            "description":"Successful Response",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "title":"Response Install Plugin"
+                }
+              }
+            }
+          },
+          "422":{
+            "description":"Validation Error",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security":null
+      }
+    },
+    "/plugins/upload/registry":{
+      "post":{
+        "tags":[
+          "Plugins"
+        ],
+        "summary":"Install Plugin From Registry",
+        "description":"Install a new plugin from registry",
+        "operationId":"install_plugin_from_registry",
+        "security":null,
+        "requestBody":{
+          "required":true,
+          "content":{
+            "application/json":{
+              "schema":{
+                "type":"object",
+                "examples":{
+                  "url":"https://github.com/plugin-dev-account/plugin-repo"
+                },
+                "title":"Payload"
+              }
+            }
+          }
+        },
+        "responses":{
+          "200":{
+            "description":"Successful Response",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "title":"Response Install Plugin From Registry"
+                }
+              }
+            }
+          },
+          "422":{
+            "description":"Validation Error",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/plugins/toggle/{plugin_id}":{
+      "put":{
+        "tags":[
+          "Plugins"
+        ],
+        "summary":"Toggle Plugin",
+        "description":"Enable or disable a single plugin",
+        "operationId":"toggle_plugin",
+        "security":null,
+        "parameters":[
+          {
+            "name":"plugin_id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"string",
+              "title":"Plugin Id"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "description":"Successful Response",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "title":"Response Toggle Plugin"
+                }
+              }
+            }
+          },
+          "422":{
+            "description":"Validation Error",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/plugins/settings":{
+      "get":{
+        "tags":[
+          "Plugins"
+        ],
+        "summary":"Get Plugins Settings",
+        "description":"Returns the settings of all the plugins",
+        "operationId":"get_plugins_settings",
+        "responses":{
+          "200":{
+            "description":"Successful Response",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "title":"Response Get Plugins Settings"
+                }
+              }
+            }
+          }
+        },
+        "security":null
+      }
+    },
+    "/plugins/settings/{plugin_id}":{
+      "get":{
+        "tags":[
+          "Plugins"
+        ],
+        "summary":"Get Plugin Settings",
+        "description":"Returns the settings of a specific plugin",
+        "operationId":"get_plugin_settings",
+        "security":null,
+        "parameters":[
+          {
+            "name":"plugin_id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"string",
+              "title":"Plugin Id"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "description":"Successful Response",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "title":"Response Get Plugin Settings"
+                }
+              }
+            }
+          },
+          "422":{
+            "description":"Validation Error",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put":{
+        "tags":[
+          "Plugins"
+        ],
+        "summary":"Upsert Plugin Settings",
+        "description":"Updates the settings of a specific plugin",
+        "operationId":"upsert_plugin_settings",
+        "security":null,
+        "parameters":[
+          {
+            "name":"plugin_id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"string",
+              "title":"Plugin Id"
+            }
+          }
+        ],
+        "requestBody":{
+          "required":true,
+          "content":{
+            "application/json":{
+              "schema":{
+                "type":"object",
+                "examples":{
+                  "setting_a":"some value",
+                  "setting_b":"another value"
+                },
+                "title":"Payload"
+              }
+            }
+          }
+        },
+        "responses":{
+          "200":{
+            "description":"Successful Response",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "title":"Response Upsert Plugin Settings"
+                }
+              }
+            }
+          },
+          "422":{
+            "description":"Validation Error",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/plugins/{plugin_id}":{
+      "get":{
+        "tags":[
+          "Plugins"
+        ],
+        "summary":"Get Plugin Details",
+        "description":"Returns information on a single plugin",
+        "operationId":"get_plugin_details",
+        "security":null,
+        "parameters":[
+          {
+            "name":"plugin_id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"string",
+              "title":"Plugin Id"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "description":"Successful Response",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "title":"Response Get Plugin Details"
+                }
+              }
+            }
+          },
+          "422":{
+            "description":"Validation Error",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete":{
+        "tags":[
+          "Plugins"
+        ],
+        "summary":"Delete Plugin",
+        "description":"Physically remove plugin.",
+        "operationId":"delete_plugin",
+        "security":null,
+        "parameters":[
+          {
+            "name":"plugin_id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"string",
+              "title":"Plugin Id"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "description":"Successful Response",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "title":"Response Delete Plugin"
+                }
+              }
+            }
+          },
+          "422":{
+            "description":"Validation Error",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/memory/recall":{
+      "get":{
+        "tags":[
+          "Memory"
+        ],
+        "summary":"Recall Memories From Text",
+        "description":"Search k memories similar to given text.",
+        "operationId":"recall_memories_from_text",
+        "security":null,
+        "parameters":[
+          {
+            "name":"text",
+            "in":"query",
+            "required":true,
+            "schema":{
+              "type":"string",
+              "description":"Find memories similar to this text.",
+              "title":"Text"
+            },
+            "description":"Find memories similar to this text."
+          },
+          {
+            "name":"k",
+            "in":"query",
+            "required":false,
+            "schema":{
+              "type":"integer",
+              "description":"How many memories to return.",
+              "default":100,
+              "title":"K"
+            },
+            "description":"How many memories to return."
+          }
+        ],
+        "responses":{
+          "200":{
+            "description":"Successful Response",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "title":"Response Recall Memories From Text"
+                }
+              }
+            }
+          },
+          "422":{
+            "description":"Validation Error",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/memory/collections":{
+      "get":{
+        "tags":[
+          "Memory"
+        ],
+        "summary":"Get Collections",
+        "description":"Get list of available collections",
+        "operationId":"get_collections",
+        "responses":{
+          "200":{
+            "description":"Successful Response",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "title":"Response Get Collections"
+                }
+              }
+            }
+          }
+        },
+        "security":null
+      },
+      "delete":{
+        "tags":[
+          "Memory"
+        ],
+        "summary":"Wipe Collections",
+        "description":"Delete and create all collections",
+        "operationId":"wipe_collections",
+        "responses":{
+          "200":{
+            "description":"Successful Response",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "title":"Response Wipe Collections"
+                }
+              }
+            }
+          }
+        },
+        "security":null
+      }
+    },
+    "/memory/collections/{collection_id}":{
+      "delete":{
+        "tags":[
+          "Memory"
+        ],
+        "summary":"Wipe Single Collection",
+        "description":"Delete and recreate a collection",
+        "operationId":"wipe_single_collection",
+        "security":null,
+        "parameters":[
+          {
+            "name":"collection_id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"string",
+              "title":"Collection Id"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "description":"Successful Response",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "title":"Response Wipe Single Collection"
+                }
+              }
+            }
+          },
+          "422":{
+            "description":"Validation Error",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/memory/collections/{collection_id}/points/{memory_id}":{
+      "delete":{
+        "tags":[
+          "Memory"
+        ],
+        "summary":"Wipe Memory Point",
+        "description":"Delete a specific point in memory",
+        "operationId":"wipe_memory_point",
+        "security":null,
+        "parameters":[
+          {
+            "name":"collection_id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"string",
+              "title":"Collection Id"
+            }
+          },
+          {
+            "name":"memory_id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"string",
+              "title":"Memory Id"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "description":"Successful Response",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "title":"Response Wipe Memory Point"
+                }
+              }
+            }
+          },
+          "422":{
+            "description":"Validation Error",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/memory/collections/{collection_id}/points":{
+      "delete":{
+        "tags":[
+          "Memory"
+        ],
+        "summary":"Wipe Memory Points By Metadata",
+        "description":"Delete points in memory by filter",
+        "operationId":"wipe_memory_points_by_metadata",
+        "security":null,
+        "parameters":[
+          {
+            "name":"collection_id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"string",
+              "title":"Collection Id"
+            }
+          }
+        ],
+        "requestBody":{
+          "content":{
+            "application/json":{
+              "schema":{
+                "type":"object",
+                "default":{
+                  
+                },
+                "title":"Metadata"
+              }
+            }
+          }
+        },
+        "responses":{
+          "200":{
+            "description":"Successful Response",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "title":"Response Wipe Memory Points By Metadata"
+                }
+              }
+            }
+          },
+          "422":{
+            "description":"Validation Error",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/memory/conversation_history":{
+      "get":{
+        "tags":[
+          "Memory"
+        ],
+        "summary":"Get Conversation History",
+        "description":"Get the specified user's conversation history from working memory",
+        "operationId":"get_conversation_history",
+        "responses":{
+          "200":{
+            "description":"Successful Response",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "title":"Response Get Conversation History"
+                }
+              }
+            }
+          }
+        },
+        "security":null
+      },
+      "delete":{
+        "tags":[
+          "Memory"
+        ],
+        "summary":"Wipe Conversation History",
+        "description":"Delete the specified user's conversation history from working memory",
+        "operationId":"wipe_conversation_history",
+        "responses":{
+          "200":{
+            "description":"Successful Response",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "title":"Response Wipe Conversation History"
+                }
+              }
+            }
+          }
+        },
+        "security":null
+      }
+    },
+    "/rabbithole/":{
+      "post":{
+        "tags":[
+          "Rabbit Hole"
+        ],
+        "summary":"Upload File",
+        "description":"Upload a file containing text (.txt, .md, .pdf, etc.). File content will be extracted and segmented into chunks.\nChunks will be then vectorized and stored into documents memory.",
+        "operationId":"upload_file",
+        "requestBody":{
+          "content":{
+            "multipart/form-data":{
+              "schema":{
+                "$ref":"#/components/schemas/Body_upload_file"
+              }
+            }
+          },
+          "required":true
+        },
+        "responses":{
+          "200":{
+            "description":"Successful Response",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "title":"Response Upload File"
+                }
+              }
+            }
+          },
+          "422":{
+            "description":"Validation Error",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security":null
+      }
+    },
+    "/rabbithole/web":{
+      "post":{
+        "tags":[
+          "Rabbit Hole"
+        ],
+        "summary":"Upload Url",
+        "description":"Upload a url. Website content will be extracted and segmented into chunks.\nChunks will be then vectorized and stored into documents memory.",
+        "operationId":"upload_url",
+        "requestBody":{
+          "content":{
+            "application/json":{
+              "schema":{
+                "$ref":"#/components/schemas/Body_upload_url"
+              }
+            }
+          },
+          "required":true
+        },
+        "responses":{
+          "200":{
+            "description":"Successful Response",
+            "content":{
+              "application/json":{
+                "schema":{
+                  
+                }
+              }
+            }
+          },
+          "422":{
+            "description":"Validation Error",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security":null
+      }
+    },
+    "/rabbithole/memory":{
+      "post":{
+        "tags":[
+          "Rabbit Hole"
+        ],
+        "summary":"Upload Memory",
+        "description":"Upload a memory json file to the cat memory",
+        "operationId":"upload_memory",
+        "requestBody":{
+          "content":{
+            "multipart/form-data":{
+              "schema":{
+                "$ref":"#/components/schemas/Body_upload_memory"
+              }
+            }
+          },
+          "required":true
+        },
+        "responses":{
+          "200":{
+            "description":"Successful Response",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "title":"Response Upload Memory"
+                }
+              }
+            }
+          },
+          "422":{
+            "description":"Validation Error",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security":null
+      }
+    },
+    "/rabbithole/allowed-mimetypes":{
+      "get":{
+        "tags":[
+          "Rabbit Hole"
+        ],
+        "summary":"Get Allowed Mimetypes",
+        "description":"Retrieve the allowed mimetypes that can be ingested by the Rabbit Hole",
+        "operationId":"get_allowed_mimetypes",
+        "responses":{
+          "200":{
+            "description":"Successful Response",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "title":"Response Get Allowed Mimetypes"
+                }
+              }
+            }
+          }
+        },
+        "security":null
+      }
+    },
+    "/admin/{page}/":{
+      "get":{
+        "summary":"Get Injected Admin",
+        "operationId":"get_injected_admin",
+        "responses":{
+          "200":{
+            "description":"Successful Response",
+            "content":{
+              "application/json":{
+                "schema":{
+                  
+                }
+              }
+            }
+          }
+        },
+        "security":null
+      }
+    },
+    "/admin/{page}":{
+      "get":{
+        "summary":"Get Injected Admin",
+        "operationId":"get_injected_admin",
+        "responses":{
+          "200":{
+            "description":"Successful Response",
+            "content":{
+              "application/json":{
+                "schema":{
+                  
+                }
+              }
+            }
+          }
+        },
+        "security":null
+      }
+    },
+    "/admin/":{
+      "get":{
+        "summary":"Get Injected Admin",
+        "operationId":"get_injected_admin",
+        "responses":{
+          "200":{
+            "description":"Successful Response",
+            "content":{
+              "application/json":{
+                "schema":{
+                  
+                }
+              }
+            }
+          }
+        },
+        "security":null
+      }
+    }
+  },
+  "components":{
+    "schemas":{
+      "Body_install_plugin":{
+        "properties":{
+          "file":{
+            "type":"string",
+            "format":"binary",
+            "title":"File"
+          }
+        },
+        "type":"object",
+        "required":[
+          "file"
+        ],
+        "title":"Body_install_plugin"
+      },
+      "Body_upload_file":{
+        "properties":{
+          "file":{
+            "type":"string",
+            "format":"binary",
+            "title":"File"
+          },
+          "chunk_size":{
+            "type":"integer",
+            "title":"Chunk Size",
+            "description":"Maximum length of each chunk after the document is split (in characters)",
+            "default":512
+          },
+          "chunk_overlap":{
+            "type":"integer",
+            "title":"Chunk Overlap",
+            "description":"Chunk overlap (in characters)",
+            "default":128
+          }
+        },
+        "type":"object",
+        "required":[
+          "file"
+        ],
+        "title":"Body_upload_file"
+      },
+      "Body_upload_memory":{
+        "properties":{
+          "file":{
+            "type":"string",
+            "format":"binary",
+            "title":"File"
+          }
+        },
+        "type":"object",
+        "required":[
+          "file"
+        ],
+        "title":"Body_upload_memory"
+      },
+      "Body_upload_url":{
+        "properties":{
+          "url":{
+            "type":"string",
+            "title":"Url",
+            "description":"URL of the website to which you want to save the content"
+          },
+          "chunk_size":{
+            "type":"integer",
+            "title":"Chunk Size",
+            "description":"Maximum length of each chunk after the document is split (in characters)",
+            "default":512
+          },
+          "chunk_overlap":{
+            "type":"integer",
+            "title":"Chunk Overlap",
+            "description":"Chunk overlap (in characters)",
+            "default":128
+          }
+        },
+        "type":"object",
+        "required":[
+          "url"
+        ],
+        "title":"Body_upload_url"
+      },
+      "HTTPValidationError":{
+        "properties":{
+          "detail":{
+            "items":{
+              "$ref":"#/components/schemas/ValidationError"
+            },
+            "type":"array",
+            "title":"Detail"
+          }
+        },
+        "type":"object",
+        "title":"HTTPValidationError"
+      },
+      "SettingBody":{
+        "properties":{
+          "name":{
+            "type":"string",
+            "title":"Name"
+          },
+          "value":{
+            "anyOf":[
+              {
+                "type":"object"
+              },
+              {
+                "items":{
+                  
+                },
+                "type":"array"
+              }
+            ],
+            "title":"Value"
+          },
+          "category":{
+            "anyOf":[
+              {
+                "type":"string"
+              },
+              {
+                "type":"null"
+              }
+            ],
+            "title":"Category"
+          }
+        },
+        "type":"object",
+        "required":[
+          "name",
+          "value"
+        ],
+        "title":"SettingBody"
+      },
+      "ValidationError":{
+        "properties":{
+          "loc":{
+            "items":{
+              "anyOf":[
+                {
+                  "type":"string"
+                },
+                {
+                  "type":"integer"
+                }
+              ]
+            },
+            "type":"array",
+            "title":"Location"
+          },
+          "msg":{
+            "type":"string",
+            "title":"Message"
+          },
+          "type":{
+            "type":"string",
+            "title":"Error Type"
+          }
+        },
+        "type":"object",
+        "required":[
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title":"ValidationError"
+      }
+    },
+    "securitySchemes":null
+  }
+}

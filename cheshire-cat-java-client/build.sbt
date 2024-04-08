@@ -2,7 +2,7 @@ lazy val root = (project in file(".")).
   settings(
     organization := "it.baccan",
     name := "cheshire-cat-java-client",
-    version := "0.0.5",
+    version := "1.5.1",
     scalaVersion := "2.11.4",
     scalacOptions ++= Seq("-feature"),
     javacOptions in compile ++= Seq("-Xlint:deprecation"),

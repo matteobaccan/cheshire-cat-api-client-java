@@ -5,14 +5,14 @@ All URIs are relative to *http://localhost*
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**getAllowedMimetypes**](RabbitHoleApi.md#getAllowedMimetypes) | **GET** /rabbithole/allowed-mimetypes | Get Allowed Mimetypes |
-| [**uploadFile**](RabbitHoleApi.md#uploadFile) | **POST** /rabbithole | Upload File |
+| [**uploadFile**](RabbitHoleApi.md#uploadFile) | **POST** /rabbithole/ | Upload File |
 | [**uploadMemory**](RabbitHoleApi.md#uploadMemory) | **POST** /rabbithole/memory | Upload Memory |
-| [**uploadUrl**](RabbitHoleApi.md#uploadUrl) | **POST** /rabbithole/web | Upload URL |
+| [**uploadUrl**](RabbitHoleApi.md#uploadUrl) | **POST** /rabbithole/web | Upload Url |
 
 
 <a id="getAllowedMimetypes"></a>
 # **getAllowedMimetypes**
-> ResponseGetAllowedMimetypes getAllowedMimetypes()
+> Object getAllowedMimetypes()
 
 Get Allowed Mimetypes
 
@@ -34,7 +34,7 @@ public class Example {
 
     RabbitHoleApi apiInstance = new RabbitHoleApi(defaultClient);
     try {
-      ResponseGetAllowedMimetypes result = apiInstance.getAllowedMimetypes();
+      Object result = apiInstance.getAllowedMimetypes();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling RabbitHoleApi#getAllowedMimetypes");
@@ -52,7 +52,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**ResponseGetAllowedMimetypes**](ResponseGetAllowedMimetypes.md)
+**Object**
 
 ### Authorization
 
@@ -70,7 +70,7 @@ No authorization required
 
 <a id="uploadFile"></a>
 # **uploadFile**
-> FileResponse uploadFile(_file)
+> Object uploadFile(_file, chunkSize, chunkOverlap)
 
 Upload File
 
@@ -92,8 +92,10 @@ public class Example {
 
     RabbitHoleApi apiInstance = new RabbitHoleApi(defaultClient);
     File _file = new File("/path/to/file"); // File | 
+    Integer chunkSize = 512; // Integer | Maximum length of each chunk after the document is split (in characters)
+    Integer chunkOverlap = 128; // Integer | Chunk overlap (in characters)
     try {
-      FileResponse result = apiInstance.uploadFile(_file);
+      Object result = apiInstance.uploadFile(_file, chunkSize, chunkOverlap);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling RabbitHoleApi#uploadFile");
@@ -111,10 +113,12 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **_file** | **File**|  | |
+| **chunkSize** | **Integer**| Maximum length of each chunk after the document is split (in characters) | [optional] [default to 512] |
+| **chunkOverlap** | **Integer**| Chunk overlap (in characters) | [optional] [default to 128] |
 
 ### Return type
 
-[**FileResponse**](FileResponse.md)
+**Object**
 
 ### Authorization
 
@@ -196,11 +200,11 @@ No authorization required
 
 <a id="uploadUrl"></a>
 # **uploadUrl**
-> WebResponse uploadUrl(bodyUploadUrl)
+> Object uploadUrl(bodyUploadUrl)
 
-Upload URL
+Upload Url
 
-Upload a URL. Website content will be extracted and segmented into chunks. Chunks will be then vectorized and stored into documents memory.
+Upload a url. Website content will be extracted and segmented into chunks. Chunks will be then vectorized and stored into documents memory.
 
 ### Example
 ```java
@@ -219,7 +223,7 @@ public class Example {
     RabbitHoleApi apiInstance = new RabbitHoleApi(defaultClient);
     BodyUploadUrl bodyUploadUrl = new BodyUploadUrl(); // BodyUploadUrl | 
     try {
-      WebResponse result = apiInstance.uploadUrl(bodyUploadUrl);
+      Object result = apiInstance.uploadUrl(bodyUploadUrl);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling RabbitHoleApi#uploadUrl");
@@ -240,7 +244,7 @@ public class Example {
 
 ### Return type
 
-[**WebResponse**](WebResponse.md)
+**Object**
 
 ### Authorization
 

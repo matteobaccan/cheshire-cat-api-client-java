@@ -9,7 +9,7 @@ All URIs are relative to *http://localhost*
 
 <a id="home"></a>
 # **home**
-> Status home()
+> Object home()
 
 Home
 
@@ -31,7 +31,7 @@ public class Example {
 
     StatusApi apiInstance = new StatusApi(defaultClient);
     try {
-      Status result = apiInstance.home();
+      Object result = apiInstance.home();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling StatusApi#home");
@@ -49,7 +49,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**Status**](Status.md)
+**Object**
 
 ### Authorization
 

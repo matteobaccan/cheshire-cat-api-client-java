@@ -12,10 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import it.baccan.cheshirecat.ApiClient;
 import it.baccan.cheshirecat.ApiException;
 import it.baccan.cheshirecat.Configuration;
-import it.baccan.cheshirecat.model.PluginsList;
-import it.baccan.cheshirecat.model.SettingsResponse;
 import it.baccan.cheshirecat.service.StatusApi;
-import it.baccan.cheshirecat.model.Status;
 import it.baccan.cheshirecat.service.EmbedderApi;
 import it.baccan.cheshirecat.service.PluginsApi;
 
@@ -31,10 +28,10 @@ public class Test {
 
         StatusApi statusApi = new StatusApi(defaultClient);
         try {
-            Status result = statusApi.home();
+            Object result = statusApi.home();
             log.info("[{}]", result);
         } catch (ApiException e) {
-            log.error("Exception when calling EmbedderApi#getEmbeddersSettings");
+            log.error("Exception when calling statusApi#home");
             log.error("Status code: " + e.getCode());
             log.error("Reason: " + e.getResponseBody());
             log.error("Response headers: " + e.getResponseHeaders());
@@ -43,10 +40,10 @@ public class Test {
 
         EmbedderApi embedderApi = new EmbedderApi(defaultClient);
         try {
-            SettingsResponse result = embedderApi.getEmbeddersSettings();
+            Object result = embedderApi.getEmbeddersSettings();
             log.info("[{}]", result);
         } catch (ApiException e) {
-            log.error("Exception when calling EmbedderApi#getEmbeddersSettings");
+            log.error("Exception when calling embedderApi#getEmbeddersSettings");
             log.error("Status code: " + e.getCode());
             log.error("Reason: " + e.getResponseBody());
             log.error("Response headers: " + e.getResponseHeaders());
@@ -55,10 +52,10 @@ public class Test {
 
         PluginsApi pluginsApi = new PluginsApi(defaultClient);
         try {
-            PluginsList result = pluginsApi.listAvailablePlugins("core_plugin");
+            Object result = pluginsApi.getAvailablePlugins("core_plugin");
             log.info("[{}]", result);
         } catch (ApiException e) {
-            log.error("Exception when calling EmbedderApi#getEmbeddersSettings");
+            log.error("Exception when calling pluginsApi#getAvailablePlugins");
             log.error("Status code: " + e.getCode());
             log.error("Reason: " + e.getResponseBody());
             log.error("Response headers: " + e.getResponseHeaders());

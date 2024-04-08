@@ -8,8 +8,8 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**name** | **String** |  |  |
-|**value** | **Object** |  |  |
-|**category** | **String** |  |  [optional] |
+|**value** | [**Value**](Value.md) |  |  |
+|**category** | [**Category**](Category.md) |  |  [optional] |
 
 
 

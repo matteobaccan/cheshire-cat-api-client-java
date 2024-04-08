@@ -4,84 +4,19 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**deletePointInMemory**](MemoryApi.md#deletePointInMemory) | **DELETE** /memory/collections/{collection_id}/points/{memory_id} | Delete Point In Memory |
 | [**getCollections**](MemoryApi.md#getCollections) | **GET** /memory/collections | Get Collections |
 | [**getConversationHistory**](MemoryApi.md#getConversationHistory) | **GET** /memory/conversation_history | Get Conversation History |
 | [**recallMemoriesFromText**](MemoryApi.md#recallMemoriesFromText) | **GET** /memory/recall | Recall Memories From Text |
 | [**wipeCollections**](MemoryApi.md#wipeCollections) | **DELETE** /memory/collections | Wipe Collections |
 | [**wipeConversationHistory**](MemoryApi.md#wipeConversationHistory) | **DELETE** /memory/conversation_history | Wipe Conversation History |
-| [**wipeMemoryPoints**](MemoryApi.md#wipeMemoryPoints) | **DELETE** /memory/collections/{collection_id}/points | Wipe Memory Points By Metadata |
+| [**wipeMemoryPoint**](MemoryApi.md#wipeMemoryPoint) | **DELETE** /memory/collections/{collection_id}/points/{memory_id} | Wipe Memory Point |
+| [**wipeMemoryPointsByMetadata**](MemoryApi.md#wipeMemoryPointsByMetadata) | **DELETE** /memory/collections/{collection_id}/points | Wipe Memory Points By Metadata |
 | [**wipeSingleCollection**](MemoryApi.md#wipeSingleCollection) | **DELETE** /memory/collections/{collection_id} | Wipe Single Collection |
 
 
-<a id="deletePointInMemory"></a>
-# **deletePointInMemory**
-> List&lt;String&gt; deletePointInMemory(collectionId, memoryId)
-
-Delete Point In Memory
-
-Delete specific point in memory
-
-### Example
-```java
-// Import classes:
-import it.baccan.cheshirecat.ApiClient;
-import it.baccan.cheshirecat.ApiException;
-import it.baccan.cheshirecat.Configuration;
-import it.baccan.cheshirecat.models.*;
-import it.baccan.cheshirecat.service.MemoryApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost");
-
-    MemoryApi apiInstance = new MemoryApi(defaultClient);
-    String collectionId = "collectionId_example"; // String | 
-    String memoryId = "memoryId_example"; // String | 
-    try {
-      List<String> result = apiInstance.deletePointInMemory(collectionId, memoryId);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling MemoryApi#deletePointInMemory");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **collectionId** | **String**|  | |
-| **memoryId** | **String**|  | |
-
-### Return type
-
-**List&lt;String&gt;**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Successful Response |  -  |
-| **422** | Validation Error |  -  |
-
 <a id="getCollections"></a>
 # **getCollections**
-> CollectionsList getCollections()
+> Object getCollections()
 
 Get Collections
 
@@ -103,7 +38,7 @@ public class Example {
 
     MemoryApi apiInstance = new MemoryApi(defaultClient);
     try {
-      CollectionsList result = apiInstance.getCollections();
+      Object result = apiInstance.getCollections();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling MemoryApi#getCollections");
@@ -121,7 +56,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**CollectionsList**](CollectionsList.md)
+**Object**
 
 ### Authorization
 
@@ -139,7 +74,7 @@ No authorization required
 
 <a id="getConversationHistory"></a>
 # **getConversationHistory**
-> ConversationHistory getConversationHistory()
+> Object getConversationHistory()
 
 Get Conversation History
 
@@ -161,7 +96,7 @@ public class Example {
 
     MemoryApi apiInstance = new MemoryApi(defaultClient);
     try {
-      ConversationHistory result = apiInstance.getConversationHistory();
+      Object result = apiInstance.getConversationHistory();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling MemoryApi#getConversationHistory");
@@ -179,7 +114,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**ConversationHistory**](ConversationHistory.md)
+**Object**
 
 ### Authorization
 
@@ -197,7 +132,7 @@ No authorization required
 
 <a id="recallMemoriesFromText"></a>
 # **recallMemoriesFromText**
-> MemoryRecall recallMemoriesFromText(text, k)
+> Object recallMemoriesFromText(text, k)
 
 Recall Memories From Text
 
@@ -221,7 +156,7 @@ public class Example {
     String text = "text_example"; // String | Find memories similar to this text.
     Integer k = 100; // Integer | How many memories to return.
     try {
-      MemoryRecall result = apiInstance.recallMemoriesFromText(text, k);
+      Object result = apiInstance.recallMemoriesFromText(text, k);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling MemoryApi#recallMemoriesFromText");
@@ -243,7 +178,7 @@ public class Example {
 
 ### Return type
 
-[**MemoryRecall**](MemoryRecall.md)
+**Object**
 
 ### Authorization
 
@@ -262,7 +197,7 @@ No authorization required
 
 <a id="wipeCollections"></a>
 # **wipeCollections**
-> List&lt;String&gt; wipeCollections()
+> Object wipeCollections()
 
 Wipe Collections
 
@@ -284,7 +219,7 @@ public class Example {
 
     MemoryApi apiInstance = new MemoryApi(defaultClient);
     try {
-      List<String> result = apiInstance.wipeCollections();
+      Object result = apiInstance.wipeCollections();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling MemoryApi#wipeCollections");
@@ -302,7 +237,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**List&lt;String&gt;**
+**Object**
 
 ### Authorization
 
@@ -320,7 +255,7 @@ No authorization required
 
 <a id="wipeConversationHistory"></a>
 # **wipeConversationHistory**
-> List&lt;String&gt; wipeConversationHistory()
+> Object wipeConversationHistory()
 
 Wipe Conversation History
 
@@ -342,7 +277,7 @@ public class Example {
 
     MemoryApi apiInstance = new MemoryApi(defaultClient);
     try {
-      List<String> result = apiInstance.wipeConversationHistory();
+      Object result = apiInstance.wipeConversationHistory();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling MemoryApi#wipeConversationHistory");
@@ -360,7 +295,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**List&lt;String&gt;**
+**Object**
 
 ### Authorization
 
@@ -376,9 +311,74 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | Successful Response |  -  |
 
-<a id="wipeMemoryPoints"></a>
-# **wipeMemoryPoints**
-> List&lt;String&gt; wipeMemoryPoints(collectionId, body)
+<a id="wipeMemoryPoint"></a>
+# **wipeMemoryPoint**
+> Object wipeMemoryPoint(collectionId, memoryId)
+
+Wipe Memory Point
+
+Delete a specific point in memory
+
+### Example
+```java
+// Import classes:
+import it.baccan.cheshirecat.ApiClient;
+import it.baccan.cheshirecat.ApiException;
+import it.baccan.cheshirecat.Configuration;
+import it.baccan.cheshirecat.models.*;
+import it.baccan.cheshirecat.service.MemoryApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    MemoryApi apiInstance = new MemoryApi(defaultClient);
+    String collectionId = "collectionId_example"; // String | 
+    String memoryId = "memoryId_example"; // String | 
+    try {
+      Object result = apiInstance.wipeMemoryPoint(collectionId, memoryId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling MemoryApi#wipeMemoryPoint");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **collectionId** | **String**|  | |
+| **memoryId** | **String**|  | |
+
+### Return type
+
+**Object**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successful Response |  -  |
+| **422** | Validation Error |  -  |
+
+<a id="wipeMemoryPointsByMetadata"></a>
+# **wipeMemoryPointsByMetadata**
+> Object wipeMemoryPointsByMetadata(collectionId, body)
 
 Wipe Memory Points By Metadata
 
@@ -402,10 +402,10 @@ public class Example {
     String collectionId = "collectionId_example"; // String | 
     Object body = null; // Object | 
     try {
-      List<String> result = apiInstance.wipeMemoryPoints(collectionId, body);
+      Object result = apiInstance.wipeMemoryPointsByMetadata(collectionId, body);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling MemoryApi#wipeMemoryPoints");
+      System.err.println("Exception when calling MemoryApi#wipeMemoryPointsByMetadata");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -424,7 +424,7 @@ public class Example {
 
 ### Return type
 
-**List&lt;String&gt;**
+**Object**
 
 ### Authorization
 
@@ -443,7 +443,7 @@ No authorization required
 
 <a id="wipeSingleCollection"></a>
 # **wipeSingleCollection**
-> List&lt;String&gt; wipeSingleCollection(collectionId)
+> Object wipeSingleCollection(collectionId)
 
 Wipe Single Collection
 
@@ -466,7 +466,7 @@ public class Example {
     MemoryApi apiInstance = new MemoryApi(defaultClient);
     String collectionId = "collectionId_example"; // String | 
     try {
-      List<String> result = apiInstance.wipeSingleCollection(collectionId);
+      Object result = apiInstance.wipeSingleCollection(collectionId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling MemoryApi#wipeSingleCollection");
@@ -487,7 +487,7 @@ public class Example {
 
 ### Return type
 
-**List&lt;String&gt;**
+**Object**
 
 ### Authorization
 

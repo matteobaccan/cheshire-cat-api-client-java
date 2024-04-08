@@ -5,13 +5,13 @@ All URIs are relative to *http://localhost*
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**getLlmSettings**](LargeLanguageModelApi.md#getLlmSettings) | **GET** /llm/settings/{languageModelName} | Get Llm Settings |
-| [**getLlmsSettings**](LargeLanguageModelApi.md#getLlmsSettings) | **GET** /llm/settings | Get LLMs Settings |
-| [**upsertLlmSetting**](LargeLanguageModelApi.md#upsertLlmSetting) | **PUT** /llm/settings/{languageModelName} | Upsert LLM Setting |
+| [**getLlmsSettings**](LargeLanguageModelApi.md#getLlmsSettings) | **GET** /llm/settings | Get Llms Settings |
+| [**upsertLlmSetting**](LargeLanguageModelApi.md#upsertLlmSetting) | **PUT** /llm/settings/{languageModelName} | Upsert Llm Setting |
 
 
 <a id="getLlmSettings"></a>
 # **getLlmSettings**
-> Setting getLlmSettings(languageModelName)
+> Object getLlmSettings(languageModelName)
 
 Get Llm Settings
 
@@ -34,7 +34,7 @@ public class Example {
     LargeLanguageModelApi apiInstance = new LargeLanguageModelApi(defaultClient);
     String languageModelName = "languageModelName_example"; // String | 
     try {
-      Setting result = apiInstance.getLlmSettings(languageModelName);
+      Object result = apiInstance.getLlmSettings(languageModelName);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling LargeLanguageModelApi#getLlmSettings");
@@ -55,7 +55,7 @@ public class Example {
 
 ### Return type
 
-[**Setting**](Setting.md)
+**Object**
 
 ### Authorization
 
@@ -74,9 +74,9 @@ No authorization required
 
 <a id="getLlmsSettings"></a>
 # **getLlmsSettings**
-> SettingsResponse getLlmsSettings()
+> Object getLlmsSettings()
 
-Get LLMs Settings
+Get Llms Settings
 
 Get the list of the Large Language Models
 
@@ -96,7 +96,7 @@ public class Example {
 
     LargeLanguageModelApi apiInstance = new LargeLanguageModelApi(defaultClient);
     try {
-      SettingsResponse result = apiInstance.getLlmsSettings();
+      Object result = apiInstance.getLlmsSettings();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling LargeLanguageModelApi#getLlmsSettings");
@@ -114,7 +114,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**SettingsResponse**](SettingsResponse.md)
+**Object**
 
 ### Authorization
 
@@ -132,9 +132,9 @@ No authorization required
 
 <a id="upsertLlmSetting"></a>
 # **upsertLlmSetting**
-> Setting upsertLlmSetting(languageModelName, body)
+> Object upsertLlmSetting(languageModelName, body)
 
-Upsert LLM Setting
+Upsert Llm Setting
 
 Upsert the Large Language Model setting
 
@@ -154,9 +154,9 @@ public class Example {
 
     LargeLanguageModelApi apiInstance = new LargeLanguageModelApi(defaultClient);
     String languageModelName = "languageModelName_example"; // String | 
-    Object body = {"openai_api_key":"your-key-here"}; // Object | 
+    Object body = null; // Object | 
     try {
-      Setting result = apiInstance.upsertLlmSetting(languageModelName, body);
+      Object result = apiInstance.upsertLlmSetting(languageModelName, body);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling LargeLanguageModelApi#upsertLlmSetting");
@@ -178,7 +178,7 @@ public class Example {
 
 ### Return type
 
-[**Setting**](Setting.md)
+**Object**
 
 ### Authorization
 

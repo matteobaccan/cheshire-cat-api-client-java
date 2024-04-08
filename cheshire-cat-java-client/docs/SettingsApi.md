@@ -4,16 +4,16 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**createSetting**](SettingsApi.md#createSetting) | **POST** /settings | Create Setting |
+| [**createSetting**](SettingsApi.md#createSetting) | **POST** /settings/ | Create Setting |
 | [**deleteSetting**](SettingsApi.md#deleteSetting) | **DELETE** /settings/{settingId} | Delete Setting |
 | [**getSetting**](SettingsApi.md#getSetting) | **GET** /settings/{settingId} | Get Setting |
-| [**getSettings**](SettingsApi.md#getSettings) | **GET** /settings | Get Settings |
+| [**getSettings**](SettingsApi.md#getSettings) | **GET** /settings/ | Get Settings |
 | [**updateSetting**](SettingsApi.md#updateSetting) | **PUT** /settings/{settingId} | Update Setting |
 
 
 <a id="createSetting"></a>
 # **createSetting**
-> Setting createSetting(settingBody)
+> Object createSetting(settingBody)
 
 Create Setting
 
@@ -36,7 +36,7 @@ public class Example {
     SettingsApi apiInstance = new SettingsApi(defaultClient);
     SettingBody settingBody = new SettingBody(); // SettingBody | 
     try {
-      Setting result = apiInstance.createSetting(settingBody);
+      Object result = apiInstance.createSetting(settingBody);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SettingsApi#createSetting");
@@ -57,7 +57,7 @@ public class Example {
 
 ### Return type
 
-[**Setting**](Setting.md)
+**Object**
 
 ### Authorization
 
@@ -139,7 +139,7 @@ No authorization required
 
 <a id="getSetting"></a>
 # **getSetting**
-> Setting getSetting(settingId)
+> Object getSetting(settingId)
 
 Get Setting
 
@@ -162,7 +162,7 @@ public class Example {
     SettingsApi apiInstance = new SettingsApi(defaultClient);
     String settingId = "settingId_example"; // String | 
     try {
-      Setting result = apiInstance.getSetting(settingId);
+      Object result = apiInstance.getSetting(settingId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SettingsApi#getSetting");
@@ -183,7 +183,7 @@ public class Example {
 
 ### Return type
 
-[**Setting**](Setting.md)
+**Object**
 
 ### Authorization
 
@@ -202,7 +202,7 @@ No authorization required
 
 <a id="getSettings"></a>
 # **getSettings**
-> SettingsResponse getSettings(search)
+> Object getSettings(search)
 
 Get Settings
 
@@ -223,9 +223,9 @@ public class Example {
     defaultClient.setBasePath("http://localhost");
 
     SettingsApi apiInstance = new SettingsApi(defaultClient);
-    String search = ""; // String | The setting to search
+    String search = ""; // String | 
     try {
-      SettingsResponse result = apiInstance.getSettings(search);
+      Object result = apiInstance.getSettings(search);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SettingsApi#getSettings");
@@ -242,11 +242,11 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **search** | **String**| The setting to search | [optional] [default to ] |
+| **search** | **String**|  | [optional] [default to ] |
 
 ### Return type
 
-[**SettingsResponse**](SettingsResponse.md)
+**Object**
 
 ### Authorization
 
@@ -265,7 +265,7 @@ No authorization required
 
 <a id="updateSetting"></a>
 # **updateSetting**
-> Setting updateSetting(settingId, settingBody)
+> Object updateSetting(settingId, settingBody)
 
 Update Setting
 
@@ -289,7 +289,7 @@ public class Example {
     String settingId = "settingId_example"; // String | 
     SettingBody settingBody = new SettingBody(); // SettingBody | 
     try {
-      Setting result = apiInstance.updateSetting(settingId, settingBody);
+      Object result = apiInstance.updateSetting(settingId, settingBody);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SettingsApi#updateSetting");
@@ -311,7 +311,7 @@ public class Example {
 
 ### Return type
 
-[**Setting**](Setting.md)
+**Object**
 
 ### Authorization
 

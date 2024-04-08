@@ -11,7 +11,7 @@ All URIs are relative to *http://localhost*
 
 <a id="getEmbedderSettings"></a>
 # **getEmbedderSettings**
-> Setting getEmbedderSettings(languageEmbedderName)
+> Object getEmbedderSettings(languageEmbedderName)
 
 Get Embedder Settings
 
@@ -34,7 +34,7 @@ public class Example {
     EmbedderApi apiInstance = new EmbedderApi(defaultClient);
     String languageEmbedderName = "languageEmbedderName_example"; // String | 
     try {
-      Setting result = apiInstance.getEmbedderSettings(languageEmbedderName);
+      Object result = apiInstance.getEmbedderSettings(languageEmbedderName);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling EmbedderApi#getEmbedderSettings");
@@ -55,7 +55,7 @@ public class Example {
 
 ### Return type
 
-[**Setting**](Setting.md)
+**Object**
 
 ### Authorization
 
@@ -74,7 +74,7 @@ No authorization required
 
 <a id="getEmbeddersSettings"></a>
 # **getEmbeddersSettings**
-> SettingsResponse getEmbeddersSettings()
+> Object getEmbeddersSettings()
 
 Get Embedders Settings
 
@@ -96,7 +96,7 @@ public class Example {
 
     EmbedderApi apiInstance = new EmbedderApi(defaultClient);
     try {
-      SettingsResponse result = apiInstance.getEmbeddersSettings();
+      Object result = apiInstance.getEmbeddersSettings();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling EmbedderApi#getEmbeddersSettings");
@@ -114,7 +114,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**SettingsResponse**](SettingsResponse.md)
+**Object**
 
 ### Authorization
 
@@ -132,7 +132,7 @@ No authorization required
 
 <a id="upsertEmbedderSetting"></a>
 # **upsertEmbedderSetting**
-> Setting upsertEmbedderSetting(languageEmbedderName, body)
+> Object upsertEmbedderSetting(languageEmbedderName, body)
 
 Upsert Embedder Setting
 
@@ -154,9 +154,9 @@ public class Example {
 
     EmbedderApi apiInstance = new EmbedderApi(defaultClient);
     String languageEmbedderName = "languageEmbedderName_example"; // String | 
-    Object body = {"openai_api_key":"your-key-here"}; // Object | 
+    Object body = null; // Object | 
     try {
-      Setting result = apiInstance.upsertEmbedderSetting(languageEmbedderName, body);
+      Object result = apiInstance.upsertEmbedderSetting(languageEmbedderName, body);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling EmbedderApi#upsertEmbedderSetting");
@@ -178,7 +178,7 @@ public class Example {
 
 ### Return type
 
-[**Setting**](Setting.md)
+**Object**
 
 ### Authorization
 
