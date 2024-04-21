@@ -2,7 +2,7 @@ openapi: 3.1.0
 info:
   description: Production ready AI assistant framework
   title: �Y~� Cheshire-Cat API
-  version: 1.5.1
+  version: 1.5.2
   x-logo:
     url: https://cheshirecat.ai/wp-content/uploads/2023/10/Logo-Cheshire-Cat.svg
 servers:
@@ -23,6 +23,37 @@ paths:
       summary: Home
       tags:
       - Status
+      x-accepts: application/json
+  /message:
+    post:
+      description: Get a response from the Cat
+      operationId: message_with_cat
+      requestBody:
+        content:
+          application/json:
+            schema:
+              default:
+                text: hello!
+              title: Payload
+              type: object
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                title: Response Message With Cat
+                type: object
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Message With Cat
+      tags:
+      - Status
+      x-content-type: application/json
       x-accepts: application/json
   /settings/:
     get:
@@ -235,9 +266,10 @@ paths:
         content:
           application/json:
             schema:
+              default:
+                openai_api_key: your-key-here
               title: Payload
               type: object
-        required: true
       responses:
         "200":
           content:
@@ -320,9 +352,10 @@ paths:
         content:
           application/json:
             schema:
+              default:
+                openai_api_key: your-key-here
               title: Payload
               type: object
-        required: true
       responses:
         "200":
           content:
@@ -410,9 +443,10 @@ paths:
         content:
           application/json:
             schema:
+              default:
+                url: https://github.com/plugin-dev-account/plugin-repo
               title: Payload
               type: object
-        required: true
       responses:
         "200":
           content:
@@ -526,9 +560,11 @@ paths:
         content:
           application/json:
             schema:
+              default:
+                setting_a: some value
+                setting_b: another value
               title: Payload
               type: object
-        required: true
       responses:
         "200":
           content:
@@ -981,13 +1017,13 @@ components:
           title: File
           type: string
         chunk_size:
-          default: 512
+          default: 256
           description: Maximum length of each chunk after the document is split (in
             characters)
           title: Chunk Size
           type: integer
         chunk_overlap:
-          default: 128
+          default: 64
           description: Chunk overlap (in characters)
           title: Chunk Overlap
           type: integer
@@ -1010,13 +1046,13 @@ components:
           title: Url
           type: string
         chunk_size:
-          default: 512
+          default: 256
           description: Maximum length of each chunk after the document is split (in
             characters)
           title: Chunk Size
           type: integer
         chunk_overlap:
-          default: 128
+          default: 64
           description: Chunk overlap (in characters)
           title: Chunk Overlap
           type: integer

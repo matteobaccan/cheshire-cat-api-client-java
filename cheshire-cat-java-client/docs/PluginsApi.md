@@ -430,7 +430,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | **Object**|  | |
+| **body** | **Object**|  | [optional] |
 
 ### Return type
 
@@ -558,7 +558,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **pluginId** | **String**|  | |
-| **body** | **Object**|  | |
+| **body** | **Object**|  | [optional] |
 
 ### Return type
 

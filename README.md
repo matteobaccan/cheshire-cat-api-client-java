@@ -12,7 +12,7 @@ This project consists of 3 modules:
 
 ## Current version
 
-Current library version is align to 1.5.1 version of Cheshire Cat API.
+Current library version is align to 1.5.2 version of Cheshire Cat API.
 
 ## CheshireCat
 

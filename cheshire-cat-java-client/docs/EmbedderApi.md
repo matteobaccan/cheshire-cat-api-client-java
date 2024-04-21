@@ -174,7 +174,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **languageEmbedderName** | **String**|  | |
-| **body** | **Object**|  | |
+| **body** | **Object**|  | [optional] |
 
 ### Return type
 

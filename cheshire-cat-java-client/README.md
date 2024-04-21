@@ -1,7 +1,7 @@
 # cheshire-cat-java-client
 
 �Y~� Cheshire-Cat API
-- API version: 1.5.1
+- API version: 1.5.2
   - Generator version: 7.4.0
 
 Production ready AI assistant framework
@@ -40,7 +40,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>it.baccan</groupId>
   <artifactId>cheshire-cat-java-client</artifactId>
-  <version>1.5.1</version>
+  <version>1.5.2</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -56,7 +56,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "it.baccan:cheshire-cat-java-client:1.5.1"
+     implementation "it.baccan:cheshire-cat-java-client:1.5.2"
   }
 ```
 
@@ -70,7 +70,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/cheshire-cat-java-client-1.5.1.jar`
+* `target/cheshire-cat-java-client-1.5.2.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -149,6 +149,7 @@ Class | Method | HTTP request | Description
 *SettingsApi* | [**getSettings**](docs/SettingsApi.md#getSettings) | **GET** /settings/ | Get Settings
 *SettingsApi* | [**updateSetting**](docs/SettingsApi.md#updateSetting) | **PUT** /settings/{settingId} | Update Setting
 *StatusApi* | [**home**](docs/StatusApi.md#home) | **GET** / | Home
+*StatusApi* | [**messageWithCat**](docs/StatusApi.md#messageWithCat) | **POST** /message | Message With Cat
 
 
 ## Documentation for Models
