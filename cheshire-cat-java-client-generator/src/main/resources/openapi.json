@@ -3,7 +3,7 @@
   "info":{
     "title":"ðY~¸ Cheshire-Cat API",
     "description":"Production ready AI assistant framework",
-    "version":"1.5.1",
+    "version":"1.5.2",
     "x-logo":{
       "url":"https://cheshirecat.ai/wp-content/uploads/2023/10/Logo-Cheshire-Cat.svg"
     }
@@ -25,6 +25,53 @@
                 "schema":{
                   "type":"object",
                   "title":"Response Home"
+                }
+              }
+            }
+          }
+        },
+        "security":null
+      }
+    },
+    "/message":{
+      "post":{
+        "tags":[
+          "Status"
+        ],
+        "summary":"Message With Cat",
+        "description":"Get a response from the Cat",
+        "operationId":"message_with_cat",
+        "requestBody":{
+          "content":{
+            "application/json":{
+              "schema":{
+                "type":"object",
+                "title":"Payload",
+                "default":{
+                  "text":"hello!"
+                }
+              }
+            }
+          }
+        },
+        "responses":{
+          "200":{
+            "description":"Successful Response",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "title":"Response Message With Cat"
+                }
+              }
+            }
+          },
+          "422":{
+            "description":"Validation Error",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/HTTPValidationError"
                 }
               }
             }
@@ -345,12 +392,11 @@
           }
         ],
         "requestBody":{
-          "required":true,
           "content":{
             "application/json":{
               "schema":{
                 "type":"object",
-                "examples":{
+                "default":{
                   "openai_api_key":"your-key-here"
                 },
                 "title":"Payload"
@@ -471,12 +517,11 @@
           }
         ],
         "requestBody":{
-          "required":true,
           "content":{
             "application/json":{
               "schema":{
                 "type":"object",
-                "examples":{
+                "default":{
                   "openai_api_key":"your-key-here"
                 },
                 "title":"Payload"
@@ -606,17 +651,15 @@
         "summary":"Install Plugin From Registry",
         "description":"Install a new plugin from registry",
         "operationId":"install_plugin_from_registry",
-        "security":null,
         "requestBody":{
-          "required":true,
           "content":{
             "application/json":{
               "schema":{
                 "type":"object",
-                "examples":{
+                "title":"Payload",
+                "default":{
                   "url":"https://github.com/plugin-dev-account/plugin-repo"
-                },
-                "title":"Payload"
+                }
               }
             }
           }
@@ -643,7 +686,8 @@
               }
             }
           }
-        }
+        },
+        "security":null
       }
     },
     "/plugins/toggle/{plugin_id}":{
@@ -779,12 +823,11 @@
           }
         ],
         "requestBody":{
-          "required":true,
           "content":{
             "application/json":{
               "schema":{
                 "type":"object",
-                "examples":{
+                "default":{
                   "setting_a":"some value",
                   "setting_b":"another value"
                 },
@@ -1454,13 +1497,13 @@
             "type":"integer",
             "title":"Chunk Size",
             "description":"Maximum length of each chunk after the document is split (in characters)",
-            "default":512
+            "default":256
           },
           "chunk_overlap":{
             "type":"integer",
             "title":"Chunk Overlap",
             "description":"Chunk overlap (in characters)",
-            "default":128
+            "default":64
           }
         },
         "type":"object",
@@ -1494,13 +1537,13 @@
             "type":"integer",
             "title":"Chunk Size",
             "description":"Maximum length of each chunk after the document is split (in characters)",
-            "default":512
+            "default":256
           },
           "chunk_overlap":{
             "type":"integer",
             "title":"Chunk Overlap",
             "description":"Chunk overlap (in characters)",
-            "default":128
+            "default":64
           }
         },
         "type":"object",
