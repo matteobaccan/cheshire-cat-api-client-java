@@ -13,6 +13,7 @@
 
 package it.baccan.cheshirecat.model;
 
+import java.util.List;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 

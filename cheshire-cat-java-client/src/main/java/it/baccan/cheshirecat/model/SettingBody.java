@@ -19,10 +19,10 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import it.baccan.cheshirecat.model.Category;
 import it.baccan.cheshirecat.model.Value;
 import java.io.IOException;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -51,7 +51,7 @@ import it.baccan.cheshirecat.JSON;
 /**
  * SettingBody
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
 public class SettingBody {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -63,7 +63,7 @@ public class SettingBody {
 
   public static final String SERIALIZED_NAME_CATEGORY = "category";
   @SerializedName(SERIALIZED_NAME_CATEGORY)
-  private Category category;
+  private String category;
 
   public SettingBody() {
   }
@@ -106,7 +106,7 @@ public class SettingBody {
   }
 
 
-  public SettingBody category(Category category) {
+  public SettingBody category(String category) {
     this.category = category;
     return this;
   }
@@ -116,11 +116,11 @@ public class SettingBody {
    * @return category
   **/
   @javax.annotation.Nullable
-  public Category getCategory() {
+  public String getCategory() {
     return category;
   }
 
-  public void setCategory(Category category) {
+  public void setCategory(String category) {
     this.category = category;
   }
 
@@ -140,9 +140,20 @@ public class SettingBody {
         Objects.equals(this.category, settingBody.category);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
     return Objects.hash(name, value, category);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -217,9 +228,8 @@ public class SettingBody {
       }
       // validate the required field `value`
       Value.validateJsonElement(jsonObj.get("value"));
-      // validate the optional field `category`
-      if (jsonObj.get("category") != null && !jsonObj.get("category").isJsonNull()) {
-        Category.validateJsonElement(jsonObj.get("category"));
+      if ((jsonObj.get("category") != null && !jsonObj.get("category").isJsonNull()) && !jsonObj.get("category").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `category` to be a primitive type in the JSON string but got `%s`", jsonObj.get("category").toString()));
       }
   }
 

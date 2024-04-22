@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**name** | **String** |  |  |
 |**value** | [**Value**](Value.md) |  |  |
-|**category** | [**Category**](Category.md) |  |  [optional] |
+|**category** | **String** |  |  [optional] |
 
 
 

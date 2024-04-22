@@ -2,7 +2,7 @@
 
 �Y~� Cheshire-Cat API
 - API version: 1.5.2
-  - Generator version: 7.4.0
+  - Generator version: 7.5.0
 
 Production ready AI assistant framework
 
@@ -155,7 +155,6 @@ Class | Method | HTTP request | Description
 ## Documentation for Models
 
  - [BodyUploadUrl](docs/BodyUploadUrl.md)
- - [Category](docs/Category.md)
  - [HTTPValidationError](docs/HTTPValidationError.md)
  - [SettingBody](docs/SettingBody.md)
  - [ValidationError](docs/ValidationError.md)

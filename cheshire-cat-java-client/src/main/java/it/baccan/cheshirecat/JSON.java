@@ -101,7 +101,6 @@ public class JSON {
         gsonBuilder.registerTypeAdapter(LocalDate.class, localDateTypeAdapter);
         gsonBuilder.registerTypeAdapter(byte[].class, byteArrayAdapter);
         gsonBuilder.registerTypeAdapterFactory(new it.baccan.cheshirecat.model.BodyUploadUrl.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new it.baccan.cheshirecat.model.Category.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new it.baccan.cheshirecat.model.HTTPValidationError.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new it.baccan.cheshirecat.model.SettingBody.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new it.baccan.cheshirecat.model.ValidationError.CustomTypeAdapterFactory());

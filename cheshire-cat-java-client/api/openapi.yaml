@@ -23,7 +23,8 @@ paths:
       summary: Home
       tags:
       - Status
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /message:
     post:
       description: Get a response from the Cat
@@ -54,7 +55,8 @@ paths:
       tags:
       - Status
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /settings/:
     get:
       description: Get the entire list of settings available in the database
@@ -84,7 +86,8 @@ paths:
       summary: Get Settings
       tags:
       - Settings
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       description: Create a new setting in the database
       operationId: create_setting
@@ -110,7 +113,8 @@ paths:
       tags:
       - Settings
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /settings/{settingId}:
     delete:
       description: Delete a specific setting in the database
@@ -139,7 +143,8 @@ paths:
       summary: Delete Setting
       tags:
       - Settings
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     get:
       description: Get the a specific setting from the database
       operationId: get_setting
@@ -167,7 +172,8 @@ paths:
       summary: Get Setting
       tags:
       - Settings
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     put:
       description: Update a specific setting in the database if it exists
       operationId: update_setting
@@ -202,7 +208,8 @@ paths:
       tags:
       - Settings
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /llm/settings:
     get:
       description: Get the list of the Large Language Models
@@ -218,7 +225,8 @@ paths:
       summary: Get Llms Settings
       tags:
       - Large Language Model
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /llm/settings/{languageModelName}:
     get:
       description: Get settings and schema of the specified Large Language Model
@@ -249,7 +257,8 @@ paths:
       summary: Get Llm Settings
       tags:
       - Large Language Model
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     put:
       description: Upsert the Large Language Model setting
       operationId: upsert_llm_setting
@@ -288,7 +297,8 @@ paths:
       tags:
       - Large Language Model
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /embedder/settings:
     get:
       description: Get the list of the Embedders
@@ -304,7 +314,8 @@ paths:
       summary: Get Embedders Settings
       tags:
       - Embedder
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /embedder/settings/{languageEmbedderName}:
     get:
       description: Get settings and schema of the specified Embedder
@@ -335,7 +346,8 @@ paths:
       summary: Get Embedder Settings
       tags:
       - Embedder
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     put:
       description: Upsert the Embedder setting
       operationId: upsert_embedder_setting
@@ -374,7 +386,8 @@ paths:
       tags:
       - Embedder
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /plugins/:
     get:
       description: List available plugins
@@ -405,7 +418,8 @@ paths:
       summary: Get Available Plugins
       tags:
       - Plugins
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /plugins/upload:
     post:
       description: Install a new plugin from a zip file
@@ -434,7 +448,8 @@ paths:
       tags:
       - Plugins
       x-content-type: multipart/form-data
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /plugins/upload/registry:
     post:
       description: Install a new plugin from registry
@@ -465,7 +480,8 @@ paths:
       tags:
       - Plugins
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /plugins/toggle/{plugin_id}:
     put:
       description: Enable or disable a single plugin
@@ -496,7 +512,8 @@ paths:
       summary: Toggle Plugin
       tags:
       - Plugins
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /plugins/settings:
     get:
       description: Returns the settings of all the plugins
@@ -512,7 +529,8 @@ paths:
       summary: Get Plugins Settings
       tags:
       - Plugins
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /plugins/settings/{plugin_id}:
     get:
       description: Returns the settings of a specific plugin
@@ -543,7 +561,8 @@ paths:
       summary: Get Plugin Settings
       tags:
       - Plugins
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     put:
       description: Updates the settings of a specific plugin
       operationId: upsert_plugin_settings
@@ -583,7 +602,8 @@ paths:
       tags:
       - Plugins
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /plugins/{plugin_id}:
     delete:
       description: Physically remove plugin.
@@ -614,7 +634,8 @@ paths:
       summary: Delete Plugin
       tags:
       - Plugins
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     get:
       description: Returns information on a single plugin
       operationId: get_plugin_details
@@ -644,7 +665,8 @@ paths:
       summary: Get Plugin Details
       tags:
       - Plugins
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /memory/recall:
     get:
       description: Search k memories similar to given text.
@@ -688,7 +710,8 @@ paths:
       summary: Recall Memories From Text
       tags:
       - Memory
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /memory/collections:
     delete:
       description: Delete and create all collections
@@ -704,7 +727,8 @@ paths:
       summary: Wipe Collections
       tags:
       - Memory
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     get:
       description: Get list of available collections
       operationId: get_collections
@@ -719,7 +743,8 @@ paths:
       summary: Get Collections
       tags:
       - Memory
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /memory/collections/{collection_id}:
     delete:
       description: Delete and recreate a collection
@@ -750,7 +775,8 @@ paths:
       summary: Wipe Single Collection
       tags:
       - Memory
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /memory/collections/{collection_id}/points/{memory_id}:
     delete:
       description: Delete a specific point in memory
@@ -789,7 +815,8 @@ paths:
       summary: Wipe Memory Point
       tags:
       - Memory
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /memory/collections/{collection_id}/points:
     delete:
       description: Delete points in memory by filter
@@ -828,7 +855,8 @@ paths:
       tags:
       - Memory
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /memory/conversation_history:
     delete:
       description: Delete the specified user's conversation history from working memory
@@ -844,7 +872,8 @@ paths:
       summary: Wipe Conversation History
       tags:
       - Memory
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     get:
       description: Get the specified user's conversation history from working memory
       operationId: get_conversation_history
@@ -859,7 +888,8 @@ paths:
       summary: Get Conversation History
       tags:
       - Memory
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /rabbithole/:
     post:
       description: |-
@@ -890,7 +920,8 @@ paths:
       tags:
       - Rabbit Hole
       x-content-type: multipart/form-data
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /rabbithole/web:
     post:
       description: |-
@@ -919,7 +950,8 @@ paths:
       tags:
       - Rabbit Hole
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /rabbithole/memory:
     post:
       description: Upload a memory json file to the cat memory
@@ -948,7 +980,8 @@ paths:
       tags:
       - Rabbit Hole
       x-content-type: multipart/form-data
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /rabbithole/allowed-mimetypes:
     get:
       description: Retrieve the allowed mimetypes that can be ingested by the Rabbit
@@ -965,7 +998,8 @@ paths:
       summary: Get Allowed Mimetypes
       tags:
       - Rabbit Hole
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /admin/{page}/:
     get:
       operationId: get_injected_admin
@@ -976,7 +1010,8 @@ paths:
               schema: {}
           description: Successful Response
       summary: Get Injected Admin
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /admin/{page}:
     get:
       operationId: get_injected_admin
@@ -987,7 +1022,8 @@ paths:
               schema: {}
           description: Successful Response
       summary: Get Injected Admin
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /admin/:
     get:
       operationId: get_injected_admin
@@ -998,7 +1034,8 @@ paths:
               schema: {}
           description: Successful Response
       summary: Get Injected Admin
-      x-accepts: application/json
+      x-accepts:
+      - application/json
 components:
   schemas:
     Body_install_plugin:
@@ -1081,7 +1118,7 @@ components:
     SettingBody:
       example:
         name: name
-        category: Category
+        category: category
         value: "{}"
       properties:
         name:
@@ -1090,7 +1127,8 @@ components:
         value:
           $ref: '#/components/schemas/Value'
         category:
-          $ref: '#/components/schemas/Category'
+          nullable: true
+          type: string
       required:
       - name
       - value
@@ -1123,11 +1161,6 @@ components:
       - type: object
       - items: {}
       title: Value
-    Category:
-      anyOf:
-      - type: string
-      - nullable: true
-      title: Category
     ValidationError_loc_inner:
       anyOf:
       - type: string

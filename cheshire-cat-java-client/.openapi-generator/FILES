@@ -7,7 +7,6 @@ api/openapi.yaml
 build.gradle
 build.sbt
 docs/BodyUploadUrl.md
-docs/Category.md
 docs/DefaultApi.md
 docs/EmbedderApi.md
 docs/HTTPValidationError.md
@@ -49,7 +48,6 @@ src/main/java/it/baccan/cheshirecat/auth/HttpBasicAuth.java
 src/main/java/it/baccan/cheshirecat/auth/HttpBearerAuth.java
 src/main/java/it/baccan/cheshirecat/model/AbstractOpenApiSchema.java
 src/main/java/it/baccan/cheshirecat/model/BodyUploadUrl.java
-src/main/java/it/baccan/cheshirecat/model/Category.java
 src/main/java/it/baccan/cheshirecat/model/HTTPValidationError.java
 src/main/java/it/baccan/cheshirecat/model/SettingBody.java
 src/main/java/it/baccan/cheshirecat/model/ValidationError.java
@@ -64,7 +62,6 @@ src/main/java/it/baccan/cheshirecat/service/RabbitHoleApi.java
 src/main/java/it/baccan/cheshirecat/service/SettingsApi.java
 src/main/java/it/baccan/cheshirecat/service/StatusApi.java
 src/test/java/it/baccan/cheshirecat/model/BodyUploadUrlTest.java
-src/test/java/it/baccan/cheshirecat/model/CategoryTest.java
 src/test/java/it/baccan/cheshirecat/model/HTTPValidationErrorTest.java
 src/test/java/it/baccan/cheshirecat/model/SettingBodyTest.java
 src/test/java/it/baccan/cheshirecat/model/ValidationErrorLocInnerTest.java
