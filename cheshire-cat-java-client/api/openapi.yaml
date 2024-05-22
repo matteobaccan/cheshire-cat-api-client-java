@@ -1,8 +1,8 @@
 openapi: 3.1.0
 info:
   description: Production ready AI assistant framework
-  title: �Y~� Cheshire-Cat API
-  version: 1.5.2
+  title: 😸 Cheshire-Cat API
+  version: 1.6.1
   x-logo:
     url: https://cheshirecat.ai/wp-content/uploads/2023/10/Logo-Cheshire-Cat.svg
 servers:
@@ -1054,15 +1054,10 @@ components:
           title: File
           type: string
         chunk_size:
-          default: 256
-          description: Maximum length of each chunk after the document is split (in
-            characters)
-          title: Chunk Size
+          nullable: true
           type: integer
         chunk_overlap:
-          default: 64
-          description: Chunk overlap (in characters)
-          title: Chunk Overlap
+          nullable: true
           type: integer
       required:
       - file
@@ -1083,15 +1078,10 @@ components:
           title: Url
           type: string
         chunk_size:
-          default: 256
-          description: Maximum length of each chunk after the document is split (in
-            characters)
-          title: Chunk Size
+          nullable: true
           type: integer
         chunk_overlap:
-          default: 64
-          description: Chunk overlap (in characters)
-          title: Chunk Overlap
+          nullable: true
           type: integer
       required:
       - url
@@ -1164,5 +1154,6 @@ components:
     ValidationError_loc_inner:
       anyOf:
       - type: string
-      - type: integer
+      - nullable: true
+        type: integer
 

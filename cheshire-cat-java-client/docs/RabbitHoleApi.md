@@ -92,8 +92,8 @@ public class Example {
 
     RabbitHoleApi apiInstance = new RabbitHoleApi(defaultClient);
     File _file = new File("/path/to/file"); // File | 
-    Integer chunkSize = 256; // Integer | Maximum length of each chunk after the document is split (in characters)
-    Integer chunkOverlap = 64; // Integer | Chunk overlap (in characters)
+    Integer chunkSize = 56; // Integer | 
+    Integer chunkOverlap = 56; // Integer | 
     try {
       Object result = apiInstance.uploadFile(_file, chunkSize, chunkOverlap);
       System.out.println(result);
@@ -113,8 +113,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **_file** | **File**|  | |
-| **chunkSize** | **Integer**| Maximum length of each chunk after the document is split (in characters) | [optional] [default to 256] |
-| **chunkOverlap** | **Integer**| Chunk overlap (in characters) | [optional] [default to 64] |
+| **chunkSize** | **Integer**|  | [optional] |
+| **chunkOverlap** | **Integer**|  | [optional] |
 
 ### Return type
 
