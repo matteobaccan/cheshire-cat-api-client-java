@@ -52,7 +52,7 @@ import it.baccan.cheshirecat.JSON;
 /**
  * HTTPValidationError
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.7.0")
 public class HTTPValidationError {
   public static final String SERIALIZED_NAME_DETAIL = "detail";
   @SerializedName(SERIALIZED_NAME_DETAIL)
@@ -74,10 +74,10 @@ public class HTTPValidationError {
     return this;
   }
 
-   /**
+  /**
    * Get detail
    * @return detail
-  **/
+   */
   @javax.annotation.Nullable
   public List<ValidationError> getDetail() {
     return detail;
@@ -139,12 +139,12 @@ public class HTTPValidationError {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to HTTPValidationError
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to HTTPValidationError
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!HTTPValidationError.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -205,22 +205,22 @@ public class HTTPValidationError {
     }
   }
 
- /**
-  * Create an instance of HTTPValidationError given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of HTTPValidationError
-  * @throws IOException if the JSON string is invalid with respect to HTTPValidationError
-  */
+  /**
+   * Create an instance of HTTPValidationError given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of HTTPValidationError
+   * @throws IOException if the JSON string is invalid with respect to HTTPValidationError
+   */
   public static HTTPValidationError fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, HTTPValidationError.class);
   }
 
- /**
-  * Convert an instance of HTTPValidationError to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of HTTPValidationError to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

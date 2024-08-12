@@ -51,7 +51,7 @@ import it.baccan.cheshirecat.JSON;
 /**
  * SettingBody
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.7.0")
 public class SettingBody {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -73,10 +73,10 @@ public class SettingBody {
     return this;
   }
 
-   /**
+  /**
    * Get name
    * @return name
-  **/
+   */
   @javax.annotation.Nonnull
   public String getName() {
     return name;
@@ -92,10 +92,10 @@ public class SettingBody {
     return this;
   }
 
-   /**
+  /**
    * Get value
    * @return value
-  **/
+   */
   @javax.annotation.Nonnull
   public Value getValue() {
     return value;
@@ -111,10 +111,10 @@ public class SettingBody {
     return this;
   }
 
-   /**
+  /**
    * Get category
    * @return category
-  **/
+   */
   @javax.annotation.Nullable
   public String getCategory() {
     return category;
@@ -195,12 +195,12 @@ public class SettingBody {
     openapiRequiredFields.add("value");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to SettingBody
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to SettingBody
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!SettingBody.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -262,22 +262,22 @@ public class SettingBody {
     }
   }
 
- /**
-  * Create an instance of SettingBody given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of SettingBody
-  * @throws IOException if the JSON string is invalid with respect to SettingBody
-  */
+  /**
+   * Create an instance of SettingBody given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of SettingBody
+   * @throws IOException if the JSON string is invalid with respect to SettingBody
+   */
   public static SettingBody fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, SettingBody.class);
   }
 
- /**
-  * Convert an instance of SettingBody to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of SettingBody to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

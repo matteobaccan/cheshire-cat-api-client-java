@@ -51,7 +51,7 @@ import com.google.gson.JsonParseException;
 
 import it.baccan.cheshirecat.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.7.0")
 public class Value extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(Value.class.getName());
 
@@ -65,8 +65,8 @@ public class Value extends AbstractOpenApiSchema {
             final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
             final TypeAdapter<Object> adapterObject = gson.getDelegateAdapter(this, TypeToken.get(Object.class));
 
-            final Type typeInstance = new TypeToken<List<Object>>(){}.getType();
-            final TypeAdapter<List<Object>> adapterListObject = (TypeAdapter<List<Object>>) gson.getDelegateAdapter(this, TypeToken.get(typeInstance));
+            final Type typeInstanceListObject = new TypeToken<List<Object>>(){}.getType();
+            final TypeAdapter<List<Object>> adapterListObject = (TypeAdapter<List<Object>>) gson.getDelegateAdapter(this, TypeToken.get(typeInstanceListObject));
 
             return (TypeAdapter<T>) new TypeAdapter<Value>() {
                 @Override
@@ -149,11 +149,6 @@ public class Value extends AbstractOpenApiSchema {
 
     public Value() {
         super("anyOf", Boolean.FALSE);
-    }
-
-    public Value(List<Object> o) {
-        super("anyOf", Boolean.FALSE);
-        setActualInstance(o);
     }
 
     public Value(Object o) {

@@ -50,7 +50,7 @@ import it.baccan.cheshirecat.JSON;
 /**
  * BodyUploadUrl
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.7.0")
 public class BodyUploadUrl {
   public static final String SERIALIZED_NAME_URL = "url";
   @SerializedName(SERIALIZED_NAME_URL)
@@ -72,10 +72,10 @@ public class BodyUploadUrl {
     return this;
   }
 
-   /**
+  /**
    * URL of the website to which you want to save the content
    * @return url
-  **/
+   */
   @javax.annotation.Nonnull
   public String getUrl() {
     return url;
@@ -91,10 +91,10 @@ public class BodyUploadUrl {
     return this;
   }
 
-   /**
+  /**
    * Get chunkSize
    * @return chunkSize
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getChunkSize() {
     return chunkSize;
@@ -110,10 +110,10 @@ public class BodyUploadUrl {
     return this;
   }
 
-   /**
+  /**
    * Get chunkOverlap
    * @return chunkOverlap
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getChunkOverlap() {
     return chunkOverlap;
@@ -193,12 +193,12 @@ public class BodyUploadUrl {
     openapiRequiredFields.add("url");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to BodyUploadUrl
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to BodyUploadUrl
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!BodyUploadUrl.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -255,22 +255,22 @@ public class BodyUploadUrl {
     }
   }
 
- /**
-  * Create an instance of BodyUploadUrl given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of BodyUploadUrl
-  * @throws IOException if the JSON string is invalid with respect to BodyUploadUrl
-  */
+  /**
+   * Create an instance of BodyUploadUrl given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of BodyUploadUrl
+   * @throws IOException if the JSON string is invalid with respect to BodyUploadUrl
+   */
   public static BodyUploadUrl fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, BodyUploadUrl.class);
   }
 
- /**
-  * Convert an instance of BodyUploadUrl to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of BodyUploadUrl to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

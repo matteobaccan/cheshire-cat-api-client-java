@@ -52,7 +52,7 @@ import it.baccan.cheshirecat.JSON;
 /**
  * ValidationError
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.7.0")
 public class ValidationError {
   public static final String SERIALIZED_NAME_LOC = "loc";
   @SerializedName(SERIALIZED_NAME_LOC)
@@ -82,10 +82,10 @@ public class ValidationError {
     return this;
   }
 
-   /**
+  /**
    * Get loc
    * @return loc
-  **/
+   */
   @javax.annotation.Nonnull
   public List<ValidationErrorLocInner> getLoc() {
     return loc;
@@ -101,10 +101,10 @@ public class ValidationError {
     return this;
   }
 
-   /**
+  /**
    * Get msg
    * @return msg
-  **/
+   */
   @javax.annotation.Nonnull
   public String getMsg() {
     return msg;
@@ -120,10 +120,10 @@ public class ValidationError {
     return this;
   }
 
-   /**
+  /**
    * Get type
    * @return type
-  **/
+   */
   @javax.annotation.Nonnull
   public String getType() {
     return type;
@@ -194,12 +194,12 @@ public class ValidationError {
     openapiRequiredFields.add("type");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to ValidationError
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to ValidationError
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!ValidationError.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -269,22 +269,22 @@ public class ValidationError {
     }
   }
 
- /**
-  * Create an instance of ValidationError given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of ValidationError
-  * @throws IOException if the JSON string is invalid with respect to ValidationError
-  */
+  /**
+   * Create an instance of ValidationError given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of ValidationError
+   * @throws IOException if the JSON string is invalid with respect to ValidationError
+   */
   public static ValidationError fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ValidationError.class);
   }
 
- /**
-  * Convert an instance of ValidationError to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of ValidationError to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }
