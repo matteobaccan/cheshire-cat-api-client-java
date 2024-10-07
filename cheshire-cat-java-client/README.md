@@ -2,7 +2,7 @@
 
 😸 Cheshire-Cat API
 - API version: 1.6.1
-  - Generator version: 7.7.0
+  - Generator version: 7.8.0
 
 Production ready AI assistant framework
 
