@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>it.baccan</groupId>
     <artifactId>cheshire-cat-java-client-generator</artifactId>
-    <version>1.6.1</version>
+    <version>1.7.1</version>
     <packaging>pom</packaging>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -31,6 +31,8 @@
                                 <sourceFolder>src/main/java</sourceFolder>
                                 <hideGenerationTimestamp>true</hideGenerationTimestamp>
                             </configOptions>
+                            <!-- override the default library to jersey2 -->
+                            <library>jersey2</library>
                             <generateSupportingFiles>true</generateSupportingFiles>
                             <gitHost>github.com</gitHost>
                             <gitRepoId>api-client-java</gitRepoId>

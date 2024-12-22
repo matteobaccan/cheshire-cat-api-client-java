@@ -2,7 +2,7 @@ openapi: 3.1.0
 info:
   description: Production ready AI assistant framework
   title: 😸 Cheshire-Cat API
-  version: 1.6.1
+  version: 1.7.1
   x-logo:
     url: https://cheshirecat.ai/wp-content/uploads/2023/10/Logo-Cheshire-Cat.svg
 servers:
@@ -42,8 +42,7 @@ paths:
           content:
             application/json:
               schema:
-                title: Response Message With Cat
-                type: object
+                $ref: '#/components/schemas/CatMessage'
           description: Successful Response
         "422":
           content:
@@ -54,6 +53,220 @@ paths:
       summary: Message With Cat
       tags:
       - Status
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /auth/available-permissions:
+    get:
+      description: Returns all available resources and permissions.
+      operationId: get_available_permissions
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  items:
+                    $ref: '#/components/schemas/AuthPermission'
+                title: Response Get Available Permissions
+          description: Successful Response
+      summary: Get Available Permissions
+      tags:
+      - User Auth
+      x-accepts:
+      - application/json
+  /auth/token:
+    post:
+      description: |-
+        Endpoint called from client to get a JWT from local identity provider.
+        This endpoint receives username and password as form-data, validates credentials and issues a JWT.
+      operationId: auth_token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCredentials'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JWTResponse'
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Auth Token
+      tags:
+      - User Auth
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /users/:
+    get:
+      operationId: read_users
+      parameters:
+      - explode: true
+        in: query
+        name: skip
+        required: false
+        schema:
+          default: 0
+          title: Skip
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 100
+          title: Limit
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/UserResponse'
+                type: array
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Read Users
+      tags:
+      - Users
+      x-accepts:
+      - application/json
+    post:
+      operationId: create_user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCreate'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Create User
+      tags:
+      - Users
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /users/{user_id}:
+    delete:
+      operationId: delete_user
+      parameters:
+      - explode: false
+        in: path
+        name: user_id
+        required: true
+        schema:
+          title: User Id
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Delete User
+      tags:
+      - Users
+      x-accepts:
+      - application/json
+    get:
+      operationId: read_user
+      parameters:
+      - explode: false
+        in: path
+        name: user_id
+        required: true
+        schema:
+          title: User Id
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Read User
+      tags:
+      - Users
+      x-accepts:
+      - application/json
+    put:
+      operationId: update_user
+      parameters:
+      - explode: false
+        in: path
+        name: user_id
+        required: true
+        schema:
+          title: User Id
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserUpdate'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Update User
+      tags:
+      - Users
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -777,50 +990,10 @@ paths:
       - Memory
       x-accepts:
       - application/json
-  /memory/collections/{collection_id}/points/{memory_id}:
-    delete:
-      description: Delete a specific point in memory
-      operationId: wipe_memory_point
-      parameters:
-      - explode: false
-        in: path
-        name: collection_id
-        required: true
-        schema:
-          title: Collection Id
-          type: string
-        style: simple
-      - explode: false
-        in: path
-        name: memory_id
-        required: true
-        schema:
-          title: Memory Id
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                title: Response Wipe Memory Point
-                type: object
-          description: Successful Response
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      summary: Wipe Memory Point
-      tags:
-      - Memory
-      x-accepts:
-      - application/json
   /memory/collections/{collection_id}/points:
     delete:
       description: Delete points in memory by filter
-      operationId: wipe_memory_points_by_metadata
+      operationId: delete_memory_points_by_metadata
       parameters:
       - explode: false
         in: path
@@ -842,7 +1015,7 @@ paths:
           content:
             application/json:
               schema:
-                title: Response Wipe Memory Points By Metadata
+                title: Response Delete Memory Points By Metadata
                 type: object
           description: Successful Response
         "422":
@@ -851,10 +1024,87 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-      summary: Wipe Memory Points By Metadata
+      summary: Delete Memory Points By Metadata
       tags:
       - Memory
       x-content-type: application/json
+      x-accepts:
+      - application/json
+    post:
+      description: Create a point in memory
+      operationId: create_memory_point
+      parameters:
+      - explode: false
+        in: path
+        name: collection_id
+        required: true
+        schema:
+          title: Collection Id
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MemoryPointBase'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MemoryPoint'
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Create Memory Point
+      tags:
+      - Memory
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /memory/collections/{collection_id}/points/{point_id}:
+    delete:
+      description: Delete a specific point in memory
+      operationId: delete_memory_point
+      parameters:
+      - explode: false
+        in: path
+        name: collection_id
+        required: true
+        schema:
+          title: Collection Id
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: point_id
+        required: true
+        schema:
+          title: Point Id
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                title: Response Delete Memory Point
+                type: object
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Delete Memory Point
+      tags:
+      - Memory
       x-accepts:
       - application/json
   /memory/conversation_history:
@@ -895,6 +1145,39 @@ paths:
       description: |-
         Upload a file containing text (.txt, .md, .pdf, etc.). File content will be extracted and segmented into chunks.
         Chunks will be then vectorized and stored into documents memory.
+
+        Note
+        ----------
+        `chunk_size`, `chunk_overlap` anad `metadata` must be passed as form data.
+        This is necessary because the HTTP protocol does not allow file uploads to be sent as JSON.
+
+        Example
+        ----------
+        ```
+        content_type = "application/pdf"
+        file_name = "sample.pdf"
+        file_path = f"tests/mocks/{file_name}"
+        with open(file_path, "rb") as f:
+            files = {"file": (file_name, f, content_type)}
+
+            metadata = {
+                "source": "sample.pdf",
+                "title": "Test title",
+                "author": "Test author",
+                "year": 2020,
+            }
+            # upload file endpoint only accepts form-encoded data
+            payload = {
+                "chunk_size": 128,
+                "metadata": json.dumps(metadata)
+            }
+
+            response = requests.post(
+                "http://localhost:1865/rabbithole/",
+                files=files,
+                data=payload
+            )
+        ```
       operationId: upload_file
       requestBody:
         content:
@@ -932,7 +1215,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Body_upload_url'
+              $ref: '#/components/schemas/UploadURLConfig'
         required: true
       responses:
         "200":
@@ -1000,44 +1283,120 @@ paths:
       - Rabbit Hole
       x-accepts:
       - application/json
-  /admin/{page}/:
+  /auth_handler/settings:
     get:
-      operationId: get_injected_admin
+      description: Get the list of the AuthHandlers
+      operationId: get_auth_handler_settings
       responses:
         "200":
           content:
             application/json:
-              schema: {}
+              schema:
+                title: Response Get Auth Handler Settings
+                type: object
           description: Successful Response
-      summary: Get Injected Admin
+      summary: Get Auth Handler Settings
+      tags:
+      - AuthHandler
       x-accepts:
       - application/json
-  /admin/{page}:
+  /auth_handler/settings/{auth_handler_name}:
     get:
-      operationId: get_injected_admin
+      description: Get the settings of a specific AuthHandler
+      operationId: get_auth_handler_setting
+      parameters:
+      - explode: false
+        in: path
+        name: auth_handler_name
+        required: true
+        schema:
+          title: Auth Handler Name
+          type: string
+        style: simple
       responses:
         "200":
           content:
             application/json:
-              schema: {}
+              schema:
+                title: Response Get Auth Handler Setting
+                type: object
           description: Successful Response
-      summary: Get Injected Admin
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Get Auth Handler Setting
+      tags:
+      - AuthHandler
       x-accepts:
       - application/json
-  /admin/:
-    get:
-      operationId: get_injected_admin
+    put:
+      description: Upsert the settings of a specific AuthHandler
+      operationId: upsert_authenticator_setting
+      parameters:
+      - explode: false
+        in: path
+        name: auth_handler_name
+        required: true
+        schema:
+          title: Auth Handler Name
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              title: Payload
+              type: object
+        required: true
       responses:
         "200":
           content:
             application/json:
-              schema: {}
+              schema:
+                title: Response Upsert Authenticator Setting
+                type: object
           description: Successful Response
-      summary: Get Injected Admin
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Upsert Authenticator Setting
+      tags:
+      - AuthHandler
+      x-content-type: application/json
       x-accepts:
       - application/json
 components:
   schemas:
+    AuthPermission:
+      enum:
+      - WRITE
+      - EDIT
+      - LIST
+      - READ
+      - DELETE
+      title: AuthPermission
+      type: string
+    AuthResource:
+      enum:
+      - STATUS
+      - MEMORY
+      - CONVERSATION
+      - SETTINGS
+      - LLM
+      - EMBEDDER
+      - AUTH_HANDLER
+      - USERS
+      - UPLOAD
+      - PLUGINS
+      - STATIC
+      title: AuthResource
+      type: string
     Body_install_plugin:
       properties:
         file:
@@ -1059,6 +1418,13 @@ components:
         chunk_overlap:
           nullable: true
           type: integer
+        metadata:
+          default: "{}"
+          description: "Metadata to be stored with each chunk (e.g. author, category,\
+            \ etc.). Since we are passing this along side form data, must be a JSON\
+            \ string (use `json.dumps(metadata)`)."
+          title: Metadata
+          type: string
       required:
       - file
       title: Body_upload_file
@@ -1071,21 +1437,80 @@ components:
       required:
       - file
       title: Body_upload_memory
-    Body_upload_url:
+    CatMessage:
+      additionalProperties: {}
+      description: |-
+        Class for wrapping cat message
+
+        Variables:
+            content (str): cat message
+            user_id (str): user id
+      example:
+        user_id: user_id
+        why:
+          input: input
+          memory: "{}"
+          model_interactions:
+          - model_type: ""
+            started_at: 6.027456183070403
+            output_tokens: 1
+            source: source
+            reply: reply
+            prompt: prompt
+            input_tokens: 0
+            ended_at: 5.962133916683182
+          - model_type: ""
+            started_at: 6.027456183070403
+            output_tokens: 1
+            source: source
+            reply: reply
+            prompt: prompt
+            input_tokens: 0
+            ended_at: 5.962133916683182
+          intermediate_steps:
+          - ""
+          - ""
+        type: chat
+        content: content
       properties:
-        url:
-          description: URL of the website to which you want to save the content
-          title: Url
-          type: string
-        chunk_size:
-          nullable: true
-          type: integer
-        chunk_overlap:
-          nullable: true
-          type: integer
+        content:
+          title: Content
+        user_id:
+          title: User Id
+        type:
+          default: chat
+          title: Type
+        why:
+          $ref: '#/components/schemas/CatMessage_why'
       required:
-      - url
-      title: Body_upload_url
+      - content
+      - user_id
+      title: CatMessage
+    EmbedderModelInteraction:
+      properties:
+        model_type: {}
+        source:
+          default: recall
+          title: Source
+          type: string
+        prompt:
+          title: Prompt
+          type: string
+        input_tokens:
+          title: Input Tokens
+          type: integer
+        started_at:
+          title: Started At
+          type: number
+        reply:
+          items:
+            type: number
+          type: array
+      required:
+      - input_tokens
+      - prompt
+      - reply
+      title: EmbedderModelInteraction
     HTTPValidationError:
       example:
         detail:
@@ -1105,6 +1530,156 @@ components:
             $ref: '#/components/schemas/ValidationError'
           type: array
       title: HTTPValidationError
+    JWTResponse:
+      example:
+        access_token: access_token
+        token_type: bearer
+      properties:
+        access_token:
+          title: Access Token
+          type: string
+        token_type:
+          default: bearer
+          title: Token Type
+          type: string
+      required:
+      - access_token
+      title: JWTResponse
+    LLMModelInteraction:
+      example:
+        model_type: ""
+        started_at: 6.027456183070403
+        output_tokens: 1
+        source: source
+        reply: reply
+        prompt: prompt
+        input_tokens: 0
+        ended_at: 5.962133916683182
+      properties:
+        model_type: {}
+        source:
+          title: Source
+          type: string
+        prompt:
+          title: Prompt
+          type: string
+        input_tokens:
+          title: Input Tokens
+          type: integer
+        started_at:
+          title: Started At
+          type: number
+        reply:
+          title: Reply
+          type: string
+        output_tokens:
+          title: Output Tokens
+          type: integer
+        ended_at:
+          title: Ended At
+          type: number
+      required:
+      - ended_at
+      - input_tokens
+      - output_tokens
+      - prompt
+      - reply
+      - source
+      title: LLMModelInteraction
+    MemoryPoint:
+      example:
+        metadata: "{}"
+        vector:
+        - 0.8008281904610115
+        - 0.8008281904610115
+        id: id
+        content: content
+      properties:
+        content:
+          title: Content
+          type: string
+        metadata:
+          default: {}
+          title: Metadata
+          type: object
+        id:
+          title: Id
+          type: string
+        vector:
+          items:
+            type: number
+          type: array
+      required:
+      - content
+      - id
+      - vector
+      title: MemoryPoint
+    MemoryPointBase:
+      example:
+        metadata: "{}"
+        content: content
+      properties:
+        content:
+          title: Content
+          type: string
+        metadata:
+          default: {}
+          title: Metadata
+          type: object
+      required:
+      - content
+      title: MemoryPointBase
+    MessageWhy:
+      additionalProperties: {}
+      description: |-
+        Class for wrapping message why
+
+        Variables:
+            input (str): input message
+            intermediate_steps (List): intermediate steps
+            memory (dict): memory
+            model_interactions (List[LLMModelInteraction | EmbedderModelInteraction]): model interactions
+      example:
+        input: input
+        memory: "{}"
+        model_interactions:
+        - model_type: ""
+          started_at: 6.027456183070403
+          output_tokens: 1
+          source: source
+          reply: reply
+          prompt: prompt
+          input_tokens: 0
+          ended_at: 5.962133916683182
+        - model_type: ""
+          started_at: 6.027456183070403
+          output_tokens: 1
+          source: source
+          reply: reply
+          prompt: prompt
+          input_tokens: 0
+          ended_at: 5.962133916683182
+        intermediate_steps:
+        - ""
+        - ""
+      properties:
+        input:
+          title: Input
+        intermediate_steps:
+          items: {}
+          title: Intermediate Steps
+        memory:
+          title: Memory
+        model_interactions:
+          items:
+            $ref: '#/components/schemas/Model_Interactions_inner'
+          title: Model Interactions
+      required:
+      - input
+      - intermediate_steps
+      - memory
+      - model_interactions
+      title: MessageWhy
     SettingBody:
       example:
         name: name
@@ -1123,6 +1698,145 @@ components:
       - name
       - value
       title: SettingBody
+    UploadURLConfig:
+      additionalProperties: {}
+      example:
+        chunk_size: 0
+        metadata: "{}"
+        chunk_overlap: 6
+        url: url
+      properties:
+        url:
+          description: URL of the website to which you want to save the content
+          title: Url
+        chunk_size:
+          $ref: '#/components/schemas/Chunk_Size'
+        chunk_overlap:
+          $ref: '#/components/schemas/Chunk_Overlap'
+        metadata:
+          default: {}
+          description: "Metadata to be stored with each chunk (e.g. author, category,\
+            \ etc.)"
+          title: Metadata
+      required:
+      - url
+      title: UploadURLConfig
+    UserCreate:
+      additionalProperties: {}
+      example:
+        password: password
+        permissions:
+          key:
+          - WRITE
+          - WRITE
+        username: username
+      properties:
+        username:
+          minLength: 2
+          title: Username
+        permissions:
+          additionalProperties:
+            items:
+              $ref: '#/components/schemas/AuthPermission'
+          default:
+            CONVERSATION:
+            - WRITE
+            - EDIT
+            - LIST
+            - READ
+            - DELETE
+            MEMORY:
+            - READ
+            - LIST
+            STATIC:
+            - READ
+            STATUS:
+            - READ
+          title: Permissions
+        password:
+          minLength: 5
+          title: Password
+      required:
+      - password
+      - username
+      title: UserCreate
+    UserCredentials:
+      example:
+        password: password
+        username: username
+      properties:
+        username:
+          title: Username
+          type: string
+        password:
+          title: Password
+          type: string
+      required:
+      - password
+      - username
+      title: UserCredentials
+    UserResponse:
+      example:
+        permissions:
+          key:
+          - WRITE
+          - WRITE
+        id: id
+        username: username
+      properties:
+        username:
+          minLength: 2
+          title: Username
+          type: string
+        permissions:
+          additionalProperties:
+            items:
+              $ref: '#/components/schemas/AuthPermission'
+          default:
+            CONVERSATION:
+            - WRITE
+            - EDIT
+            - LIST
+            - READ
+            - DELETE
+            MEMORY:
+            - READ
+            - LIST
+            STATIC:
+            - READ
+            STATUS:
+            - READ
+          title: Permissions
+        id:
+          title: Id
+          type: string
+      required:
+      - id
+      - username
+      title: UserResponse
+    UserUpdate:
+      additionalProperties: {}
+      example:
+        password: password
+        permissions:
+          key:
+          - WRITE
+          - WRITE
+        username: username
+      properties:
+        username:
+          minLength: 2
+          title: Username
+          type: string
+        permissions:
+          additionalProperties:
+            items:
+              $ref: '#/components/schemas/AuthPermission'
+          title: Permissions
+        password:
+          minLength: 4
+          title: Password
+      title: UserUpdate
     ValidationError:
       example:
         msg: msg
@@ -1146,12 +1860,32 @@ components:
       - msg
       - type
       title: ValidationError
+    CatMessage_why:
+      anyOf:
+      - $ref: '#/components/schemas/MessageWhy'
+      - nullable: true
+    Model_Interactions_inner:
+      anyOf:
+      - $ref: '#/components/schemas/LLMModelInteraction'
+      - $ref: '#/components/schemas/EmbedderModelInteraction'
     Value:
       anyOf:
       - type: object
       - items: {}
         type: array
       title: Value
+    Chunk_Size:
+      anyOf:
+      - {}
+      - {}
+      description: Maximum length of each chunk after the document is split (in tokens)
+      title: Chunk Size
+    Chunk_Overlap:
+      anyOf:
+      - {}
+      - {}
+      description: Chunk overlap (in tokens)
+      title: Chunk Overlap
     ValidationError_loc_inner:
       anyOf:
       - type: string

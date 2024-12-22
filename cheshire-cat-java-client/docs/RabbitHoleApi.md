@@ -10,8 +10,9 @@ All URIs are relative to *http://localhost*
 | [**uploadUrl**](RabbitHoleApi.md#uploadUrl) | **POST** /rabbithole/web | Upload Url |
 
 
-<a id="getAllowedMimetypes"></a>
-# **getAllowedMimetypes**
+
+## getAllowedMimetypes
+
 > Object getAllowedMimetypes()
 
 Get Allowed Mimetypes
@@ -19,35 +20,37 @@ Get Allowed Mimetypes
 Retrieve the allowed mimetypes that can be ingested by the Rabbit Hole
 
 ### Example
+
 ```java
 // Import classes:
 import it.baccan.cheshirecat.ApiClient;
 import it.baccan.cheshirecat.ApiException;
 import it.baccan.cheshirecat.Configuration;
-import it.baccan.cheshirecat.models.*;
+import it.baccan.cheshirecat.model.*;
 import it.baccan.cheshirecat.service.RabbitHoleApi;
 
 public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost");
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("http://localhost");
 
-    RabbitHoleApi apiInstance = new RabbitHoleApi(defaultClient);
-    try {
-      Object result = apiInstance.getAllowedMimetypes();
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling RabbitHoleApi#getAllowedMimetypes");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
+        RabbitHoleApi apiInstance = new RabbitHoleApi(defaultClient);
+        try {
+            Object result = apiInstance.getAllowedMimetypes();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling RabbitHoleApi#getAllowedMimetypes");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
     }
-  }
 }
 ```
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -60,61 +63,101 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful Response |  -  |
 
-<a id="uploadFile"></a>
-# **uploadFile**
-> Object uploadFile(_file, chunkSize, chunkOverlap)
+
+## uploadFile
+
+> Object uploadFile(_file, chunkSize, chunkOverlap, metadata)
 
 Upload File
 
-Upload a file containing text (.txt, .md, .pdf, etc.). File content will be extracted and segmented into chunks. Chunks will be then vectorized and stored into documents memory.
+Upload a file containing text (.txt, .md, .pdf, etc.). File content will be extracted and segmented into chunks.
+Chunks will be then vectorized and stored into documents memory.
+
+Note
+----------
+`chunk_size`, `chunk_overlap` anad `metadata` must be passed as form data.
+This is necessary because the HTTP protocol does not allow file uploads to be sent as JSON.
+
+Example
+----------
+```
+content_type = "application/pdf"
+file_name = "sample.pdf"
+file_path = f"tests/mocks/{file_name}"
+with open(file_path, "rb") as f:
+    files = {"file": (file_name, f, content_type)}
+
+    metadata = {
+        "source": "sample.pdf",
+        "title": "Test title",
+        "author": "Test author",
+        "year": 2020,
+    }
+    # upload file endpoint only accepts form-encoded data
+    payload = {
+        "chunk_size": 128,
+        "metadata": json.dumps(metadata)
+    }
+
+    response = requests.post(
+        "http://localhost:1865/rabbithole/",
+        files=files,
+        data=payload
+    )
+```
 
 ### Example
+
 ```java
+import java.io.File;
 // Import classes:
 import it.baccan.cheshirecat.ApiClient;
 import it.baccan.cheshirecat.ApiException;
 import it.baccan.cheshirecat.Configuration;
-import it.baccan.cheshirecat.models.*;
+import it.baccan.cheshirecat.model.*;
 import it.baccan.cheshirecat.service.RabbitHoleApi;
 
 public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost");
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("http://localhost");
 
-    RabbitHoleApi apiInstance = new RabbitHoleApi(defaultClient);
-    File _file = new File("/path/to/file"); // File | 
-    Integer chunkSize = 56; // Integer | 
-    Integer chunkOverlap = 56; // Integer | 
-    try {
-      Object result = apiInstance.uploadFile(_file, chunkSize, chunkOverlap);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling RabbitHoleApi#uploadFile");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
+        RabbitHoleApi apiInstance = new RabbitHoleApi(defaultClient);
+        File _file = new File("/path/to/file"); // File | 
+        Integer chunkSize = 56; // Integer | 
+        Integer chunkOverlap = 56; // Integer | 
+        String metadata = "{}"; // String | Metadata to be stored with each chunk (e.g. author, category, etc.). Since we are passing this along side form data, must be a JSON string (use `json.dumps(metadata)`).
+        try {
+            Object result = apiInstance.uploadFile(_file, chunkSize, chunkOverlap, metadata);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling RabbitHoleApi#uploadFile");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
     }
-  }
 }
 ```
 
 ### Parameters
+
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **_file** | **File**|  | |
 | **chunkSize** | **Integer**|  | [optional] |
 | **chunkOverlap** | **Integer**|  | [optional] |
+| **metadata** | **String**| Metadata to be stored with each chunk (e.g. author, category, etc.). Since we are passing this along side form data, must be a JSON string (use &#x60;json.dumps(metadata)&#x60;). | [optional] [default to {}] |
 
 ### Return type
 
@@ -126,8 +169,8 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: multipart/form-data
- - **Accept**: application/json
+- **Content-Type**: multipart/form-data
+- **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -135,8 +178,9 @@ No authorization required
 | **200** | Successful Response |  -  |
 | **422** | Validation Error |  -  |
 
-<a id="uploadMemory"></a>
-# **uploadMemory**
+
+## uploadMemory
+
 > Object uploadMemory(_file)
 
 Upload Memory
@@ -144,36 +188,39 @@ Upload Memory
 Upload a memory json file to the cat memory
 
 ### Example
+
 ```java
+import java.io.File;
 // Import classes:
 import it.baccan.cheshirecat.ApiClient;
 import it.baccan.cheshirecat.ApiException;
 import it.baccan.cheshirecat.Configuration;
-import it.baccan.cheshirecat.models.*;
+import it.baccan.cheshirecat.model.*;
 import it.baccan.cheshirecat.service.RabbitHoleApi;
 
 public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost");
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("http://localhost");
 
-    RabbitHoleApi apiInstance = new RabbitHoleApi(defaultClient);
-    File _file = new File("/path/to/file"); // File | 
-    try {
-      Object result = apiInstance.uploadMemory(_file);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling RabbitHoleApi#uploadMemory");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
+        RabbitHoleApi apiInstance = new RabbitHoleApi(defaultClient);
+        File _file = new File("/path/to/file"); // File | 
+        try {
+            Object result = apiInstance.uploadMemory(_file);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling RabbitHoleApi#uploadMemory");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
     }
-  }
 }
 ```
 
 ### Parameters
+
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
@@ -189,8 +236,8 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: multipart/form-data
- - **Accept**: application/json
+- **Content-Type**: multipart/form-data
+- **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -198,49 +245,53 @@ No authorization required
 | **200** | Successful Response |  -  |
 | **422** | Validation Error |  -  |
 
-<a id="uploadUrl"></a>
-# **uploadUrl**
-> Object uploadUrl(bodyUploadUrl)
+
+## uploadUrl
+
+> Object uploadUrl(uploadURLConfig)
 
 Upload Url
 
-Upload a url. Website content will be extracted and segmented into chunks. Chunks will be then vectorized and stored into documents memory.
+Upload a url. Website content will be extracted and segmented into chunks.
+Chunks will be then vectorized and stored into documents memory.
 
 ### Example
+
 ```java
 // Import classes:
 import it.baccan.cheshirecat.ApiClient;
 import it.baccan.cheshirecat.ApiException;
 import it.baccan.cheshirecat.Configuration;
-import it.baccan.cheshirecat.models.*;
+import it.baccan.cheshirecat.model.*;
 import it.baccan.cheshirecat.service.RabbitHoleApi;
 
 public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost");
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("http://localhost");
 
-    RabbitHoleApi apiInstance = new RabbitHoleApi(defaultClient);
-    BodyUploadUrl bodyUploadUrl = new BodyUploadUrl(); // BodyUploadUrl | 
-    try {
-      Object result = apiInstance.uploadUrl(bodyUploadUrl);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling RabbitHoleApi#uploadUrl");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
+        RabbitHoleApi apiInstance = new RabbitHoleApi(defaultClient);
+        UploadURLConfig uploadURLConfig = new UploadURLConfig(); // UploadURLConfig | 
+        try {
+            Object result = apiInstance.uploadUrl(uploadURLConfig);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling RabbitHoleApi#uploadUrl");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
     }
-  }
 }
 ```
 
 ### Parameters
 
+
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **bodyUploadUrl** | [**BodyUploadUrl**](BodyUploadUrl.md)|  | |
+| **uploadURLConfig** | [**UploadURLConfig**](UploadURLConfig.md)|  | |
 
 ### Return type
 
@@ -252,8 +303,8 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |

@@ -15,8 +15,9 @@ All URIs are relative to *http://localhost*
 | [**upsertPluginSettings**](PluginsApi.md#upsertPluginSettings) | **PUT** /plugins/settings/{plugin_id} | Upsert Plugin Settings |
 
 
-<a id="deletePlugin"></a>
-# **deletePlugin**
+
+## deletePlugin
+
 > Object deletePlugin(pluginId)
 
 Delete Plugin
@@ -24,36 +25,38 @@ Delete Plugin
 Physically remove plugin.
 
 ### Example
+
 ```java
 // Import classes:
 import it.baccan.cheshirecat.ApiClient;
 import it.baccan.cheshirecat.ApiException;
 import it.baccan.cheshirecat.Configuration;
-import it.baccan.cheshirecat.models.*;
+import it.baccan.cheshirecat.model.*;
 import it.baccan.cheshirecat.service.PluginsApi;
 
 public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost");
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("http://localhost");
 
-    PluginsApi apiInstance = new PluginsApi(defaultClient);
-    String pluginId = "pluginId_example"; // String | 
-    try {
-      Object result = apiInstance.deletePlugin(pluginId);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling PluginsApi#deletePlugin");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
+        PluginsApi apiInstance = new PluginsApi(defaultClient);
+        String pluginId = "pluginId_example"; // String | 
+        try {
+            Object result = apiInstance.deletePlugin(pluginId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PluginsApi#deletePlugin");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
     }
-  }
 }
 ```
 
 ### Parameters
+
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
@@ -69,8 +72,8 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -78,8 +81,9 @@ No authorization required
 | **200** | Successful Response |  -  |
 | **422** | Validation Error |  -  |
 
-<a id="getAvailablePlugins"></a>
-# **getAvailablePlugins**
+
+## getAvailablePlugins
+
 > Object getAvailablePlugins(query)
 
 Get Available Plugins
@@ -87,36 +91,38 @@ Get Available Plugins
 List available plugins
 
 ### Example
+
 ```java
 // Import classes:
 import it.baccan.cheshirecat.ApiClient;
 import it.baccan.cheshirecat.ApiException;
 import it.baccan.cheshirecat.Configuration;
-import it.baccan.cheshirecat.models.*;
+import it.baccan.cheshirecat.model.*;
 import it.baccan.cheshirecat.service.PluginsApi;
 
 public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost");
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("http://localhost");
 
-    PluginsApi apiInstance = new PluginsApi(defaultClient);
-    String query = "query_example"; // String | 
-    try {
-      Object result = apiInstance.getAvailablePlugins(query);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling PluginsApi#getAvailablePlugins");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
+        PluginsApi apiInstance = new PluginsApi(defaultClient);
+        String query = "query_example"; // String | 
+        try {
+            Object result = apiInstance.getAvailablePlugins(query);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PluginsApi#getAvailablePlugins");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
     }
-  }
 }
 ```
 
 ### Parameters
+
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
@@ -132,8 +138,8 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -141,8 +147,9 @@ No authorization required
 | **200** | Successful Response |  -  |
 | **422** | Validation Error |  -  |
 
-<a id="getPluginDetails"></a>
-# **getPluginDetails**
+
+## getPluginDetails
+
 > Object getPluginDetails(pluginId)
 
 Get Plugin Details
@@ -150,36 +157,38 @@ Get Plugin Details
 Returns information on a single plugin
 
 ### Example
+
 ```java
 // Import classes:
 import it.baccan.cheshirecat.ApiClient;
 import it.baccan.cheshirecat.ApiException;
 import it.baccan.cheshirecat.Configuration;
-import it.baccan.cheshirecat.models.*;
+import it.baccan.cheshirecat.model.*;
 import it.baccan.cheshirecat.service.PluginsApi;
 
 public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost");
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("http://localhost");
 
-    PluginsApi apiInstance = new PluginsApi(defaultClient);
-    String pluginId = "pluginId_example"; // String | 
-    try {
-      Object result = apiInstance.getPluginDetails(pluginId);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling PluginsApi#getPluginDetails");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
+        PluginsApi apiInstance = new PluginsApi(defaultClient);
+        String pluginId = "pluginId_example"; // String | 
+        try {
+            Object result = apiInstance.getPluginDetails(pluginId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PluginsApi#getPluginDetails");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
     }
-  }
 }
 ```
 
 ### Parameters
+
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
@@ -195,8 +204,8 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -204,8 +213,9 @@ No authorization required
 | **200** | Successful Response |  -  |
 | **422** | Validation Error |  -  |
 
-<a id="getPluginSettings"></a>
-# **getPluginSettings**
+
+## getPluginSettings
+
 > Object getPluginSettings(pluginId)
 
 Get Plugin Settings
@@ -213,36 +223,38 @@ Get Plugin Settings
 Returns the settings of a specific plugin
 
 ### Example
+
 ```java
 // Import classes:
 import it.baccan.cheshirecat.ApiClient;
 import it.baccan.cheshirecat.ApiException;
 import it.baccan.cheshirecat.Configuration;
-import it.baccan.cheshirecat.models.*;
+import it.baccan.cheshirecat.model.*;
 import it.baccan.cheshirecat.service.PluginsApi;
 
 public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost");
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("http://localhost");
 
-    PluginsApi apiInstance = new PluginsApi(defaultClient);
-    String pluginId = "pluginId_example"; // String | 
-    try {
-      Object result = apiInstance.getPluginSettings(pluginId);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling PluginsApi#getPluginSettings");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
+        PluginsApi apiInstance = new PluginsApi(defaultClient);
+        String pluginId = "pluginId_example"; // String | 
+        try {
+            Object result = apiInstance.getPluginSettings(pluginId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PluginsApi#getPluginSettings");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
     }
-  }
 }
 ```
 
 ### Parameters
+
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
@@ -258,8 +270,8 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -267,8 +279,9 @@ No authorization required
 | **200** | Successful Response |  -  |
 | **422** | Validation Error |  -  |
 
-<a id="getPluginsSettings"></a>
-# **getPluginsSettings**
+
+## getPluginsSettings
+
 > Object getPluginsSettings()
 
 Get Plugins Settings
@@ -276,35 +289,37 @@ Get Plugins Settings
 Returns the settings of all the plugins
 
 ### Example
+
 ```java
 // Import classes:
 import it.baccan.cheshirecat.ApiClient;
 import it.baccan.cheshirecat.ApiException;
 import it.baccan.cheshirecat.Configuration;
-import it.baccan.cheshirecat.models.*;
+import it.baccan.cheshirecat.model.*;
 import it.baccan.cheshirecat.service.PluginsApi;
 
 public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost");
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("http://localhost");
 
-    PluginsApi apiInstance = new PluginsApi(defaultClient);
-    try {
-      Object result = apiInstance.getPluginsSettings();
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling PluginsApi#getPluginsSettings");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
+        PluginsApi apiInstance = new PluginsApi(defaultClient);
+        try {
+            Object result = apiInstance.getPluginsSettings();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PluginsApi#getPluginsSettings");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
     }
-  }
 }
 ```
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -317,16 +332,17 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful Response |  -  |
 
-<a id="installPlugin"></a>
-# **installPlugin**
+
+## installPlugin
+
 > Object installPlugin(_file)
 
 Install Plugin
@@ -334,36 +350,39 @@ Install Plugin
 Install a new plugin from a zip file
 
 ### Example
+
 ```java
+import java.io.File;
 // Import classes:
 import it.baccan.cheshirecat.ApiClient;
 import it.baccan.cheshirecat.ApiException;
 import it.baccan.cheshirecat.Configuration;
-import it.baccan.cheshirecat.models.*;
+import it.baccan.cheshirecat.model.*;
 import it.baccan.cheshirecat.service.PluginsApi;
 
 public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost");
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("http://localhost");
 
-    PluginsApi apiInstance = new PluginsApi(defaultClient);
-    File _file = new File("/path/to/file"); // File | 
-    try {
-      Object result = apiInstance.installPlugin(_file);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling PluginsApi#installPlugin");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
+        PluginsApi apiInstance = new PluginsApi(defaultClient);
+        File _file = new File("/path/to/file"); // File | 
+        try {
+            Object result = apiInstance.installPlugin(_file);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PluginsApi#installPlugin");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
     }
-  }
 }
 ```
 
 ### Parameters
+
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
@@ -379,8 +398,8 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: multipart/form-data
- - **Accept**: application/json
+- **Content-Type**: multipart/form-data
+- **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -388,8 +407,9 @@ No authorization required
 | **200** | Successful Response |  -  |
 | **422** | Validation Error |  -  |
 
-<a id="installPluginFromRegistry"></a>
-# **installPluginFromRegistry**
+
+## installPluginFromRegistry
+
 > Object installPluginFromRegistry(body)
 
 Install Plugin From Registry
@@ -397,36 +417,38 @@ Install Plugin From Registry
 Install a new plugin from registry
 
 ### Example
+
 ```java
 // Import classes:
 import it.baccan.cheshirecat.ApiClient;
 import it.baccan.cheshirecat.ApiException;
 import it.baccan.cheshirecat.Configuration;
-import it.baccan.cheshirecat.models.*;
+import it.baccan.cheshirecat.model.*;
 import it.baccan.cheshirecat.service.PluginsApi;
 
 public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost");
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("http://localhost");
 
-    PluginsApi apiInstance = new PluginsApi(defaultClient);
-    Object body = null; // Object | 
-    try {
-      Object result = apiInstance.installPluginFromRegistry(body);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling PluginsApi#installPluginFromRegistry");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
+        PluginsApi apiInstance = new PluginsApi(defaultClient);
+        Object body = null; // Object | 
+        try {
+            Object result = apiInstance.installPluginFromRegistry(body);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PluginsApi#installPluginFromRegistry");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
     }
-  }
 }
 ```
 
 ### Parameters
+
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
@@ -442,8 +464,8 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -451,8 +473,9 @@ No authorization required
 | **200** | Successful Response |  -  |
 | **422** | Validation Error |  -  |
 
-<a id="togglePlugin"></a>
-# **togglePlugin**
+
+## togglePlugin
+
 > Object togglePlugin(pluginId)
 
 Toggle Plugin
@@ -460,36 +483,38 @@ Toggle Plugin
 Enable or disable a single plugin
 
 ### Example
+
 ```java
 // Import classes:
 import it.baccan.cheshirecat.ApiClient;
 import it.baccan.cheshirecat.ApiException;
 import it.baccan.cheshirecat.Configuration;
-import it.baccan.cheshirecat.models.*;
+import it.baccan.cheshirecat.model.*;
 import it.baccan.cheshirecat.service.PluginsApi;
 
 public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost");
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("http://localhost");
 
-    PluginsApi apiInstance = new PluginsApi(defaultClient);
-    String pluginId = "pluginId_example"; // String | 
-    try {
-      Object result = apiInstance.togglePlugin(pluginId);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling PluginsApi#togglePlugin");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
+        PluginsApi apiInstance = new PluginsApi(defaultClient);
+        String pluginId = "pluginId_example"; // String | 
+        try {
+            Object result = apiInstance.togglePlugin(pluginId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PluginsApi#togglePlugin");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
     }
-  }
 }
 ```
 
 ### Parameters
+
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
@@ -505,8 +530,8 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -514,8 +539,9 @@ No authorization required
 | **200** | Successful Response |  -  |
 | **422** | Validation Error |  -  |
 
-<a id="upsertPluginSettings"></a>
-# **upsertPluginSettings**
+
+## upsertPluginSettings
+
 > Object upsertPluginSettings(pluginId, body)
 
 Upsert Plugin Settings
@@ -523,37 +549,39 @@ Upsert Plugin Settings
 Updates the settings of a specific plugin
 
 ### Example
+
 ```java
 // Import classes:
 import it.baccan.cheshirecat.ApiClient;
 import it.baccan.cheshirecat.ApiException;
 import it.baccan.cheshirecat.Configuration;
-import it.baccan.cheshirecat.models.*;
+import it.baccan.cheshirecat.model.*;
 import it.baccan.cheshirecat.service.PluginsApi;
 
 public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost");
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("http://localhost");
 
-    PluginsApi apiInstance = new PluginsApi(defaultClient);
-    String pluginId = "pluginId_example"; // String | 
-    Object body = null; // Object | 
-    try {
-      Object result = apiInstance.upsertPluginSettings(pluginId, body);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling PluginsApi#upsertPluginSettings");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
+        PluginsApi apiInstance = new PluginsApi(defaultClient);
+        String pluginId = "pluginId_example"; // String | 
+        Object body = null; // Object | 
+        try {
+            Object result = apiInstance.upsertPluginSettings(pluginId, body);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PluginsApi#upsertPluginSettings");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
     }
-  }
 }
 ```
 
 ### Parameters
+
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
@@ -570,8 +598,8 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
