@@ -2,7 +2,7 @@
 
 😸 Cheshire-Cat API
 - API version: 1.6.1
-  - Generator version: 7.8.0
+  - Generator version: 7.10.0
 
 Production ready AI assistant framework
 
@@ -83,7 +83,7 @@ Please follow the [installation](#installation) instruction and execute the foll
 import it.baccan.cheshirecat.ApiClient;
 import it.baccan.cheshirecat.ApiException;
 import it.baccan.cheshirecat.Configuration;
-import it.baccan.cheshirecat.models.*;
+import it.baccan.cheshirecat.model.*;
 import it.baccan.cheshirecat.service.DefaultApi;
 
 public class Example {

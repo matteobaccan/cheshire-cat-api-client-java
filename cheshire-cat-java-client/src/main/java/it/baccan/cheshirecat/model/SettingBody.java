@@ -50,24 +50,27 @@ import it.baccan.cheshirecat.JSON;
 /**
  * SettingBody
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class SettingBody {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
+  @javax.annotation.Nonnull
   private String name;
 
   public static final String SERIALIZED_NAME_VALUE = "value";
   @SerializedName(SERIALIZED_NAME_VALUE)
+  @javax.annotation.Nonnull
   private Value value;
 
   public static final String SERIALIZED_NAME_CATEGORY = "category";
   @SerializedName(SERIALIZED_NAME_CATEGORY)
+  @javax.annotation.Nullable
   private String category;
 
   public SettingBody() {
   }
 
-  public SettingBody name(String name) {
+  public SettingBody name(@javax.annotation.Nonnull String name) {
     this.name = name;
     return this;
   }
@@ -81,12 +84,12 @@ public class SettingBody {
     return name;
   }
 
-  public void setName(String name) {
+  public void setName(@javax.annotation.Nonnull String name) {
     this.name = name;
   }
 
 
-  public SettingBody value(Value value) {
+  public SettingBody value(@javax.annotation.Nonnull Value value) {
     this.value = value;
     return this;
   }
@@ -100,12 +103,12 @@ public class SettingBody {
     return value;
   }
 
-  public void setValue(Value value) {
+  public void setValue(@javax.annotation.Nonnull Value value) {
     this.value = value;
   }
 
 
-  public SettingBody category(String category) {
+  public SettingBody category(@javax.annotation.Nullable String category) {
     this.category = category;
     return this;
   }
@@ -119,7 +122,7 @@ public class SettingBody {
     return category;
   }
 
-  public void setCategory(String category) {
+  public void setCategory(@javax.annotation.Nullable String category) {
     this.category = category;
   }
 

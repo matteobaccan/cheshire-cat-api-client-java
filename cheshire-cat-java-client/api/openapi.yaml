@@ -1150,6 +1150,7 @@ components:
       anyOf:
       - type: object
       - items: {}
+        type: array
       title: Value
     ValidationError_loc_inner:
       anyOf:

@@ -49,24 +49,27 @@ import it.baccan.cheshirecat.JSON;
 /**
  * BodyUploadUrl
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class BodyUploadUrl {
   public static final String SERIALIZED_NAME_URL = "url";
   @SerializedName(SERIALIZED_NAME_URL)
+  @javax.annotation.Nonnull
   private String url;
 
   public static final String SERIALIZED_NAME_CHUNK_SIZE = "chunk_size";
   @SerializedName(SERIALIZED_NAME_CHUNK_SIZE)
+  @javax.annotation.Nullable
   private Integer chunkSize;
 
   public static final String SERIALIZED_NAME_CHUNK_OVERLAP = "chunk_overlap";
   @SerializedName(SERIALIZED_NAME_CHUNK_OVERLAP)
+  @javax.annotation.Nullable
   private Integer chunkOverlap;
 
   public BodyUploadUrl() {
   }
 
-  public BodyUploadUrl url(String url) {
+  public BodyUploadUrl url(@javax.annotation.Nonnull String url) {
     this.url = url;
     return this;
   }
@@ -80,12 +83,12 @@ public class BodyUploadUrl {
     return url;
   }
 
-  public void setUrl(String url) {
+  public void setUrl(@javax.annotation.Nonnull String url) {
     this.url = url;
   }
 
 
-  public BodyUploadUrl chunkSize(Integer chunkSize) {
+  public BodyUploadUrl chunkSize(@javax.annotation.Nullable Integer chunkSize) {
     this.chunkSize = chunkSize;
     return this;
   }
@@ -99,12 +102,12 @@ public class BodyUploadUrl {
     return chunkSize;
   }
 
-  public void setChunkSize(Integer chunkSize) {
+  public void setChunkSize(@javax.annotation.Nullable Integer chunkSize) {
     this.chunkSize = chunkSize;
   }
 
 
-  public BodyUploadUrl chunkOverlap(Integer chunkOverlap) {
+  public BodyUploadUrl chunkOverlap(@javax.annotation.Nullable Integer chunkOverlap) {
     this.chunkOverlap = chunkOverlap;
     return this;
   }
@@ -118,7 +121,7 @@ public class BodyUploadUrl {
     return chunkOverlap;
   }
 
-  public void setChunkOverlap(Integer chunkOverlap) {
+  public void setChunkOverlap(@javax.annotation.Nullable Integer chunkOverlap) {
     this.chunkOverlap = chunkOverlap;
   }
 

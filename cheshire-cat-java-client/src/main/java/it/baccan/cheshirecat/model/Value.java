@@ -51,7 +51,7 @@ import com.google.gson.JsonParseException;
 
 import it.baccan.cheshirecat.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class Value extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(Value.class.getName());
 
@@ -213,6 +213,7 @@ public class Value extends AbstractOpenApiSchema {
     public Object getObject() throws ClassCastException {
         return (Object)super.getActualInstance();
     }
+
     /**
      * Get the actual instance of `List<Object>`. If the actual instance is not `List<Object>`,
      * the ClassCastException will be thrown.

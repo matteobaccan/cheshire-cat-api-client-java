@@ -51,16 +51,17 @@ import it.baccan.cheshirecat.JSON;
 /**
  * HTTPValidationError
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class HTTPValidationError {
   public static final String SERIALIZED_NAME_DETAIL = "detail";
   @SerializedName(SERIALIZED_NAME_DETAIL)
+  @javax.annotation.Nullable
   private List<ValidationError> detail = new ArrayList<>();
 
   public HTTPValidationError() {
   }
 
-  public HTTPValidationError detail(List<ValidationError> detail) {
+  public HTTPValidationError detail(@javax.annotation.Nullable List<ValidationError> detail) {
     this.detail = detail;
     return this;
   }
@@ -82,7 +83,7 @@ public class HTTPValidationError {
     return detail;
   }
 
-  public void setDetail(List<ValidationError> detail) {
+  public void setDetail(@javax.annotation.Nullable List<ValidationError> detail) {
     this.detail = detail;
   }
 
