@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**content** | **String** |  |  |
-|**metadata** | **Object** |  |  [optional] |
+|**metadata** | **String** |  |  [optional] |
 |**id** | **String** |  |  |
 |**vector** | **List&lt;BigDecimal&gt;** |  |  |
 

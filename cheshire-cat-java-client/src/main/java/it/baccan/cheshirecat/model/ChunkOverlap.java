@@ -79,20 +79,9 @@ public class ChunkOverlap extends AbstractOpenApiSchema {
             JsonNode tree = jp.readValueAsTree();
 
             Object deserialized = null;
-            // deserialize Integer
+            // deserialize Integer (nullable)
             try {
                 deserialized = tree.traverse(jp.getCodec()).readValueAs(Integer.class);
-                ChunkOverlap ret = new ChunkOverlap();
-                ret.setActualInstance(deserialized);
-                return ret;
-            } catch (Exception e) {
-                // deserialization failed, continue, log to help debugging
-                log.log(Level.FINER, "Input data does not match 'ChunkOverlap'", e);
-            }
-
-            // deserialize ModelNull
-            try {
-                deserialized = tree.traverse(jp.getCodec()).readValueAs(ModelNull.class);
                 ChunkOverlap ret = new ChunkOverlap();
                 ret.setActualInstance(deserialized);
                 return ret;
@@ -109,7 +98,7 @@ public class ChunkOverlap extends AbstractOpenApiSchema {
          */
         @Override
         public ChunkOverlap getNullValue(DeserializationContext ctxt) throws JsonMappingException {
-            return null;
+            throw new JsonMappingException(ctxt.getParser(), "ChunkOverlap cannot be null");
         }
     }
 
@@ -117,16 +106,11 @@ public class ChunkOverlap extends AbstractOpenApiSchema {
     public static final Map<String, GenericType<?>> schemas = new HashMap<>();
 
     public ChunkOverlap() {
-        super("anyOf", Boolean.TRUE);
+        super("anyOf", Boolean.FALSE);
     }
 
     public ChunkOverlap(Integer o) {
-        super("anyOf", Boolean.FALSE);
-        setActualInstance(o);
-    }
-
-    public ChunkOverlap(ModelNull o) {
-        super("anyOf", Boolean.FALSE);
+        super("anyOf", Boolean.TRUE);
         setActualInstance(o);
     }
 
@@ -151,17 +135,7 @@ public class ChunkOverlap extends AbstractOpenApiSchema {
      */
     @Override
     public void setActualInstance(Object instance) {
-        if (instance == null) {
-           super.setActualInstance(instance);
-           return;
-        }
-
         if (JSON.isInstanceOf(Integer.class, instance, new HashSet<>())) {
-            super.setActualInstance(instance);
-            return;
-        }
-
-        if (JSON.isInstanceOf(ModelNull.class, instance, new HashSet<>())) {
             super.setActualInstance(instance);
             return;
         }
@@ -189,17 +163,6 @@ public class ChunkOverlap extends AbstractOpenApiSchema {
      */
     public Integer getInteger() throws ClassCastException {
         return (Integer)super.getActualInstance();
-    }
-
-    /**
-     * Get the actual instance of `ModelNull`. If the actual instance is not `ModelNull`,
-     * the ClassCastException will be thrown.
-     *
-     * @return The actual instance of `ModelNull`
-     * @throws ClassCastException if the instance is not `ModelNull`
-     */
-    public ModelNull getModelNull() throws ClassCastException {
-        return (ModelNull)super.getActualInstance();
     }
 
 }

@@ -1599,9 +1599,9 @@ components:
           title: Content
           type: string
         metadata:
-          default: {}
+          default: "{}"
           title: Metadata
-          type: object
+          type: string
         id:
           title: Id
           type: string
@@ -1623,9 +1623,9 @@ components:
           title: Content
           type: string
         metadata:
-          default: {}
+          default: "{}"
           title: Metadata
-          type: object
+          type: string
       required:
       - content
       title: MemoryPointBase
@@ -1714,7 +1714,7 @@ components:
         chunk_overlap:
           $ref: '#/components/schemas/Chunk_Overlap'
         metadata:
-          default: {}
+          default: "{}"
           description: "Metadata to be stored with each chunk (e.g. author, category,\
             \ etc.)"
           title: Metadata
@@ -1876,14 +1876,14 @@ components:
       title: Value
     Chunk_Size:
       anyOf:
-      - {}
-      - {}
+      - nullable: true
+        type: integer
       description: Maximum length of each chunk after the document is split (in tokens)
       title: Chunk Size
     Chunk_Overlap:
       anyOf:
-      - {}
-      - {}
+      - nullable: true
+        type: integer
       description: Chunk overlap (in tokens)
       title: Chunk Overlap
     ValidationError_loc_inner:

@@ -46,7 +46,7 @@ public class MemoryPoint {
 
   public static final String JSON_PROPERTY_METADATA = "metadata";
   @javax.annotation.Nullable
-  private Object metadata = {};
+  private String metadata = "{}";
 
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
@@ -84,7 +84,7 @@ public class MemoryPoint {
   }
 
 
-  public MemoryPoint metadata(@javax.annotation.Nullable Object metadata) {
+  public MemoryPoint metadata(@javax.annotation.Nullable String metadata) {
     this.metadata = metadata;
     return this;
   }
@@ -97,14 +97,14 @@ public class MemoryPoint {
   @JsonProperty(JSON_PROPERTY_METADATA)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Object getMetadata() {
+  public String getMetadata() {
     return metadata;
   }
 
 
   @JsonProperty(JSON_PROPERTY_METADATA)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMetadata(@javax.annotation.Nullable Object metadata) {
+  public void setMetadata(@javax.annotation.Nullable String metadata) {
     this.metadata = metadata;
   }
 

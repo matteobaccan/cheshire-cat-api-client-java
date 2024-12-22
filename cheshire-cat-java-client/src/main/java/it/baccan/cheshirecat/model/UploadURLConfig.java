@@ -57,7 +57,7 @@ public class UploadURLConfig {
 
   public static final String JSON_PROPERTY_METADATA = "metadata";
   @javax.annotation.Nullable
-  private Object metadata = {};
+  private String metadata = "{}";
 
   public UploadURLConfig() { 
   }
@@ -137,7 +137,7 @@ public class UploadURLConfig {
   }
 
 
-  public UploadURLConfig metadata(@javax.annotation.Nullable Object metadata) {
+  public UploadURLConfig metadata(@javax.annotation.Nullable String metadata) {
     this.metadata = metadata;
     return this;
   }
@@ -150,14 +150,14 @@ public class UploadURLConfig {
   @JsonProperty(JSON_PROPERTY_METADATA)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Object getMetadata() {
+  public String getMetadata() {
     return metadata;
   }
 
 
   @JsonProperty(JSON_PROPERTY_METADATA)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMetadata(@javax.annotation.Nullable Object metadata) {
+  public void setMetadata(@javax.annotation.Nullable String metadata) {
     this.metadata = metadata;
   }
 

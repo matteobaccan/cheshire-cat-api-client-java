@@ -2096,9 +2096,9 @@
                         "title": "Content"
                     },
                     "metadata": {
-                        "type": "object",
+                        "type": "string",
                         "title": "Metadata",
-                        "default": {}
+                        "default": "{}"
                     },
                     "id": {
                         "type": "string",
@@ -2127,9 +2127,9 @@
                         "title": "Content"
                     },
                     "metadata": {
-                        "type": "object",
+                        "type": "string",
                         "title": "Metadata",
-                        "default": {}
+                        "default": "{}"
                     }
                 },
                 "type": "object",
@@ -2227,9 +2227,6 @@
                         "anyOf": [
                             {
                                 "type": "integer"
-                            },
-                            {
-                                "type": "null"
                             }
                         ],
                         "title": "Chunk Size",
@@ -2239,19 +2236,16 @@
                         "anyOf": [
                             {
                                 "type": "integer"
-                            },
-                            {
-                                "type": "null"
                             }
                         ],
                         "title": "Chunk Overlap",
                         "description": "Chunk overlap (in tokens)"
                     },
                     "metadata": {
-                        "type": "object",
+                        "type": "string",
                         "title": "Metadata",
                         "description": "Metadata to be stored with each chunk (e.g. author, category, etc.)",
-                        "default": {}
+                        "default": "{}"
                     }
                 },
                 "additionalProperties": false,
