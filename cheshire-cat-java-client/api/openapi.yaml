@@ -2,7 +2,7 @@ openapi: 3.1.0
 info:
   description: Production ready AI assistant framework
   title: 😸 Cheshire-Cat API
-  version: 1.7.1
+  version: 1.8.1
   x-logo:
     url: https://cheshirecat.ai/wp-content/uploads/2023/10/Logo-Cheshire-Cat.svg
 servers:
@@ -11,18 +11,18 @@ paths:
   /:
     get:
       description: Server status
-      operationId: home
+      operationId: status
       responses:
         "200":
           content:
             application/json:
               schema:
-                title: Response Home
+                title: Response Status
                 type: object
           description: Successful Response
-      summary: Home
+      summary: Status
       tags:
-      - Status
+      - Home
       x-accepts:
       - application/json
   /message:
@@ -52,7 +52,7 @@ paths:
           description: Validation Error
       summary: Message With Cat
       tags:
-      - Status
+      - Home
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -882,8 +882,9 @@ paths:
       - application/json
   /memory/recall:
     get:
+      deprecated: true
       description: Search k memories similar to given text.
-      operationId: recall_memories_from_text
+      operationId: recall_memory_points_from_text
       parameters:
       - description: Find memories similar to this text.
         explode: true
@@ -911,7 +912,7 @@ paths:
           content:
             application/json:
               schema:
-                title: Response Recall Memories From Text
+                title: Response Recall Memory Points From Text
                 type: object
           description: Successful Response
         "422":
@@ -920,63 +921,34 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-      summary: Recall Memories From Text
+      summary: Recall Memory Points From Text
       tags:
-      - Memory
+      - Vector Memory - Points
       x-accepts:
       - application/json
-  /memory/collections:
-    delete:
-      description: Delete and create all collections
-      operationId: wipe_collections
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                title: Response Wipe Collections
-                type: object
-          description: Successful Response
-      summary: Wipe Collections
-      tags:
-      - Memory
-      x-accepts:
-      - application/json
-    get:
-      description: Get list of available collections
-      operationId: get_collections
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                title: Response Get Collections
-                type: object
-          description: Successful Response
-      summary: Get Collections
-      tags:
-      - Memory
-      x-accepts:
-      - application/json
-  /memory/collections/{collection_id}:
-    delete:
-      description: Delete and recreate a collection
-      operationId: wipe_single_collection
-      parameters:
-      - explode: false
-        in: path
-        name: collection_id
+    post:
+      description: "Search k memories similar to given text with specified metadata\
+        \ criteria.\n    \nExample\n----------\n```\ncollection = \"episodic\"\ncontent\
+        \ = \"MIAO!\"\nmetadata = {\"custom_key\": \"custom_value\"}\nreq_json = {\n\
+        \    \"content\": content,\n    \"metadata\": metadata,\n}\n# create a point\n\
+        res = requests.post(\n    f\"http://localhost:1865/memory/collections/{collection}/points\"\
+        , json=req_json\n)\n\n# recall with metadata\nreq_json = {\n    \"text\":\
+        \ \"CAT\", \n    \"metadata\":{\"custom_key\":\"custom_value\"}\n}\nres =\
+        \ requests.post(\n    f\"http://localhost:1865/memory/recall\", json=req_json\n\
+        )\njson = res.json()\nprint(json)\n```"
+      operationId: recall_memory_points
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Body_recall_memory_points'
         required: true
-        schema:
-          title: Collection Id
-          type: string
-        style: simple
       responses:
         "200":
           content:
             application/json:
               schema:
-                title: Response Wipe Single Collection
+                title: Response Recall Memory Points
                 type: object
           description: Successful Response
         "422":
@@ -985,9 +957,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-      summary: Wipe Single Collection
+      summary: Recall Memory Points
       tags:
-      - Memory
+      - Vector Memory - Points
+      x-content-type: application/json
       x-accepts:
       - application/json
   /memory/collections/{collection_id}/points:
@@ -1026,8 +999,74 @@ paths:
           description: Validation Error
       summary: Delete Memory Points By Metadata
       tags:
-      - Memory
+      - Vector Memory - Points
       x-content-type: application/json
+      x-accepts:
+      - application/json
+    get:
+      description: "Retrieve all the points from a single collection\n\n\nExample\n\
+        ----------\n```\ncollection = \"declarative\"\nres = requests.get(\n    f\"\
+        http://localhost:1865/memory/collections/{collection}/points\",\n)\njson =\
+        \ res.json()\npoints = json[\"points\"]\n\nfor point in points:\n    payload\
+        \ = point[\"payload\"]\n    vector = point[\"vector\"]\n    print(payload)\n\
+        \    print(vector)\n```\n\nExample using offset\n----------\n```\n# get all\
+        \ the points with limit 10\nlimit = 10\nnext_offset = \"\"\ncollection = \"\
+        declarative\"\n\nwhile True:\n    res = requests.get(\n        f\"http://localhost:1865/memory/collections/{collection}/points?limit={limit}&offset={next_offset}\"\
+        ,\n    )\n    json = res.json()\n    points = json[\"points\"]\n    next_offset\
+        \ = json[\"next_offset\"]\n\n    for point in points:\n        payload = point[\"\
+        payload\"]\n        vector = point[\"vector\"]\n        print(payload)\n \
+        \       print(vector)\n    \n    if next_offset is None:\n        break\n\
+        ```"
+      operationId: get_points_in_collection
+      parameters:
+      - explode: false
+        in: path
+        name: collection_id
+        required: true
+        schema:
+          title: Collection Id
+          type: string
+        style: simple
+      - description: How many points to return
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 100
+          description: How many points to return
+          title: Limit
+          type: integer
+        style: form
+      - description: If provided (or not empty string) - skip points with ids less
+          than given `offset`
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          description: If provided (or not empty string) - skip points with ids less
+            than given `offset`
+          title: Offset
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                title: Response Get Points In Collection
+                type: object
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Get Points In Collection
+      tags:
+      - Vector Memory - Points
       x-accepts:
       - application/json
     post:
@@ -1063,7 +1102,7 @@ paths:
           description: Validation Error
       summary: Create Memory Point
       tags:
-      - Memory
+      - Vector Memory - Points
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -1104,7 +1143,153 @@ paths:
           description: Validation Error
       summary: Delete Memory Point
       tags:
-      - Memory
+      - Vector Memory - Points
+      x-accepts:
+      - application/json
+    put:
+      description: |-
+        Edit a point in memory
+
+
+        Example
+        ----------
+        ```
+
+        collection = "declarative"
+        content = "MIAO!"
+        metadata = {"custom_key": "custom_value"}
+        req_json = {
+            "content": content,
+            "metadata": metadata,
+        }
+        # create a point
+        res = requests.post(
+            f"http://localhost:1865/memory/collections/{collection}/points", json=req_json
+        )
+        json = res.json()
+        #get the id
+        point_id = json["id"]
+        # new point values
+        content = "NEW MIAO!"
+        metadata = {"custom_key": "new_custom_value"}
+        req_json = {
+            "content": content,
+            "metadata": metadata,
+        }
+
+        # edit the point
+        res = requests.put(
+            f"http://localhost:1865/memory/collections/{collection}/points/{point_id}", json=req_json
+        )
+        json = res.json()
+        print(json)
+        ```
+      operationId: edit_memory_point
+      parameters:
+      - explode: false
+        in: path
+        name: collection_id
+        required: true
+        schema:
+          title: Collection Id
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: point_id
+        required: true
+        schema:
+          title: Point Id
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MemoryPointBase'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MemoryPoint'
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Edit Memory Point
+      tags:
+      - Vector Memory - Points
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /memory/collections:
+    delete:
+      description: Delete and create all collections
+      operationId: wipe_collections
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                title: Response Wipe Collections
+                type: object
+          description: Successful Response
+      summary: Wipe Collections
+      tags:
+      - Vector Memory - Collections
+      x-accepts:
+      - application/json
+    get:
+      description: Get list of available collections
+      operationId: get_collections
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                title: Response Get Collections
+                type: object
+          description: Successful Response
+      summary: Get Collections
+      tags:
+      - Vector Memory - Collections
+      x-accepts:
+      - application/json
+  /memory/collections/{collection_id}:
+    delete:
+      description: Delete and recreate a collection
+      operationId: wipe_single_collection
+      parameters:
+      - explode: false
+        in: path
+        name: collection_id
+        required: true
+        schema:
+          title: Collection Id
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                title: Response Wipe Single Collection
+                type: object
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Wipe Single Collection
+      tags:
+      - Vector Memory - Collections
       x-accepts:
       - application/json
   /memory/conversation_history:
@@ -1121,7 +1306,7 @@ paths:
           description: Successful Response
       summary: Wipe Conversation History
       tags:
-      - Memory
+      - Working Memory - Current Conversation
       x-accepts:
       - application/json
     get:
@@ -1137,7 +1322,7 @@ paths:
           description: Successful Response
       summary: Get Conversation History
       tags:
-      - Memory
+      - Working Memory - Current Conversation
       x-accepts:
       - application/json
   /rabbithole/:
@@ -1200,6 +1385,53 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
       summary: Upload File
+      tags:
+      - Rabbit Hole
+      x-content-type: multipart/form-data
+      x-accepts:
+      - application/json
+  /rabbithole/batch:
+    post:
+      description: "Batch upload multiple files containing text (.txt, .md, .pdf,\
+        \ etc.). File content will be extracted and segmented into chunks.\nChunks\
+        \ will be then vectorized and stored into documents memory.\n\nNote\n----------\n\
+        `chunk_size`, `chunk_overlap` anad `metadata` must be passed as form data.\n\
+        This is necessary because the HTTP protocol does not allow file uploads to\
+        \ be sent as JSON.\n\nExample\n----------\n```\nfiles = []\nfiles_to_upload\
+        \ = {\"sample.pdf\":\"application/pdf\",\"sample.txt\":\"application/txt\"\
+        }\n\nfor file_name in files_to_upload:\n    content_type = files_to_upload[file_name]\n\
+        \    file_path = f\"tests/mocks/{file_name}\"\n    files.append(  (\"files\"\
+        , ((file_name, open(file_path, \"rb\"), content_type))) )\n\n\nmetadata =\
+        \ {\n    \"sample.pdf\":{\n        \"source\": \"sample.pdf\",\n        \"\
+        title\": \"Test title\",\n        \"author\": \"Test author\",\n        \"\
+        year\": 2020\n    },\n    \"sample.txt\":{\n        \"source\": \"sample.txt\"\
+        ,\n        \"title\": \"Test title\",\n        \"author\": \"Test author\"\
+        ,\n        \"year\": 2021\n    }\n}\n    \n# upload file endpoint only accepts\
+        \ form-encoded data\npayload = {\n    \"chunk_size\": 128,\n    \"metadata\"\
+        : json.dumps(metadata)\n}\n\nresponse = requests.post(\n    \"http://localhost:1865/rabbithole/batch\"\
+        ,\n    files=files,\n    data=payload\n)\n```"
+      operationId: upload_files
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Body_upload_files'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                title: Response Upload Files
+                type: object
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Upload Files
       tags:
       - Rabbit Hole
       x-content-type: multipart/form-data
@@ -1406,6 +1638,26 @@ components:
       required:
       - file
       title: Body_install_plugin
+    Body_recall_memory_points:
+      properties:
+        text:
+          description: Find memories similar to this text.
+          title: Text
+          type: string
+        k:
+          default: 100
+          description: How many memories to return.
+          title: K
+          type: integer
+        metadata:
+          default: "{}"
+          description: Flat dictionary where each key-value pair represents a filter.The
+            memory points returned will match the specified metadata criteria.
+          title: Metadata
+          type: string
+      required:
+      - text
+      title: Body_recall_memory_points
     Body_upload_file:
       properties:
         file:
@@ -1428,6 +1680,30 @@ components:
       required:
       - file
       title: Body_upload_file
+    Body_upload_files:
+      properties:
+        files:
+          items:
+            format: binary
+            type: string
+          type: array
+        chunk_size:
+          nullable: true
+          type: integer
+        chunk_overlap:
+          nullable: true
+          type: integer
+        metadata:
+          default: "{}"
+          description: "Metadata to be stored where each key is the name of a file\
+            \ being uploaded, and the corresponding value is another dictionary containing\
+            \ metadata specific to that file. Since we are passing this along side\
+            \ form data, metadata must be a JSON string (use `json.dumps(metadata)`)."
+          title: Metadata
+          type: string
+      required:
+      - files
+      title: Body_upload_files
     Body_upload_memory:
       properties:
         file:
@@ -1440,53 +1716,125 @@ components:
     CatMessage:
       additionalProperties: {}
       description: |-
-        Class for wrapping cat message
+        Represents a Cat message.
 
-        Variables:
-            content (str): cat message
-            user_id (str): user id
+        Attributes
+        ----------
+        type : str
+            The type of message. Defaults to "chat".
+        user_id : str
+            Unique identifier for the user associated with the message.
+        when : float
+            The timestamp when the message was sent. Defaults to the current time.
+        who : str
+            The name of the message author.
+        text : Optional[str], default=None
+            The text content of the message.
+        image : Optional[str], default=None
+            Image file URLs or base64 data URIs that represent image associated with the message.
+        audio : Optional[str], default=None
+            Audio file URLs or base64 data URIs that represent audio associated with the message.
+        why : Optional[MessageWhy]
+            Additional contextual information related to the message.
+
+        Notes
+        -----
+        - The `content` parameter and attribute are deprecated. Use `text` instead.
       example:
+        image: Image
         user_id: user_id
         why:
           input: input
           memory: "{}"
           model_interactions:
           - model_type: ""
-            started_at: 6.027456183070403
-            output_tokens: 1
+            started_at: 1.4658129805029452
+            output_tokens: 5
             source: source
             reply: reply
             prompt: prompt
-            input_tokens: 0
-            ended_at: 5.962133916683182
+            input_tokens: 6
+            ended_at: 5.637376656633329
           - model_type: ""
-            started_at: 6.027456183070403
-            output_tokens: 1
+            started_at: 1.4658129805029452
+            output_tokens: 5
             source: source
             reply: reply
             prompt: prompt
-            input_tokens: 0
-            ended_at: 5.962133916683182
+            input_tokens: 6
+            ended_at: 5.637376656633329
           intermediate_steps:
           - ""
           - ""
+        text: Text
+        audio: Audio
         type: chat
+        message: message
+        when: 0.8008281904610115
         content: content
+        who: AI
       properties:
-        content:
-          title: Content
         user_id:
           title: User Id
+        when:
+          title: When
+        who:
+          default: AI
+          title: Who
+        text:
+          $ref: '#/components/schemas/Text'
+        image:
+          $ref: '#/components/schemas/Image'
+        audio:
+          $ref: '#/components/schemas/Audio'
         type:
           default: chat
           title: Type
         why:
           $ref: '#/components/schemas/CatMessage_why'
+        message:
+          description: |-
+            This attribute is deprecated. Use `text` instead.
+
+            The text content of the message. Use `text` instead.
+
+            Returns
+            -------
+            str
+                The text content of the message.
+          readOnly: true
+          title: Message
+        content:
+          description: |-
+            This attribute is deprecated. Use `text` instead.
+
+            The text content of the message. Use `text` instead.
+
+            Returns
+            -------
+            str
+                The text content of the message.
+          readOnly: true
+          title: Content
       required:
       - content
+      - message
       - user_id
       title: CatMessage
     EmbedderModelInteraction:
+      description: |-
+        Represents an interaction with an embedding model.
+
+        Inherits from ModelInteraction and includes attributes specific to embedding interactions.
+
+        Attributes
+        ----------
+        model_type : Literal["embedder"]
+            The type of model, which is fixed to "embedder".
+        source : str
+            The source of the interaction, defaulting to "recall".
+        reply : List[float]
+            The embeddings generated by the embedder.
       properties:
         model_type: {}
         source:
@@ -1546,15 +1894,30 @@ components:
       - access_token
       title: JWTResponse
     LLMModelInteraction:
+      description: |-
+        Represents an interaction with a large language model (LLM).
+
+        Inherits from ModelInteraction and adds specific attributes related to LLM interactions.
+
+        Attributes
+        ----------
+        model_type : Literal["llm"]
+            The type of model, which is fixed to "llm".
+        reply : str
+            The response generated by the LLM.
+        output_tokens : int
+            The number of output tokens generated by the LLM.
+        ended_at : float
+            The timestamp when the interaction ended.
       example:
         model_type: ""
-        started_at: 6.027456183070403
-        output_tokens: 1
+        started_at: 1.4658129805029452
+        output_tokens: 5
         source: source
         reply: reply
         prompt: prompt
-        input_tokens: 0
-        ended_at: 5.962133916683182
+        input_tokens: 6
+        ended_at: 5.637376656633329
       properties:
         model_type: {}
         source:
@@ -1631,34 +1994,36 @@ components:
       title: MemoryPointBase
     MessageWhy:
       additionalProperties: {}
-      description: |-
-        Class for wrapping message why
-
-        Variables:
-            input (str): input message
-            intermediate_steps (List): intermediate steps
-            memory (dict): memory
-            model_interactions (List[LLMModelInteraction | EmbedderModelInteraction]): model interactions
+      description: "A class for encapsulating the context and reasoning behind a message,\
+        \ providing details on \ninput, intermediate steps, memory, and interactions\
+        \ with models.\n\nAttributes\n----------\ninput : str\n    The initial input\
+        \ message that triggered the response.\nintermediate_steps : List\n    A list\
+        \ capturing intermediate steps or actions taken as part of processing the\
+        \ message.\nmemory : dict\n    A dictionary containing relevant memory information\
+        \ used during the processing of the message.\nmodel_interactions : List[Union[LLMModelInteraction,\
+        \ EmbedderModelInteraction]]\n    A list of interactions with language or\
+        \ embedding models, detailing how models were used in generating \n    or\
+        \ understanding the message context."
       example:
         input: input
         memory: "{}"
         model_interactions:
         - model_type: ""
-          started_at: 6.027456183070403
-          output_tokens: 1
+          started_at: 1.4658129805029452
+          output_tokens: 5
           source: source
           reply: reply
           prompt: prompt
-          input_tokens: 0
-          ended_at: 5.962133916683182
+          input_tokens: 6
+          ended_at: 5.637376656633329
         - model_type: ""
-          started_at: 6.027456183070403
-          output_tokens: 1
+          started_at: 1.4658129805029452
+          output_tokens: 5
           source: source
           reply: reply
           prompt: prompt
-          input_tokens: 0
-          ended_at: 5.962133916683182
+          input_tokens: 6
+          ended_at: 5.637376656633329
         intermediate_steps:
         - ""
         - ""
@@ -1860,6 +2225,23 @@ components:
       - msg
       - type
       title: ValidationError
+    Text:
+      anyOf:
+      - {}
+      - nullable: true
+      title: Text
+    Image:
+      anyOf:
+      - nullable: true
+        type: string
+      - nullable: true
+      title: Image
+    Audio:
+      anyOf:
+      - nullable: true
+        type: string
+      - nullable: true
+      title: Audio
     CatMessage_why:
       anyOf:
       - $ref: '#/components/schemas/MessageWhy'
@@ -1888,7 +2270,8 @@ components:
       title: Chunk Overlap
     ValidationError_loc_inner:
       anyOf:
-      - type: string
+      - nullable: true
+        type: string
       - nullable: true
         type: integer
 

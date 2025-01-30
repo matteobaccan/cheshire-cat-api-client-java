@@ -149,6 +149,70 @@ public class RabbitHoleApi {
                                null, localVarReturnType, false);
   }
   /**
+   * Upload Files
+   * Batch upload multiple files containing text (.txt, .md, .pdf, etc.). File content will be extracted and segmented into chunks. Chunks will be then vectorized and stored into documents memory.  Note ---------- &#x60;chunk_size&#x60;, &#x60;chunk_overlap&#x60; anad &#x60;metadata&#x60; must be passed as form data. This is necessary because the HTTP protocol does not allow file uploads to be sent as JSON.  Example ---------- &#x60;&#x60;&#x60; files &#x3D; [] files_to_upload &#x3D; {\&quot;sample.pdf\&quot;:\&quot;application/pdf\&quot;,\&quot;sample.txt\&quot;:\&quot;application/txt\&quot;}  for file_name in files_to_upload:     content_type &#x3D; files_to_upload[file_name]     file_path &#x3D; f\&quot;tests/mocks/{file_name}\&quot;     files.append(  (\&quot;files\&quot;, ((file_name, open(file_path, \&quot;rb\&quot;), content_type))) )   metadata &#x3D; {     \&quot;sample.pdf\&quot;:{         \&quot;source\&quot;: \&quot;sample.pdf\&quot;,         \&quot;title\&quot;: \&quot;Test title\&quot;,         \&quot;author\&quot;: \&quot;Test author\&quot;,         \&quot;year\&quot;: 2020     },     \&quot;sample.txt\&quot;:{         \&quot;source\&quot;: \&quot;sample.txt\&quot;,         \&quot;title\&quot;: \&quot;Test title\&quot;,         \&quot;author\&quot;: \&quot;Test author\&quot;,         \&quot;year\&quot;: 2021     } }      # upload file endpoint only accepts form-encoded data payload &#x3D; {     \&quot;chunk_size\&quot;: 128,     \&quot;metadata\&quot;: json.dumps(metadata) }  response &#x3D; requests.post(     \&quot;http://localhost:1865/rabbithole/batch\&quot;,     files&#x3D;files,     data&#x3D;payload ) &#x60;&#x60;&#x60;
+   * @param files  (required)
+   * @param chunkSize  (optional)
+   * @param chunkOverlap  (optional)
+   * @param metadata Metadata to be stored where each key is the name of a file being uploaded, and the corresponding value is another dictionary containing metadata specific to that file. Since we are passing this along side form data, metadata must be a JSON string (use &#x60;json.dumps(metadata)&#x60;). (optional, default to {})
+   * @return Object
+   * @throws ApiException if fails to make API call
+   * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+       <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+       <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
+       <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
+     </table>
+   */
+  public Object uploadFiles(List<File> files, Integer chunkSize, Integer chunkOverlap, String metadata) throws ApiException {
+    return uploadFilesWithHttpInfo(files, chunkSize, chunkOverlap, metadata).getData();
+  }
+
+  /**
+   * Upload Files
+   * Batch upload multiple files containing text (.txt, .md, .pdf, etc.). File content will be extracted and segmented into chunks. Chunks will be then vectorized and stored into documents memory.  Note ---------- &#x60;chunk_size&#x60;, &#x60;chunk_overlap&#x60; anad &#x60;metadata&#x60; must be passed as form data. This is necessary because the HTTP protocol does not allow file uploads to be sent as JSON.  Example ---------- &#x60;&#x60;&#x60; files &#x3D; [] files_to_upload &#x3D; {\&quot;sample.pdf\&quot;:\&quot;application/pdf\&quot;,\&quot;sample.txt\&quot;:\&quot;application/txt\&quot;}  for file_name in files_to_upload:     content_type &#x3D; files_to_upload[file_name]     file_path &#x3D; f\&quot;tests/mocks/{file_name}\&quot;     files.append(  (\&quot;files\&quot;, ((file_name, open(file_path, \&quot;rb\&quot;), content_type))) )   metadata &#x3D; {     \&quot;sample.pdf\&quot;:{         \&quot;source\&quot;: \&quot;sample.pdf\&quot;,         \&quot;title\&quot;: \&quot;Test title\&quot;,         \&quot;author\&quot;: \&quot;Test author\&quot;,         \&quot;year\&quot;: 2020     },     \&quot;sample.txt\&quot;:{         \&quot;source\&quot;: \&quot;sample.txt\&quot;,         \&quot;title\&quot;: \&quot;Test title\&quot;,         \&quot;author\&quot;: \&quot;Test author\&quot;,         \&quot;year\&quot;: 2021     } }      # upload file endpoint only accepts form-encoded data payload &#x3D; {     \&quot;chunk_size\&quot;: 128,     \&quot;metadata\&quot;: json.dumps(metadata) }  response &#x3D; requests.post(     \&quot;http://localhost:1865/rabbithole/batch\&quot;,     files&#x3D;files,     data&#x3D;payload ) &#x60;&#x60;&#x60;
+   * @param files  (required)
+   * @param chunkSize  (optional)
+   * @param chunkOverlap  (optional)
+   * @param metadata Metadata to be stored where each key is the name of a file being uploaded, and the corresponding value is another dictionary containing metadata specific to that file. Since we are passing this along side form data, metadata must be a JSON string (use &#x60;json.dumps(metadata)&#x60;). (optional, default to {})
+   * @return ApiResponse&lt;Object&gt;
+   * @throws ApiException if fails to make API call
+   * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+       <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+       <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
+       <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
+     </table>
+   */
+  public ApiResponse<Object> uploadFilesWithHttpInfo(List<File> files, Integer chunkSize, Integer chunkOverlap, String metadata) throws ApiException {
+    // Check required parameters
+    if (files == null) {
+      throw new ApiException(400, "Missing the required parameter 'files' when calling uploadFiles");
+    }
+
+    // Form parameters
+    Map<String, Object> localVarFormParams = new LinkedHashMap<>();
+    localVarFormParams.put("files", files);
+    if (chunkSize != null) {
+      localVarFormParams.put("chunk_size", chunkSize);
+    }
+    if (chunkOverlap != null) {
+      localVarFormParams.put("chunk_overlap", chunkOverlap);
+    }
+    if (metadata != null) {
+      localVarFormParams.put("metadata", metadata);
+    }
+
+    String localVarAccept = apiClient.selectHeaderAccept("application/json");
+    String localVarContentType = apiClient.selectHeaderContentType("multipart/form-data");
+    GenericType<Object> localVarReturnType = new GenericType<Object>() {};
+    return apiClient.invokeAPI("RabbitHoleApi.uploadFiles", "/rabbithole/batch", "POST", new ArrayList<>(), null,
+                               new LinkedHashMap<>(), new LinkedHashMap<>(), localVarFormParams, localVarAccept, localVarContentType,
+                               null, localVarReturnType, false);
+  }
+  /**
    * Upload Memory
    * Upload a memory json file to the cat memory
    * @param _file  (required)

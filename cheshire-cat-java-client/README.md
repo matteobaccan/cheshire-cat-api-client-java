@@ -2,7 +2,7 @@
 
 😸 Cheshire-Cat API
 
-- API version: 1.7.1
+- API version: 1.8.1
 
 - Generator version: 7.10.0
 
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>it.baccan</groupId>
   <artifactId>cheshire-cat-java-client</artifactId>
-  <version>1.7.1</version>
+  <version>1.8.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "it.baccan:cheshire-cat-java-client:1.7.1"
+     implementation "it.baccan:cheshire-cat-java-client:1.8.1"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/cheshire-cat-java-client-1.7.1.jar`
+- `target/cheshire-cat-java-client-1.8.1.jar`
 - `target/lib/*.jar`
 
 ## Usage
@@ -146,18 +146,11 @@ Class | Method | HTTP request | Description
 *EmbedderApi* | [**getEmbedderSettings**](docs/EmbedderApi.md#getEmbedderSettings) | **GET** /embedder/settings/{languageEmbedderName} | Get Embedder Settings
 *EmbedderApi* | [**getEmbeddersSettings**](docs/EmbedderApi.md#getEmbeddersSettings) | **GET** /embedder/settings | Get Embedders Settings
 *EmbedderApi* | [**upsertEmbedderSetting**](docs/EmbedderApi.md#upsertEmbedderSetting) | **PUT** /embedder/settings/{languageEmbedderName} | Upsert Embedder Setting
+*HomeApi* | [**messageWithCat**](docs/HomeApi.md#messageWithCat) | **POST** /message | Message With Cat
+*HomeApi* | [**status**](docs/HomeApi.md#status) | **GET** / | Status
 *LargeLanguageModelApi* | [**getLlmSettings**](docs/LargeLanguageModelApi.md#getLlmSettings) | **GET** /llm/settings/{languageModelName} | Get Llm Settings
 *LargeLanguageModelApi* | [**getLlmsSettings**](docs/LargeLanguageModelApi.md#getLlmsSettings) | **GET** /llm/settings | Get Llms Settings
 *LargeLanguageModelApi* | [**upsertLlmSetting**](docs/LargeLanguageModelApi.md#upsertLlmSetting) | **PUT** /llm/settings/{languageModelName} | Upsert Llm Setting
-*MemoryApi* | [**createMemoryPoint**](docs/MemoryApi.md#createMemoryPoint) | **POST** /memory/collections/{collection_id}/points | Create Memory Point
-*MemoryApi* | [**deleteMemoryPoint**](docs/MemoryApi.md#deleteMemoryPoint) | **DELETE** /memory/collections/{collection_id}/points/{point_id} | Delete Memory Point
-*MemoryApi* | [**deleteMemoryPointsByMetadata**](docs/MemoryApi.md#deleteMemoryPointsByMetadata) | **DELETE** /memory/collections/{collection_id}/points | Delete Memory Points By Metadata
-*MemoryApi* | [**getCollections**](docs/MemoryApi.md#getCollections) | **GET** /memory/collections | Get Collections
-*MemoryApi* | [**getConversationHistory**](docs/MemoryApi.md#getConversationHistory) | **GET** /memory/conversation_history | Get Conversation History
-*MemoryApi* | [**recallMemoriesFromText**](docs/MemoryApi.md#recallMemoriesFromText) | **GET** /memory/recall | Recall Memories From Text
-*MemoryApi* | [**wipeCollections**](docs/MemoryApi.md#wipeCollections) | **DELETE** /memory/collections | Wipe Collections
-*MemoryApi* | [**wipeConversationHistory**](docs/MemoryApi.md#wipeConversationHistory) | **DELETE** /memory/conversation_history | Wipe Conversation History
-*MemoryApi* | [**wipeSingleCollection**](docs/MemoryApi.md#wipeSingleCollection) | **DELETE** /memory/collections/{collection_id} | Wipe Single Collection
 *PluginsApi* | [**deletePlugin**](docs/PluginsApi.md#deletePlugin) | **DELETE** /plugins/{plugin_id} | Delete Plugin
 *PluginsApi* | [**getAvailablePlugins**](docs/PluginsApi.md#getAvailablePlugins) | **GET** /plugins/ | Get Available Plugins
 *PluginsApi* | [**getPluginDetails**](docs/PluginsApi.md#getPluginDetails) | **GET** /plugins/{plugin_id} | Get Plugin Details
@@ -169,6 +162,7 @@ Class | Method | HTTP request | Description
 *PluginsApi* | [**upsertPluginSettings**](docs/PluginsApi.md#upsertPluginSettings) | **PUT** /plugins/settings/{plugin_id} | Upsert Plugin Settings
 *RabbitHoleApi* | [**getAllowedMimetypes**](docs/RabbitHoleApi.md#getAllowedMimetypes) | **GET** /rabbithole/allowed-mimetypes | Get Allowed Mimetypes
 *RabbitHoleApi* | [**uploadFile**](docs/RabbitHoleApi.md#uploadFile) | **POST** /rabbithole/ | Upload File
+*RabbitHoleApi* | [**uploadFiles**](docs/RabbitHoleApi.md#uploadFiles) | **POST** /rabbithole/batch | Upload Files
 *RabbitHoleApi* | [**uploadMemory**](docs/RabbitHoleApi.md#uploadMemory) | **POST** /rabbithole/memory | Upload Memory
 *RabbitHoleApi* | [**uploadUrl**](docs/RabbitHoleApi.md#uploadUrl) | **POST** /rabbithole/web | Upload Url
 *SettingsApi* | [**createSetting**](docs/SettingsApi.md#createSetting) | **POST** /settings/ | Create Setting
@@ -176,8 +170,6 @@ Class | Method | HTTP request | Description
 *SettingsApi* | [**getSetting**](docs/SettingsApi.md#getSetting) | **GET** /settings/{settingId} | Get Setting
 *SettingsApi* | [**getSettings**](docs/SettingsApi.md#getSettings) | **GET** /settings/ | Get Settings
 *SettingsApi* | [**updateSetting**](docs/SettingsApi.md#updateSetting) | **PUT** /settings/{settingId} | Update Setting
-*StatusApi* | [**home**](docs/StatusApi.md#home) | **GET** / | Home
-*StatusApi* | [**messageWithCat**](docs/StatusApi.md#messageWithCat) | **POST** /message | Message With Cat
 *UserAuthApi* | [**authToken**](docs/UserAuthApi.md#authToken) | **POST** /auth/token | Auth Token
 *UserAuthApi* | [**getAvailablePermissions**](docs/UserAuthApi.md#getAvailablePermissions) | **GET** /auth/available-permissions | Get Available Permissions
 *UsersApi* | [**createUser**](docs/UsersApi.md#createUser) | **POST** /users/ | Create User
@@ -185,18 +177,33 @@ Class | Method | HTTP request | Description
 *UsersApi* | [**readUser**](docs/UsersApi.md#readUser) | **GET** /users/{user_id} | Read User
 *UsersApi* | [**readUsers**](docs/UsersApi.md#readUsers) | **GET** /users/ | Read Users
 *UsersApi* | [**updateUser**](docs/UsersApi.md#updateUser) | **PUT** /users/{user_id} | Update User
+*VectorMemoryCollectionsApi* | [**getCollections**](docs/VectorMemoryCollectionsApi.md#getCollections) | **GET** /memory/collections | Get Collections
+*VectorMemoryCollectionsApi* | [**wipeCollections**](docs/VectorMemoryCollectionsApi.md#wipeCollections) | **DELETE** /memory/collections | Wipe Collections
+*VectorMemoryCollectionsApi* | [**wipeSingleCollection**](docs/VectorMemoryCollectionsApi.md#wipeSingleCollection) | **DELETE** /memory/collections/{collection_id} | Wipe Single Collection
+*VectorMemoryPointsApi* | [**createMemoryPoint**](docs/VectorMemoryPointsApi.md#createMemoryPoint) | **POST** /memory/collections/{collection_id}/points | Create Memory Point
+*VectorMemoryPointsApi* | [**deleteMemoryPoint**](docs/VectorMemoryPointsApi.md#deleteMemoryPoint) | **DELETE** /memory/collections/{collection_id}/points/{point_id} | Delete Memory Point
+*VectorMemoryPointsApi* | [**deleteMemoryPointsByMetadata**](docs/VectorMemoryPointsApi.md#deleteMemoryPointsByMetadata) | **DELETE** /memory/collections/{collection_id}/points | Delete Memory Points By Metadata
+*VectorMemoryPointsApi* | [**editMemoryPoint**](docs/VectorMemoryPointsApi.md#editMemoryPoint) | **PUT** /memory/collections/{collection_id}/points/{point_id} | Edit Memory Point
+*VectorMemoryPointsApi* | [**getPointsInCollection**](docs/VectorMemoryPointsApi.md#getPointsInCollection) | **GET** /memory/collections/{collection_id}/points | Get Points In Collection
+*VectorMemoryPointsApi* | [**recallMemoryPoints**](docs/VectorMemoryPointsApi.md#recallMemoryPoints) | **POST** /memory/recall | Recall Memory Points
+*VectorMemoryPointsApi* | [**recallMemoryPointsFromText**](docs/VectorMemoryPointsApi.md#recallMemoryPointsFromText) | **GET** /memory/recall | Recall Memory Points From Text
+*WorkingMemoryCurrentConversationApi* | [**getConversationHistory**](docs/WorkingMemoryCurrentConversationApi.md#getConversationHistory) | **GET** /memory/conversation_history | Get Conversation History
+*WorkingMemoryCurrentConversationApi* | [**wipeConversationHistory**](docs/WorkingMemoryCurrentConversationApi.md#wipeConversationHistory) | **DELETE** /memory/conversation_history | Wipe Conversation History
 
 
 ## Documentation for Models
 
+ - [Audio](docs/Audio.md)
  - [AuthPermission](docs/AuthPermission.md)
  - [AuthResource](docs/AuthResource.md)
+ - [BodyRecallMemoryPoints](docs/BodyRecallMemoryPoints.md)
  - [CatMessage](docs/CatMessage.md)
  - [CatMessageWhy](docs/CatMessageWhy.md)
  - [ChunkOverlap](docs/ChunkOverlap.md)
  - [ChunkSize](docs/ChunkSize.md)
  - [EmbedderModelInteraction](docs/EmbedderModelInteraction.md)
  - [HTTPValidationError](docs/HTTPValidationError.md)
+ - [Image](docs/Image.md)
  - [JWTResponse](docs/JWTResponse.md)
  - [LLMModelInteraction](docs/LLMModelInteraction.md)
  - [MemoryPoint](docs/MemoryPoint.md)
@@ -204,6 +211,7 @@ Class | Method | HTTP request | Description
  - [MessageWhy](docs/MessageWhy.md)
  - [ModelInteractionsInner](docs/ModelInteractionsInner.md)
  - [SettingBody](docs/SettingBody.md)
+ - [Text](docs/Text.md)
  - [UploadURLConfig](docs/UploadURLConfig.md)
  - [UserCreate](docs/UserCreate.md)
  - [UserCredentials](docs/UserCredentials.md)
