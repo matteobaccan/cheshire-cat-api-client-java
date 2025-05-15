@@ -10,7 +10,7 @@ lazy val root = (project in file(".")).
     resolvers += Resolver.mavenLocal,
     libraryDependencies ++= Seq(
       "com.google.code.findbugs" % "jsr305" % "3.0.0",
-      "io.swagger" % "swagger-annotations" % "1.6.5",
+      "io.swagger" % "swagger-annotations" % "1.6.16",
       "org.glassfish.jersey.core" % "jersey-client" % "2.35",
       "org.glassfish.jersey.inject" % "jersey-hk2" % "2.35",
       "org.glassfish.jersey.media" % "jersey-media-multipart" % "2.35",
