@@ -2,7 +2,7 @@ openapi: 3.1.0
 info:
   description: Production ready AI assistant framework
   title: 😸 Cheshire-Cat API
-  version: 1.8.1
+  version: 1.9.1
   x-logo:
     url: https://cheshirecat.ai/wp-content/uploads/2023/10/Logo-Cheshire-Cat.svg
 servers:
@@ -56,25 +56,6 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
-  /auth/available-permissions:
-    get:
-      description: Returns all available resources and permissions.
-      operationId: get_available_permissions
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                additionalProperties:
-                  items:
-                    $ref: '#/components/schemas/AuthPermission'
-                title: Response Get Available Permissions
-          description: Successful Response
-      summary: Get Available Permissions
-      tags:
-      - User Auth
-      x-accepts:
-      - application/json
   /auth/token:
     post:
       description: |-
@@ -104,6 +85,25 @@ paths:
       tags:
       - User Auth
       x-content-type: application/json
+      x-accepts:
+      - application/json
+  /auth/available-permissions:
+    get:
+      description: Returns all available resources and permissions.
+      operationId: get_available_permissions
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  items:
+                    $ref: '#/components/schemas/AuthPermission'
+                title: Response Get Available Permissions
+          description: Successful Response
+      summary: Get Available Permissions
+      tags:
+      - User Auth
       x-accepts:
       - application/json
   /users/:
@@ -980,9 +980,9 @@ paths:
         content:
           application/json:
             schema:
-              default: {}
+              default: "{}"
               title: Metadata
-              type: object
+              type: string
       responses:
         "200":
           content:
@@ -1752,7 +1752,9 @@ components:
             output_tokens: 5
             source: source
             reply: reply
-            prompt: prompt
+            prompt:
+            - prompt
+            - prompt
             input_tokens: 6
             ended_at: 5.637376656633329
           - model_type: ""
@@ -1760,7 +1762,9 @@ components:
             output_tokens: 5
             source: source
             reply: reply
-            prompt: prompt
+            prompt:
+            - prompt
+            - prompt
             input_tokens: 6
             ended_at: 5.637376656633329
           intermediate_steps:
@@ -1769,7 +1773,6 @@ components:
         text: Text
         audio: Audio
         type: chat
-        message: message
         when: 0.8008281904610115
         content: content
         who: AI
@@ -1792,18 +1795,6 @@ components:
           title: Type
         why:
           $ref: '#/components/schemas/CatMessage_why'
-        message:
-          description: |-
-            This attribute is deprecated. Use `text` instead.
-
-            The text content of the message. Use `text` instead.
-
-            Returns
-            -------
-            str
-                The text content of the message.
-          readOnly: true
-          title: Message
         content:
           description: |-
             This attribute is deprecated. Use `text` instead.
@@ -1818,7 +1809,6 @@ components:
           title: Content
       required:
       - content
-      - message
       - user_id
       title: CatMessage
     EmbedderModelInteraction:
@@ -1842,8 +1832,10 @@ components:
           title: Source
           type: string
         prompt:
-          title: Prompt
-          type: string
+          items:
+            nullable: true
+            type: string
+          type: array
         input_tokens:
           title: Input Tokens
           type: integer
@@ -1915,7 +1907,9 @@ components:
         output_tokens: 5
         source: source
         reply: reply
-        prompt: prompt
+        prompt:
+        - prompt
+        - prompt
         input_tokens: 6
         ended_at: 5.637376656633329
       properties:
@@ -1924,8 +1918,9 @@ components:
           title: Source
           type: string
         prompt:
-          title: Prompt
-          type: string
+          items:
+            type: string
+          type: array
         input_tokens:
           title: Input Tokens
           type: integer
@@ -2013,7 +2008,9 @@ components:
           output_tokens: 5
           source: source
           reply: reply
-          prompt: prompt
+          prompt:
+          - prompt
+          - prompt
           input_tokens: 6
           ended_at: 5.637376656633329
         - model_type: ""
@@ -2021,7 +2018,9 @@ components:
           output_tokens: 5
           source: source
           reply: reply
-          prompt: prompt
+          prompt:
+          - prompt
+          - prompt
           input_tokens: 6
           ended_at: 5.637376656633329
         intermediate_steps:
@@ -2261,12 +2260,14 @@ components:
       - nullable: true
         type: integer
       description: Maximum length of each chunk after the document is split (in tokens)
+      nullable: true
       title: Chunk Size
     Chunk_Overlap:
       anyOf:
       - nullable: true
         type: integer
       description: Chunk overlap (in tokens)
+      nullable: true
       title: Chunk Overlap
     ValidationError_loc_inner:
       anyOf:

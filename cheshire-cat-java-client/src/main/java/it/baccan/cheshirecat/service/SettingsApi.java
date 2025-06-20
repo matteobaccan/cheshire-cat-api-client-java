@@ -17,7 +17,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.13.0")
 public class SettingsApi {
   private ApiClient apiClient;
 
@@ -61,7 +61,7 @@ public class SettingsApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public Object createSetting(SettingBody settingBody) throws ApiException {
+  public Object createSetting(@javax.annotation.Nonnull SettingBody settingBody) throws ApiException {
     return createSettingWithHttpInfo(settingBody).getData();
   }
 
@@ -79,7 +79,7 @@ public class SettingsApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public ApiResponse<Object> createSettingWithHttpInfo(SettingBody settingBody) throws ApiException {
+  public ApiResponse<Object> createSettingWithHttpInfo(@javax.annotation.Nonnull SettingBody settingBody) throws ApiException {
     // Check required parameters
     if (settingBody == null) {
       throw new ApiException(400, "Missing the required parameter 'settingBody' when calling createSetting");
@@ -106,7 +106,7 @@ public class SettingsApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public Object deleteSetting(String settingId) throws ApiException {
+  public Object deleteSetting(@javax.annotation.Nonnull String settingId) throws ApiException {
     return deleteSettingWithHttpInfo(settingId).getData();
   }
 
@@ -124,7 +124,7 @@ public class SettingsApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public ApiResponse<Object> deleteSettingWithHttpInfo(String settingId) throws ApiException {
+  public ApiResponse<Object> deleteSettingWithHttpInfo(@javax.annotation.Nonnull String settingId) throws ApiException {
     // Check required parameters
     if (settingId == null) {
       throw new ApiException(400, "Missing the required parameter 'settingId' when calling deleteSetting");
@@ -155,7 +155,7 @@ public class SettingsApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public Object getSetting(String settingId) throws ApiException {
+  public Object getSetting(@javax.annotation.Nonnull String settingId) throws ApiException {
     return getSettingWithHttpInfo(settingId).getData();
   }
 
@@ -173,7 +173,7 @@ public class SettingsApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public ApiResponse<Object> getSettingWithHttpInfo(String settingId) throws ApiException {
+  public ApiResponse<Object> getSettingWithHttpInfo(@javax.annotation.Nonnull String settingId) throws ApiException {
     // Check required parameters
     if (settingId == null) {
       throw new ApiException(400, "Missing the required parameter 'settingId' when calling getSetting");
@@ -204,7 +204,7 @@ public class SettingsApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public Object getSettings(String search) throws ApiException {
+  public Object getSettings(@javax.annotation.Nullable String search) throws ApiException {
     return getSettingsWithHttpInfo(search).getData();
   }
 
@@ -222,7 +222,7 @@ public class SettingsApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public ApiResponse<Object> getSettingsWithHttpInfo(String search) throws ApiException {
+  public ApiResponse<Object> getSettingsWithHttpInfo(@javax.annotation.Nullable String search) throws ApiException {
     // Query parameters
     List<Pair> localVarQueryParams = new ArrayList<>(
             apiClient.parameterToPairs("", "search", search)
@@ -250,7 +250,7 @@ public class SettingsApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public Object updateSetting(String settingId, SettingBody settingBody) throws ApiException {
+  public Object updateSetting(@javax.annotation.Nonnull String settingId, @javax.annotation.Nonnull SettingBody settingBody) throws ApiException {
     return updateSettingWithHttpInfo(settingId, settingBody).getData();
   }
 
@@ -269,7 +269,7 @@ public class SettingsApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public ApiResponse<Object> updateSettingWithHttpInfo(String settingId, SettingBody settingBody) throws ApiException {
+  public ApiResponse<Object> updateSettingWithHttpInfo(@javax.annotation.Nonnull String settingId, @javax.annotation.Nonnull SettingBody settingBody) throws ApiException {
     // Check required parameters
     if (settingId == null) {
       throw new ApiException(400, "Missing the required parameter 'settingId' when calling updateSetting");

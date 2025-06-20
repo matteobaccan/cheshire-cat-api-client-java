@@ -17,7 +17,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.13.0")
 public class HomeApi {
   private ApiClient apiClient;
 
@@ -61,7 +61,7 @@ public class HomeApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public CatMessage messageWithCat(Object body) throws ApiException {
+  public CatMessage messageWithCat(@javax.annotation.Nullable Object body) throws ApiException {
     return messageWithCatWithHttpInfo(body).getData();
   }
 
@@ -79,7 +79,7 @@ public class HomeApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public ApiResponse<CatMessage> messageWithCatWithHttpInfo(Object body) throws ApiException {
+  public ApiResponse<CatMessage> messageWithCatWithHttpInfo(@javax.annotation.Nullable Object body) throws ApiException {
     String localVarAccept = apiClient.selectHeaderAccept("application/json");
     String localVarContentType = apiClient.selectHeaderContentType("application/json");
     GenericType<CatMessage> localVarReturnType = new GenericType<CatMessage>() {};

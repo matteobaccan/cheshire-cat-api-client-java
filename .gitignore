@@ -1,1 +1,2 @@
 cheshire-cat-java-client-test/logs/archived/*.gz
+/target/

@@ -16,7 +16,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.13.0")
 public class VectorMemoryCollectionsApi {
   private ApiClient apiClient;
 
@@ -132,7 +132,7 @@ public class VectorMemoryCollectionsApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public Object wipeSingleCollection(String collectionId) throws ApiException {
+  public Object wipeSingleCollection(@javax.annotation.Nonnull String collectionId) throws ApiException {
     return wipeSingleCollectionWithHttpInfo(collectionId).getData();
   }
 
@@ -150,7 +150,7 @@ public class VectorMemoryCollectionsApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public ApiResponse<Object> wipeSingleCollectionWithHttpInfo(String collectionId) throws ApiException {
+  public ApiResponse<Object> wipeSingleCollectionWithHttpInfo(@javax.annotation.Nonnull String collectionId) throws ApiException {
     // Check required parameters
     if (collectionId == null) {
       throw new ApiException(400, "Missing the required parameter 'collectionId' when calling wipeSingleCollection");

@@ -7,6 +7,8 @@ Maximum length of each chunk after the document is split (in tokens)
 ## anyOf schemas
 * [Integer](Integer.md)
 
+NOTE: this class is nullable.
+
 ## Example
 ```java
 // Import classes:

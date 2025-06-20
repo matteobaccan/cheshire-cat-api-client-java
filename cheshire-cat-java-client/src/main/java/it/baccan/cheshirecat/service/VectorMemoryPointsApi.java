@@ -19,7 +19,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.13.0")
 public class VectorMemoryPointsApi {
   private ApiClient apiClient;
 
@@ -64,7 +64,7 @@ public class VectorMemoryPointsApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public MemoryPoint createMemoryPoint(String collectionId, MemoryPointBase memoryPointBase) throws ApiException {
+  public MemoryPoint createMemoryPoint(@javax.annotation.Nonnull String collectionId, @javax.annotation.Nonnull MemoryPointBase memoryPointBase) throws ApiException {
     return createMemoryPointWithHttpInfo(collectionId, memoryPointBase).getData();
   }
 
@@ -83,7 +83,7 @@ public class VectorMemoryPointsApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public ApiResponse<MemoryPoint> createMemoryPointWithHttpInfo(String collectionId, MemoryPointBase memoryPointBase) throws ApiException {
+  public ApiResponse<MemoryPoint> createMemoryPointWithHttpInfo(@javax.annotation.Nonnull String collectionId, @javax.annotation.Nonnull MemoryPointBase memoryPointBase) throws ApiException {
     // Check required parameters
     if (collectionId == null) {
       throw new ApiException(400, "Missing the required parameter 'collectionId' when calling createMemoryPoint");
@@ -118,7 +118,7 @@ public class VectorMemoryPointsApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public Object deleteMemoryPoint(String collectionId, String pointId) throws ApiException {
+  public Object deleteMemoryPoint(@javax.annotation.Nonnull String collectionId, @javax.annotation.Nonnull String pointId) throws ApiException {
     return deleteMemoryPointWithHttpInfo(collectionId, pointId).getData();
   }
 
@@ -137,7 +137,7 @@ public class VectorMemoryPointsApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public ApiResponse<Object> deleteMemoryPointWithHttpInfo(String collectionId, String pointId) throws ApiException {
+  public ApiResponse<Object> deleteMemoryPointWithHttpInfo(@javax.annotation.Nonnull String collectionId, @javax.annotation.Nonnull String pointId) throws ApiException {
     // Check required parameters
     if (collectionId == null) {
       throw new ApiException(400, "Missing the required parameter 'collectionId' when calling deleteMemoryPoint");
@@ -173,7 +173,7 @@ public class VectorMemoryPointsApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public Object deleteMemoryPointsByMetadata(String collectionId, Object body) throws ApiException {
+  public Object deleteMemoryPointsByMetadata(@javax.annotation.Nonnull String collectionId, @javax.annotation.Nullable String body) throws ApiException {
     return deleteMemoryPointsByMetadataWithHttpInfo(collectionId, body).getData();
   }
 
@@ -192,7 +192,7 @@ public class VectorMemoryPointsApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public ApiResponse<Object> deleteMemoryPointsByMetadataWithHttpInfo(String collectionId, Object body) throws ApiException {
+  public ApiResponse<Object> deleteMemoryPointsByMetadataWithHttpInfo(@javax.annotation.Nonnull String collectionId, @javax.annotation.Nullable String body) throws ApiException {
     // Check required parameters
     if (collectionId == null) {
       throw new ApiException(400, "Missing the required parameter 'collectionId' when calling deleteMemoryPointsByMetadata");
@@ -225,7 +225,7 @@ public class VectorMemoryPointsApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public MemoryPoint editMemoryPoint(String collectionId, String pointId, MemoryPointBase memoryPointBase) throws ApiException {
+  public MemoryPoint editMemoryPoint(@javax.annotation.Nonnull String collectionId, @javax.annotation.Nonnull String pointId, @javax.annotation.Nonnull MemoryPointBase memoryPointBase) throws ApiException {
     return editMemoryPointWithHttpInfo(collectionId, pointId, memoryPointBase).getData();
   }
 
@@ -245,7 +245,7 @@ public class VectorMemoryPointsApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public ApiResponse<MemoryPoint> editMemoryPointWithHttpInfo(String collectionId, String pointId, MemoryPointBase memoryPointBase) throws ApiException {
+  public ApiResponse<MemoryPoint> editMemoryPointWithHttpInfo(@javax.annotation.Nonnull String collectionId, @javax.annotation.Nonnull String pointId, @javax.annotation.Nonnull MemoryPointBase memoryPointBase) throws ApiException {
     // Check required parameters
     if (collectionId == null) {
       throw new ApiException(400, "Missing the required parameter 'collectionId' when calling editMemoryPoint");
@@ -285,7 +285,7 @@ public class VectorMemoryPointsApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public Object getPointsInCollection(String collectionId, Integer limit, String offset) throws ApiException {
+  public Object getPointsInCollection(@javax.annotation.Nonnull String collectionId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String offset) throws ApiException {
     return getPointsInCollectionWithHttpInfo(collectionId, limit, offset).getData();
   }
 
@@ -305,7 +305,7 @@ public class VectorMemoryPointsApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public ApiResponse<Object> getPointsInCollectionWithHttpInfo(String collectionId, Integer limit, String offset) throws ApiException {
+  public ApiResponse<Object> getPointsInCollectionWithHttpInfo(@javax.annotation.Nonnull String collectionId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String offset) throws ApiException {
     // Check required parameters
     if (collectionId == null) {
       throw new ApiException(400, "Missing the required parameter 'collectionId' when calling getPointsInCollection");
@@ -342,7 +342,7 @@ public class VectorMemoryPointsApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public Object recallMemoryPoints(BodyRecallMemoryPoints bodyRecallMemoryPoints) throws ApiException {
+  public Object recallMemoryPoints(@javax.annotation.Nonnull BodyRecallMemoryPoints bodyRecallMemoryPoints) throws ApiException {
     return recallMemoryPointsWithHttpInfo(bodyRecallMemoryPoints).getData();
   }
 
@@ -360,7 +360,7 @@ public class VectorMemoryPointsApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public ApiResponse<Object> recallMemoryPointsWithHttpInfo(BodyRecallMemoryPoints bodyRecallMemoryPoints) throws ApiException {
+  public ApiResponse<Object> recallMemoryPointsWithHttpInfo(@javax.annotation.Nonnull BodyRecallMemoryPoints bodyRecallMemoryPoints) throws ApiException {
     // Check required parameters
     if (bodyRecallMemoryPoints == null) {
       throw new ApiException(400, "Missing the required parameter 'bodyRecallMemoryPoints' when calling recallMemoryPoints");
@@ -390,7 +390,7 @@ public class VectorMemoryPointsApi {
    * @deprecated
    */
   @Deprecated
-  public Object recallMemoryPointsFromText(String text, Integer k) throws ApiException {
+  public Object recallMemoryPointsFromText(@javax.annotation.Nonnull String text, @javax.annotation.Nullable Integer k) throws ApiException {
     return recallMemoryPointsFromTextWithHttpInfo(text, k).getData();
   }
 
@@ -411,7 +411,7 @@ public class VectorMemoryPointsApi {
    * @deprecated
    */
   @Deprecated
-  public ApiResponse<Object> recallMemoryPointsFromTextWithHttpInfo(String text, Integer k) throws ApiException {
+  public ApiResponse<Object> recallMemoryPointsFromTextWithHttpInfo(@javax.annotation.Nonnull String text, @javax.annotation.Nullable Integer k) throws ApiException {
     // Check required parameters
     if (text == null) {
       throw new ApiException(400, "Missing the required parameter 'text' when calling recallMemoryPointsFromText");

@@ -175,7 +175,7 @@ public class Example {
 
         VectorMemoryPointsApi apiInstance = new VectorMemoryPointsApi(defaultClient);
         String collectionId = "collectionId_example"; // String | 
-        Object body = null; // Object | 
+        String body = "body_example"; // String | 
         try {
             Object result = apiInstance.deleteMemoryPointsByMetadata(collectionId, body);
             System.out.println(result);
@@ -196,7 +196,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **collectionId** | **String**|  | |
-| **body** | **Object**|  | [optional] |
+| **body** | **String**|  | [optional] |
 
 ### Return type
 

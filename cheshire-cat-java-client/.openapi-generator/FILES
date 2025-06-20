@@ -62,6 +62,8 @@ src/main/java/it/baccan/cheshirecat/JSON.java
 src/main/java/it/baccan/cheshirecat/JavaTimeFormatter.java
 src/main/java/it/baccan/cheshirecat/Pair.java
 src/main/java/it/baccan/cheshirecat/RFC3339DateFormat.java
+src/main/java/it/baccan/cheshirecat/RFC3339InstantDeserializer.java
+src/main/java/it/baccan/cheshirecat/RFC3339JavaTimeModule.java
 src/main/java/it/baccan/cheshirecat/ServerConfiguration.java
 src/main/java/it/baccan/cheshirecat/ServerVariable.java
 src/main/java/it/baccan/cheshirecat/StringUtil.java

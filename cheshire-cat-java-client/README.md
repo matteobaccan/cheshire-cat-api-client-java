@@ -2,9 +2,9 @@
 
 😸 Cheshire-Cat API
 
-- API version: 1.8.1
+- API version: 1.9.1
 
-- Generator version: 7.10.0
+- Generator version: 7.13.0
 
 Production ready AI assistant framework
 
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>it.baccan</groupId>
   <artifactId>cheshire-cat-java-client</artifactId>
-  <version>1.8.1</version>
+  <version>1.9.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "it.baccan:cheshire-cat-java-client:1.8.1"
+     implementation "it.baccan:cheshire-cat-java-client:1.9.1"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/cheshire-cat-java-client-1.8.1.jar`
+- `target/cheshire-cat-java-client-1.9.1.jar`
 - `target/lib/*.jar`
 
 ## Usage

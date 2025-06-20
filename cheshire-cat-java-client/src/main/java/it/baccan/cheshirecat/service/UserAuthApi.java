@@ -19,7 +19,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.13.0")
 public class UserAuthApi {
   private ApiClient apiClient;
 
@@ -63,7 +63,7 @@ public class UserAuthApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public JWTResponse authToken(UserCredentials userCredentials) throws ApiException {
+  public JWTResponse authToken(@javax.annotation.Nonnull UserCredentials userCredentials) throws ApiException {
     return authTokenWithHttpInfo(userCredentials).getData();
   }
 
@@ -81,7 +81,7 @@ public class UserAuthApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public ApiResponse<JWTResponse> authTokenWithHttpInfo(UserCredentials userCredentials) throws ApiException {
+  public ApiResponse<JWTResponse> authTokenWithHttpInfo(@javax.annotation.Nonnull UserCredentials userCredentials) throws ApiException {
     // Check required parameters
     if (userCredentials == null) {
       throw new ApiException(400, "Missing the required parameter 'userCredentials' when calling authToken");

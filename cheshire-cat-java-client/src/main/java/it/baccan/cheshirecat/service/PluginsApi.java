@@ -17,7 +17,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.13.0")
 public class PluginsApi {
   private ApiClient apiClient;
 
@@ -61,7 +61,7 @@ public class PluginsApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public Object deletePlugin(String pluginId) throws ApiException {
+  public Object deletePlugin(@javax.annotation.Nonnull String pluginId) throws ApiException {
     return deletePluginWithHttpInfo(pluginId).getData();
   }
 
@@ -79,7 +79,7 @@ public class PluginsApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public ApiResponse<Object> deletePluginWithHttpInfo(String pluginId) throws ApiException {
+  public ApiResponse<Object> deletePluginWithHttpInfo(@javax.annotation.Nonnull String pluginId) throws ApiException {
     // Check required parameters
     if (pluginId == null) {
       throw new ApiException(400, "Missing the required parameter 'pluginId' when calling deletePlugin");
@@ -110,7 +110,7 @@ public class PluginsApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public Object getAvailablePlugins(String query) throws ApiException {
+  public Object getAvailablePlugins(@javax.annotation.Nullable String query) throws ApiException {
     return getAvailablePluginsWithHttpInfo(query).getData();
   }
 
@@ -128,7 +128,7 @@ public class PluginsApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public ApiResponse<Object> getAvailablePluginsWithHttpInfo(String query) throws ApiException {
+  public ApiResponse<Object> getAvailablePluginsWithHttpInfo(@javax.annotation.Nullable String query) throws ApiException {
     // Query parameters
     List<Pair> localVarQueryParams = new ArrayList<>(
             apiClient.parameterToPairs("", "query", query)
@@ -155,7 +155,7 @@ public class PluginsApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public Object getPluginDetails(String pluginId) throws ApiException {
+  public Object getPluginDetails(@javax.annotation.Nonnull String pluginId) throws ApiException {
     return getPluginDetailsWithHttpInfo(pluginId).getData();
   }
 
@@ -173,7 +173,7 @@ public class PluginsApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public ApiResponse<Object> getPluginDetailsWithHttpInfo(String pluginId) throws ApiException {
+  public ApiResponse<Object> getPluginDetailsWithHttpInfo(@javax.annotation.Nonnull String pluginId) throws ApiException {
     // Check required parameters
     if (pluginId == null) {
       throw new ApiException(400, "Missing the required parameter 'pluginId' when calling getPluginDetails");
@@ -204,7 +204,7 @@ public class PluginsApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public Object getPluginSettings(String pluginId) throws ApiException {
+  public Object getPluginSettings(@javax.annotation.Nonnull String pluginId) throws ApiException {
     return getPluginSettingsWithHttpInfo(pluginId).getData();
   }
 
@@ -222,7 +222,7 @@ public class PluginsApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public ApiResponse<Object> getPluginSettingsWithHttpInfo(String pluginId) throws ApiException {
+  public ApiResponse<Object> getPluginSettingsWithHttpInfo(@javax.annotation.Nonnull String pluginId) throws ApiException {
     // Check required parameters
     if (pluginId == null) {
       throw new ApiException(400, "Missing the required parameter 'pluginId' when calling getPluginSettings");
@@ -289,7 +289,7 @@ public class PluginsApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public Object installPlugin(File _file) throws ApiException {
+  public Object installPlugin(@javax.annotation.Nonnull File _file) throws ApiException {
     return installPluginWithHttpInfo(_file).getData();
   }
 
@@ -307,7 +307,7 @@ public class PluginsApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public ApiResponse<Object> installPluginWithHttpInfo(File _file) throws ApiException {
+  public ApiResponse<Object> installPluginWithHttpInfo(@javax.annotation.Nonnull File _file) throws ApiException {
     // Check required parameters
     if (_file == null) {
       throw new ApiException(400, "Missing the required parameter '_file' when calling installPlugin");
@@ -338,7 +338,7 @@ public class PluginsApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public Object installPluginFromRegistry(Object body) throws ApiException {
+  public Object installPluginFromRegistry(@javax.annotation.Nullable Object body) throws ApiException {
     return installPluginFromRegistryWithHttpInfo(body).getData();
   }
 
@@ -356,7 +356,7 @@ public class PluginsApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public ApiResponse<Object> installPluginFromRegistryWithHttpInfo(Object body) throws ApiException {
+  public ApiResponse<Object> installPluginFromRegistryWithHttpInfo(@javax.annotation.Nullable Object body) throws ApiException {
     String localVarAccept = apiClient.selectHeaderAccept("application/json");
     String localVarContentType = apiClient.selectHeaderContentType("application/json");
     GenericType<Object> localVarReturnType = new GenericType<Object>() {};
@@ -378,7 +378,7 @@ public class PluginsApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public Object togglePlugin(String pluginId) throws ApiException {
+  public Object togglePlugin(@javax.annotation.Nonnull String pluginId) throws ApiException {
     return togglePluginWithHttpInfo(pluginId).getData();
   }
 
@@ -396,7 +396,7 @@ public class PluginsApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public ApiResponse<Object> togglePluginWithHttpInfo(String pluginId) throws ApiException {
+  public ApiResponse<Object> togglePluginWithHttpInfo(@javax.annotation.Nonnull String pluginId) throws ApiException {
     // Check required parameters
     if (pluginId == null) {
       throw new ApiException(400, "Missing the required parameter 'pluginId' when calling togglePlugin");
@@ -428,7 +428,7 @@ public class PluginsApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public Object upsertPluginSettings(String pluginId, Object body) throws ApiException {
+  public Object upsertPluginSettings(@javax.annotation.Nonnull String pluginId, @javax.annotation.Nullable Object body) throws ApiException {
     return upsertPluginSettingsWithHttpInfo(pluginId, body).getData();
   }
 
@@ -447,7 +447,7 @@ public class PluginsApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public ApiResponse<Object> upsertPluginSettingsWithHttpInfo(String pluginId, Object body) throws ApiException {
+  public ApiResponse<Object> upsertPluginSettingsWithHttpInfo(@javax.annotation.Nonnull String pluginId, @javax.annotation.Nullable Object body) throws ApiException {
     // Check required parameters
     if (pluginId == null) {
       throw new ApiException(400, "Missing the required parameter 'pluginId' when calling upsertPluginSettings");

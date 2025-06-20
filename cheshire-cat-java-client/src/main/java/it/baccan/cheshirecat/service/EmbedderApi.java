@@ -16,7 +16,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.13.0")
 public class EmbedderApi {
   private ApiClient apiClient;
 
@@ -60,7 +60,7 @@ public class EmbedderApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public Object getEmbedderSettings(String languageEmbedderName) throws ApiException {
+  public Object getEmbedderSettings(@javax.annotation.Nonnull String languageEmbedderName) throws ApiException {
     return getEmbedderSettingsWithHttpInfo(languageEmbedderName).getData();
   }
 
@@ -78,7 +78,7 @@ public class EmbedderApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public ApiResponse<Object> getEmbedderSettingsWithHttpInfo(String languageEmbedderName) throws ApiException {
+  public ApiResponse<Object> getEmbedderSettingsWithHttpInfo(@javax.annotation.Nonnull String languageEmbedderName) throws ApiException {
     // Check required parameters
     if (languageEmbedderName == null) {
       throw new ApiException(400, "Missing the required parameter 'languageEmbedderName' when calling getEmbedderSettings");
@@ -146,7 +146,7 @@ public class EmbedderApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public Object upsertEmbedderSetting(String languageEmbedderName, Object body) throws ApiException {
+  public Object upsertEmbedderSetting(@javax.annotation.Nonnull String languageEmbedderName, @javax.annotation.Nullable Object body) throws ApiException {
     return upsertEmbedderSettingWithHttpInfo(languageEmbedderName, body).getData();
   }
 
@@ -165,7 +165,7 @@ public class EmbedderApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public ApiResponse<Object> upsertEmbedderSettingWithHttpInfo(String languageEmbedderName, Object body) throws ApiException {
+  public ApiResponse<Object> upsertEmbedderSettingWithHttpInfo(@javax.annotation.Nonnull String languageEmbedderName, @javax.annotation.Nullable Object body) throws ApiException {
     // Check required parameters
     if (languageEmbedderName == null) {
       throw new ApiException(400, "Missing the required parameter 'languageEmbedderName' when calling upsertEmbedderSetting");

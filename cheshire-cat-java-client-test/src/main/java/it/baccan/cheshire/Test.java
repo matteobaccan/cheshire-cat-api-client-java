@@ -12,8 +12,8 @@ import lombok.extern.slf4j.Slf4j;
 import it.baccan.cheshirecat.ApiClient;
 import it.baccan.cheshirecat.ApiException;
 import it.baccan.cheshirecat.Configuration;
-import it.baccan.cheshirecat.service.StatusApi;
 import it.baccan.cheshirecat.service.EmbedderApi;
+import it.baccan.cheshirecat.service.HomeApi;
 import it.baccan.cheshirecat.service.PluginsApi;
 
 /**
@@ -24,11 +24,11 @@ public class Test {
 
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://10.11.4.141:1865");
+        defaultClient.setBasePath("http://10.11.4.133:1865");
 
-        StatusApi statusApi = new StatusApi(defaultClient);
+        HomeApi homeApi = new HomeApi(defaultClient);
         try {
-            Object result = statusApi.home();
+            Object result = homeApi.status();
             log.info("[{}]", result);
         } catch (ApiException e) {
             log.error("Exception when calling statusApi#home");

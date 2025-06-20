@@ -18,7 +18,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.13.0")
 public class RabbitHoleApi {
   private ApiClient apiClient;
 
@@ -101,7 +101,7 @@ public class RabbitHoleApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public Object uploadFile(File _file, Integer chunkSize, Integer chunkOverlap, String metadata) throws ApiException {
+  public Object uploadFile(@javax.annotation.Nonnull File _file, @javax.annotation.Nullable Integer chunkSize, @javax.annotation.Nullable Integer chunkOverlap, @javax.annotation.Nullable String metadata) throws ApiException {
     return uploadFileWithHttpInfo(_file, chunkSize, chunkOverlap, metadata).getData();
   }
 
@@ -122,7 +122,7 @@ public class RabbitHoleApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public ApiResponse<Object> uploadFileWithHttpInfo(File _file, Integer chunkSize, Integer chunkOverlap, String metadata) throws ApiException {
+  public ApiResponse<Object> uploadFileWithHttpInfo(@javax.annotation.Nonnull File _file, @javax.annotation.Nullable Integer chunkSize, @javax.annotation.Nullable Integer chunkOverlap, @javax.annotation.Nullable String metadata) throws ApiException {
     // Check required parameters
     if (_file == null) {
       throw new ApiException(400, "Missing the required parameter '_file' when calling uploadFile");
@@ -165,7 +165,7 @@ public class RabbitHoleApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public Object uploadFiles(List<File> files, Integer chunkSize, Integer chunkOverlap, String metadata) throws ApiException {
+  public Object uploadFiles(@javax.annotation.Nonnull List<File> files, @javax.annotation.Nullable Integer chunkSize, @javax.annotation.Nullable Integer chunkOverlap, @javax.annotation.Nullable String metadata) throws ApiException {
     return uploadFilesWithHttpInfo(files, chunkSize, chunkOverlap, metadata).getData();
   }
 
@@ -186,7 +186,7 @@ public class RabbitHoleApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public ApiResponse<Object> uploadFilesWithHttpInfo(List<File> files, Integer chunkSize, Integer chunkOverlap, String metadata) throws ApiException {
+  public ApiResponse<Object> uploadFilesWithHttpInfo(@javax.annotation.Nonnull List<File> files, @javax.annotation.Nullable Integer chunkSize, @javax.annotation.Nullable Integer chunkOverlap, @javax.annotation.Nullable String metadata) throws ApiException {
     // Check required parameters
     if (files == null) {
       throw new ApiException(400, "Missing the required parameter 'files' when calling uploadFiles");
@@ -226,7 +226,7 @@ public class RabbitHoleApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public Object uploadMemory(File _file) throws ApiException {
+  public Object uploadMemory(@javax.annotation.Nonnull File _file) throws ApiException {
     return uploadMemoryWithHttpInfo(_file).getData();
   }
 
@@ -244,7 +244,7 @@ public class RabbitHoleApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public ApiResponse<Object> uploadMemoryWithHttpInfo(File _file) throws ApiException {
+  public ApiResponse<Object> uploadMemoryWithHttpInfo(@javax.annotation.Nonnull File _file) throws ApiException {
     // Check required parameters
     if (_file == null) {
       throw new ApiException(400, "Missing the required parameter '_file' when calling uploadMemory");
@@ -275,7 +275,7 @@ public class RabbitHoleApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public Object uploadUrl(UploadURLConfig uploadURLConfig) throws ApiException {
+  public Object uploadUrl(@javax.annotation.Nonnull UploadURLConfig uploadURLConfig) throws ApiException {
     return uploadUrlWithHttpInfo(uploadURLConfig).getData();
   }
 
@@ -293,7 +293,7 @@ public class RabbitHoleApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public ApiResponse<Object> uploadUrlWithHttpInfo(UploadURLConfig uploadURLConfig) throws ApiException {
+  public ApiResponse<Object> uploadUrlWithHttpInfo(@javax.annotation.Nonnull UploadURLConfig uploadURLConfig) throws ApiException {
     // Check required parameters
     if (uploadURLConfig == null) {
       throw new ApiException(400, "Missing the required parameter 'uploadURLConfig' when calling uploadUrl");

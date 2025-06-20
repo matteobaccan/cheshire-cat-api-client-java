@@ -10,7 +10,7 @@ Represents an interaction with an embedding model.  Inherits from ModelInteracti
 |------------ | ------------- | ------------- | -------------|
 |**modelType** | **Object** |  |  [optional] |
 |**source** | **String** |  |  [optional] |
-|**prompt** | **String** |  |  |
+|**prompt** | **List&lt;String&gt;** |  |  |
 |**inputTokens** | **Integer** |  |  |
 |**startedAt** | **BigDecimal** |  |  [optional] |
 |**reply** | **List&lt;BigDecimal&gt;** |  |  |

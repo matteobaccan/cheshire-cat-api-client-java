@@ -16,7 +16,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.13.0")
 public class LargeLanguageModelApi {
   private ApiClient apiClient;
 
@@ -60,7 +60,7 @@ public class LargeLanguageModelApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public Object getLlmSettings(String languageModelName) throws ApiException {
+  public Object getLlmSettings(@javax.annotation.Nonnull String languageModelName) throws ApiException {
     return getLlmSettingsWithHttpInfo(languageModelName).getData();
   }
 
@@ -78,7 +78,7 @@ public class LargeLanguageModelApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public ApiResponse<Object> getLlmSettingsWithHttpInfo(String languageModelName) throws ApiException {
+  public ApiResponse<Object> getLlmSettingsWithHttpInfo(@javax.annotation.Nonnull String languageModelName) throws ApiException {
     // Check required parameters
     if (languageModelName == null) {
       throw new ApiException(400, "Missing the required parameter 'languageModelName' when calling getLlmSettings");
@@ -146,7 +146,7 @@ public class LargeLanguageModelApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public Object upsertLlmSetting(String languageModelName, Object body) throws ApiException {
+  public Object upsertLlmSetting(@javax.annotation.Nonnull String languageModelName, @javax.annotation.Nullable Object body) throws ApiException {
     return upsertLlmSettingWithHttpInfo(languageModelName, body).getData();
   }
 
@@ -165,7 +165,7 @@ public class LargeLanguageModelApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public ApiResponse<Object> upsertLlmSettingWithHttpInfo(String languageModelName, Object body) throws ApiException {
+  public ApiResponse<Object> upsertLlmSettingWithHttpInfo(@javax.annotation.Nonnull String languageModelName, @javax.annotation.Nullable Object body) throws ApiException {
     // Check required parameters
     if (languageModelName == null) {
       throw new ApiException(400, "Missing the required parameter 'languageModelName' when calling upsertLlmSetting");

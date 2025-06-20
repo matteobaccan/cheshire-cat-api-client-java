@@ -7,6 +7,8 @@ Chunk overlap (in tokens)
 ## anyOf schemas
 * [Integer](Integer.md)
 
+NOTE: this class is nullable.
+
 ## Example
 ```java
 // Import classes:

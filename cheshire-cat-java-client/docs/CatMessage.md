@@ -16,7 +16,6 @@ Represents a Cat message.  Attributes ---------- type : str     The type of mess
 |**audio** | [**Audio**](Audio.md) |  |  [optional] |
 |**type** | **String** |  |  [optional] |
 |**why** | [**CatMessageWhy**](CatMessageWhy.md) |  |  [optional] |
-|**message** | **String** | This attribute is deprecated. Use &#x60;text&#x60; instead.  The text content of the message. Use &#x60;text&#x60; instead.  Returns ------- str     The text content of the message. |  [readonly] |
 |**content** | **String** | This attribute is deprecated. Use &#x60;text&#x60; instead.  The text content of the message. Use &#x60;text&#x60; instead.  Returns ------- str     The text content of the message. |  [readonly] |
 
 

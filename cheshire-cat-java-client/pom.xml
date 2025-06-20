@@ -5,7 +5,7 @@
     <artifactId>cheshire-cat-java-client</artifactId>
     <packaging>jar</packaging>
     <name>cheshire-cat-java-client</name>
-    <version>1.8.1</version>
+    <version>1.9.1</version>
     <url>https://github.com/openapitools/openapi-generator</url>
     <description>OpenAPI Java</description>
     <scm>

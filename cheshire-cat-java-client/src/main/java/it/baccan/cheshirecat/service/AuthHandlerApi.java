@@ -16,7 +16,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.13.0")
 public class AuthHandlerApi {
   private ApiClient apiClient;
 
@@ -60,7 +60,7 @@ public class AuthHandlerApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public Object getAuthHandlerSetting(String authHandlerName) throws ApiException {
+  public Object getAuthHandlerSetting(@javax.annotation.Nonnull String authHandlerName) throws ApiException {
     return getAuthHandlerSettingWithHttpInfo(authHandlerName).getData();
   }
 
@@ -78,7 +78,7 @@ public class AuthHandlerApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public ApiResponse<Object> getAuthHandlerSettingWithHttpInfo(String authHandlerName) throws ApiException {
+  public ApiResponse<Object> getAuthHandlerSettingWithHttpInfo(@javax.annotation.Nonnull String authHandlerName) throws ApiException {
     // Check required parameters
     if (authHandlerName == null) {
       throw new ApiException(400, "Missing the required parameter 'authHandlerName' when calling getAuthHandlerSetting");
@@ -146,7 +146,7 @@ public class AuthHandlerApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public Object upsertAuthenticatorSetting(String authHandlerName, Object body) throws ApiException {
+  public Object upsertAuthenticatorSetting(@javax.annotation.Nonnull String authHandlerName, @javax.annotation.Nonnull Object body) throws ApiException {
     return upsertAuthenticatorSettingWithHttpInfo(authHandlerName, body).getData();
   }
 
@@ -165,7 +165,7 @@ public class AuthHandlerApi {
        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
    */
-  public ApiResponse<Object> upsertAuthenticatorSettingWithHttpInfo(String authHandlerName, Object body) throws ApiException {
+  public ApiResponse<Object> upsertAuthenticatorSettingWithHttpInfo(@javax.annotation.Nonnull String authHandlerName, @javax.annotation.Nonnull Object body) throws ApiException {
     // Check required parameters
     if (authHandlerName == null) {
       throw new ApiException(400, "Missing the required parameter 'authHandlerName' when calling upsertAuthenticatorSetting");

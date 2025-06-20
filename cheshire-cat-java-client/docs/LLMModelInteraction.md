@@ -10,7 +10,7 @@ Represents an interaction with a large language model (LLM).  Inherits from Mode
 |------------ | ------------- | ------------- | -------------|
 |**modelType** | **Object** |  |  [optional] |
 |**source** | **String** |  |  |
-|**prompt** | **String** |  |  |
+|**prompt** | **List&lt;String&gt;** |  |  |
 |**inputTokens** | **Integer** |  |  |
 |**startedAt** | **BigDecimal** |  |  [optional] |
 |**reply** | **String** |  |  |
