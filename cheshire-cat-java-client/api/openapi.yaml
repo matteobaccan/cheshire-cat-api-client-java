@@ -2,7 +2,7 @@ openapi: 3.1.0
 info:
   description: Production ready AI assistant framework
   title: 😸 Cheshire-Cat API
-  version: 1.9.1
+  version: 1.9.2
   x-logo:
     url: https://cheshirecat.ai/wp-content/uploads/2023/10/Logo-Cheshire-Cat.svg
 servers:
